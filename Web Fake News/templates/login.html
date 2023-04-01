@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+</head>
+<body>
+    <textarea id="textarea"></textarea>
+
+</body>
+<script>
+    $(document).ready(function() {
+        var result = [
+  {word: "từ 1", label: "fake"},
+  {word: "từ 2", label: "real"},
+  {word: "từ 3", label: "fake"},];
+      $("#textarea").on("input", function() {
+        var input = $(this).val();
+        var words = input.split(" ");
+        result.forEach(function(item) {
+            if (item.label === "fake") {
+            words[i] = "<span style='color:red'>" + words[i] + "</span>";
+          } else   if (item.label === "real") { 
+            words[i] = "<span style='color:green'>" + words[i] + "</span>";
+          }
+        });
+        var output = words.join(" ");
+        $("#textarea").val(output);
+      });
+    });
+  </script>
+  
+</html>

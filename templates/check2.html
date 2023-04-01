@@ -1,0 +1,25 @@
+<script src="https://unpkg.com/hrjs"></script>
+<style>
+  #mytext {
+  width: 300px;
+  height: 100px;
+  padding: 5px;
+  border: 1px solid black;
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+</style>
+<div contenteditable="true" id="mytext">Lorem ipsum dolor sit amet.</div>
+<button id="btn">Click</button>
+<script>
+  var btn = document.getElementById("btn");
+
+btn.addEventListener("click", function() {
+  new HR("#mytext", {
+    highlight: ["dolor","sit"],
+    backgroundColor: "#b1d5e5"
+  }).hr();
+});
+</script>
