@@ -48,3 +48,4 @@ pyvi
 beautifulsoup4
 streamlit
 pymongo
+flask_pymongo
