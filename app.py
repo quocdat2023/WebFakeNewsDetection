@@ -14,7 +14,7 @@ from pip._vendor import cachecontrol
 from werkzeug.utils import secure_filename
 from flask_pymongo import PyMongo
 from pyvi import ViTokenizer
-from vncorenlp import VnCoreNLP
+# from vncorenlp import VnCoreNLP
 from bs4 import BeautifulSoup
 import random
 
