@@ -47,3 +47,4 @@ Werkzeug
 pyvi
 beautifulsoup4
 streamlit
+pymongo
