@@ -32,7 +32,7 @@ app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024
  
 ALLOWED_EXTENSIONS = set(['png', 'jpg', 'jpeg', 'gif'])
-GOOGLE_CLIENT_ID = "927639473993-h76r8co7om325tuqn1i5fi1fiulv8j4t.apps.googleusercontent.com"
+GOOGLE_CLIENT_ID = "410564700513-0qlmt8cg5qt6pjihuf6us28j1q7e09mv.apps.googleusercontent.com"
 os.environ["OAUTHLIB_INSECURE_TRANSPORT"] = "1"
 client_secrets_file = os.path.join(pathlib.Path(__file__).parent, "client_secret.json")
 
