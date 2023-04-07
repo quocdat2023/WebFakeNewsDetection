@@ -44,6 +44,6 @@ threadpoolctl
 uritemplate
 urllib3
 Werkzeug
-pivi==0.1.1
+pivi==0.4.6
 beautifulsoup4
 streamlit
