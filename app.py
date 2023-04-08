@@ -96,9 +96,6 @@ def logout():
 
 @app.route('/')
 def home():
-    session["name"] = ""
-    session["picture"] = ""
-    session["google_id"] = ""
     return render_template('index.html',names =  session['name'],pictures =  session['picture'])
 
 
