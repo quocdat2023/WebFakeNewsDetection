@@ -96,7 +96,7 @@ def logout():
 
 @app.route('/')
 def home():
-    return render_template('index.html',names =  session['name'],pictures =  session['picture'])
+    return redirect("/")
 
 
 @app.route("/user-manual")
