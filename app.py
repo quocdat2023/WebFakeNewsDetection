@@ -13,11 +13,9 @@ from pip._vendor import cachecontrol
 from werkzeug.utils import secure_filename
 import random 
 from bs4 import BeautifulSoup
-from gevent.pywsgi import WSGIServer
 
-
-app = Flask(__name__) 
-app.config["SECRET_KEY"] = "secrectkey"
+app = Flask("Google Login App")  #naming our application
+UPLOAD_FOLDER = 'static/uploads/'
 client = MongoClient("mongodb+srv://quocdat51930:2TyF3b3x3yOnhIT4@webdetectfakenews.z898ahe.mongodb.net/?retryWrites=true&w=majority")
 db = client.fakenews
 APP_ROOT = os.path.dirname(os.path.abspath(__file__))
@@ -28,14 +26,22 @@ app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024
  
 ALLOWED_EXTENSIONS = set(['png', 'jpg', 'jpeg', 'gif'])
-GOOGLE_CLIENT_ID = "410564700513-0qlmt8cg5qt6pjihuf6us28j1q7e09mv.apps.googleusercontent.com"
-os.environ["OAUTHLIB_INSECURE_TRANSPORT"] = "1"
-client_secrets_file = os.path.join(pathlib.Path(__file__).parent, "client_secret.json")
+db = client.fakenews
 
-flow = Flow.from_client_secrets_file(
+APP_ROOT = os.path.dirname(os.path.abspath(__file__))
+app.secret_key = "secret key"
+app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024
+ALLOWED_EXTENSIONS = set(['png', 'jpg', 'jpeg', 'gif'])
+os.environ["OAUTHLIB_INSECURE_TRANSPORT"] = "1"  #this is to set our environment to https because OAuth 2.0 only supports https environments
+
+GOOGLE_CLIENT_ID = "927639473993-h76r8co7om325tuqn1i5fi1fiulv8j4t.apps.googleusercontent.com"
+client_secrets_file = os.path.join(pathlib.Path(__file__).parent, "client_secret.json")  #set the path to where the .json file you got Google console is
+
+flow = Flow.from_client_secrets_file(  #Flow is OAuth 2.0 a class that stores all the information on how we want to authorize our users
     client_secrets_file=client_secrets_file,
-    scopes=["https://www.googleapis.com/auth/userinfo.profile", "https://www.googleapis.com/auth/userinfo.email", "openid"],
-    redirect_uri="https://fake-news-detection-iekd.onrender.com/callback"
+    scopes=["https://www.googleapis.com/auth/userinfo.profile", "https://www.googleapis.com/auth/userinfo.email", "openid"],  #here we are specifing what do we get after the authorization
+    redirect_uri="https://fake-news-detection-iekd.onrender.com/callback"  #and the redirect URI is the point where the user will end up after the authorization
 )
 
 
