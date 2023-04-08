@@ -56,10 +56,12 @@ def login_is_required(function):
 
 @app.route('/')
 def home():
-   if(session["name"]):
-    return render_template('index.html',names =  session["name"] , pictures = session["picture"] )
-   else:
-     return render_template('index.html',names =  "" , pictures = "")
+    name_session = session.get('name')
+    if name_session is None:
+        return render_template('index.html',names =  "" , pictures = "")
+    else:
+        return render_template('index.html',names =  session["name"] , pictures = session["picture"] )
+     
 
 
 @app.route("/user-manual")
@@ -280,23 +282,42 @@ def logout():
 @app.route("/protected_area")
 @login_is_required
 def protected_area():
-    return render_template('index.html',names =  session["name"] , pictures = session["picture"] )
+    name_session = session.get('name')
+    if name_session is None:
+        return render_template('index.html',names =  "" , pictures =  "" )
+    else:
+        return render_template('index.html',names =  session["name"] , pictures = session["picture"] )
+
 
 
 @app.route('/detectfakenews')
 def detectfakenews():
-    return render_template('detect-fake-news.html',names =  session["name"] , pictures = session["picture"] )
-
+    name_session = session.get('name')
+    if name_session is None:
+        return render_template('prevent-fake-news.html',names =  "" , pictures = "" )
+    else:
+        return render_template('detect-fake-news.html',names =  session["name"] , pictures = session["picture"] )
 
 @app.route('/preventfakenews')
 def preventfakenews():
-    return render_template('prevent-fake-news.html',names =  session["name"] , pictures = session["picture"] )
+    name_session = session.get('name')
+    if name_session is None:
+        return render_template('prevent-fake-news.html',names = "", pictures = "" )
+    else:
+        return render_template('prevent-fake-news.html',names =  session["name"] , pictures = session["picture"] )
+     
 
 
 @app.route('/usermanual')
 def usermanual():
     realnews = db.realnews.find({})
-    return render_template('user-manual.html',names =  session["name"] , pictures = session["picture"] , reals=realnews)
+    name_session = session.get('name')
+    if name_session is None:
+        return render_template('user-manual.html',names = "" , pictures =  "", reals=realnews)
+    else:
+        return render_template('user-manual.html',names =  session["name"] , pictures = session["picture"] , reals=realnews)
+     
+
 
 @app.route('/forum')
 def forum():
@@ -307,7 +328,14 @@ def forum():
     health = db.forum_report.find({"Category":"health","Status":1}).limit(12)
     seciurity = db.forum_report.find({"Category":"seciurity","Status":1}).limit(12)
     other = db.forum_report.find({"Category":"other","Status":1}).limit(12)
-    return render_template('forum.html',names =  session["name"] , pictures = session["picture"] ,law =law,disaster=disaster,ecomomy = ecomomy,health = health, seciurity = seciurity,other=other)
+   
+    name_session = session.get('name')
+    if name_session is None:
+        return render_template('forum.html',names = "" , pictures = "" ,law =law,disaster=disaster,ecomomy = ecomomy,health = health, seciurity = seciurity,other=other)
+    else:
+        return render_template('forum.html',names =  session["name"] , pictures = session["picture"] ,law =law,disaster=disaster,ecomomy = ecomomy,health = health, seciurity = seciurity,other=other)
+     
+
 
 
 @app.route('/post')
@@ -319,7 +347,13 @@ def post():
     health = db.forum_report.find({"Category":"health","Status":1}).limit(12)
     seciurity = db.forum_report.find({"Category":"seciurity","Status":1}).limit(12)
     other = db.forum_report.find({"Category":"other","Status":1}).limit(12)
-    return render_template('post.html',names =  session["name"] , pictures = session["picture"] ,law =law,disaster=disaster,ecomomy = ecomomy,health = health, seciurity = seciurity,other=other)
+   
+    name_session = session.get('name')
+    if name_session is None:
+        return render_template('post.html',names =  "", pictures = "",law =law,disaster=disaster,ecomomy = ecomomy,health = health, seciurity = seciurity,other=other)
+    else:
+        return render_template('post.html',names =  session["name"] , pictures = session["picture"] ,law =law,disaster=disaster,ecomomy = ecomomy,health = health, seciurity = seciurity,other=other)
+     
 
 @app.route('/admin/mangeforum')
 def mangeforum():
@@ -334,11 +368,16 @@ def mangeforum():
     seciurity = db.forum_report.find(
         {"Category": "seciurity", "Status": 1}).limit(100)
     other = db.forum_report.find({"Category": "other", "Status": 1}).limit(100)
-    return render_template('mangeforum.html', names=session['name'], pictures=session['picture'], law=law, disaster=disaster, ecomomy=ecomomy, health=health, seciurity=seciurity, other=other)
+    return render_template('mangeforum.html',law=law, disaster=disaster, ecomomy=ecomomy, health=health, seciurity=seciurity, other=other)
 
 @app.route('/check')
 def check():
-    return render_template('check.html',names =  session["name"] , pictures = session["picture"] )
+    name_session = session.get('name')
+    if name_session is None:
+        return render_template('index.html',names =  "" , pictures = "")
+    else:
+        return render_template('check.html',names =  session["name"] , pictures = session["picture"] )
+     
 
 
 @app.route('/admin/login/')
@@ -375,6 +414,7 @@ def dashboard():
         return redirect(url_for('login'))
     else:
         return render_template('dashboard.html', names=users, ten=name, pictures=session['picture'])
+
 
 
 if __name__ == '__main__':
