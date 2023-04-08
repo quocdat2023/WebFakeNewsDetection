@@ -56,7 +56,7 @@ def login_is_required(function):
 
 @app.route('/')
 def home():
-   return render_templindexindex.html',names =  session["name"] , pictures = session["picture"] )
+   return render_template('index.html',names =  session["name"] , pictures = session["picture"] )
 
 
 @app.route("/user-manual")
