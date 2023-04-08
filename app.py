@@ -1,9 +1,8 @@
 from pymongo import MongoClient
 from bson.objectid import ObjectId
-import os, pathlib, pickle, re, string, pandas as pd, requests, google.auth.transport.requests, urllib.request, datetime
-from flask import Flask, flash, render_template, request, abort, redirect, url_for, session, jsonify
+import os, pathlib, pickle, re, string, requests, google.auth.transport.requests, pandas as pd,urllib.request,datetime
+from flask import Flask,flash, render_template, request, abort, redirect, url_for, session,jsonify
 from sklearn.feature_extraction.text import TfidfVectorizer
-from sklearn.feature_extraction.text import TfidfTransformer
 from sklearn.linear_model import LogisticRegression
 from sklearn.model_selection import train_test_split
 from sklearn.decomposition import TruncatedSVD
@@ -12,11 +11,8 @@ from google.oauth2 import id_token
 from google_auth_oauthlib.flow import Flow
 from pip._vendor import cachecontrol
 from werkzeug.utils import secure_filename
-from flask_pymongo import PyMongo
-from pyvi import ViTokenizer
-# from vncorenlp import VnCoreNLP
+import random 
 from bs4 import BeautifulSoup
-import random
 from gevent.pywsgi import WSGIServer
 
 
