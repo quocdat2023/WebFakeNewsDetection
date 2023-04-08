@@ -35,7 +35,7 @@ app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024
 ALLOWED_EXTENSIONS = set(['png', 'jpg', 'jpeg', 'gif'])
 os.environ["OAUTHLIB_INSECURE_TRANSPORT"] = "1"  #this is to set our environment to https because OAuth 2.0 only supports https environments
 
-GOOGLE_CLIENT_ID = "927639473993-h76r8co7om325tuqn1i5fi1fiulv8j4t.apps.googleusercontent.com"
+GOOGLE_CLIENT_ID = "214700386116-ib4rk9cnudl9nkr5gq3c3li2qcn92qt2.apps.googleusercontent.com"
 client_secrets_file = os.path.join(pathlib.Path(__file__).parent, "client_secret.json")  #set the path to where the .json file you got Google console is
 
 flow = Flow.from_client_secrets_file(  #Flow is OAuth 2.0 a class that stores all the information on how we want to authorize our users
