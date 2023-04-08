@@ -374,7 +374,7 @@ def mangeforum():
 def check():
     name_session = session.get('name')
     if name_session is None:
-        return render_template('index.html',names =  "" , pictures = "")
+        return render_template('check.html',names =  "" , pictures = "")
     else:
         return render_template('check.html',names =  session["name"] , pictures = session["picture"] )
      
