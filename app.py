@@ -15,7 +15,6 @@ import random
 from bs4 import BeautifulSoup
 from gevent.pywsgi import WSGIServer
 
-
 app = Flask("Google Login App")  #naming our application
 UPLOAD_FOLDER = 'static/uploads/'
 client = MongoClient("mongodb+srv://quocdat51930:2TyF3b3x3yOnhIT4@webdetectfakenews.z898ahe.mongodb.net/?retryWrites=true&w=majority")
