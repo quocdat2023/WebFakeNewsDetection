@@ -20,8 +20,8 @@ import random
 from gevent.pywsgi import WSGIServer
 
 
-app = Flask(__name__) 
-app.config["SECRET_KEY"] = "secrectkey"
+app = Flask("Google Login App")  #naming our application
+UPLOAD_FOLDER = 'static/uploads/'
 client = MongoClient("mongodb+srv://quocdat51930:2TyF3b3x3yOnhIT4@webdetectfakenews.z898ahe.mongodb.net/?retryWrites=true&w=majority")
 db = client.fakenews
 APP_ROOT = os.path.dirname(os.path.abspath(__file__))
@@ -32,37 +32,80 @@ app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024
  
 ALLOWED_EXTENSIONS = set(['png', 'jpg', 'jpeg', 'gif'])
-GOOGLE_CLIENT_ID = "410564700513-0qlmt8cg5qt6pjihuf6us28j1q7e09mv.apps.googleusercontent.com"
-os.environ["OAUTHLIB_INSECURE_TRANSPORT"] = "1"
-client_secrets_file = os.path.join(pathlib.Path(__file__).parent, "client_secret.json")
+db = client.fakenews
 
-flow = Flow.from_client_secrets_file(
+APP_ROOT = os.path.dirname(os.path.abspath(__file__))
+app.secret_key = "secret key"
+app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024
+ALLOWED_EXTENSIONS = set(['png', 'jpg', 'jpeg', 'gif'])
+os.environ["OAUTHLIB_INSECURE_TRANSPORT"] = "1"  #this is to set our environment to https because OAuth 2.0 only supports https environments
+
+GOOGLE_CLIENT_ID = "927639473993-h76r8co7om325tuqn1i5fi1fiulv8j4t.apps.googleusercontent.com"
+client_secrets_file = os.path.join(pathlib.Path(__file__).parent, "client_secret.json")  #set the path to where the .json file you got Google console is
+
+flow = Flow.from_client_secrets_file(  #Flow is OAuth 2.0 a class that stores all the information on how we want to authorize our users
     client_secrets_file=client_secrets_file,
-    scopes=["https://www.googleapis.com/auth/userinfo.profile", "https://www.googleapis.com/auth/userinfo.email", "openid"],
-    redirect_uri="https://fake-news-detection-iekd.onrender.com/callback"
+    scopes=["https://www.googleapis.com/auth/userinfo.profile", "https://www.googleapis.com/auth/userinfo.email", "openid"],  #here we are specifing what do we get after the authorization
+    redirect_uri="http://127.0.0.1:5000/callback"  #and the redirect URI is the point where the user will end up after the authorization
 )
+
 
 def allowed_file(filename):
     return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
-    
-def login_is_required(function):
+
+def login_is_required(function):  #a function to check if the user is authorized or not
     def wrapper(*args, **kwargs):
-        if "google_id" not in session:
-            return abort(401)  
+        if "google_id" not in session:  #authorization required
+            return abort(401)
         else:
             return function()
+
     return wrapper
 
 
-global student
-name = ""
-picture = ""
-student = db.admin.find({})
-users = ""
+@app.route("/login/")  #the page where the user can login
+def login():
+    authorization_url, state = flow.authorization_url()  #asking the flow class for the authorization (login) url
+    session["state"] = state
+    return redirect(authorization_url)
+
+
+@app.route("/callback")  #this is the page that will handle the callback process meaning process after the authorization
+def callback():
+    flow.fetch_token(authorization_response=request.url)
+
+    if not session["state"] == request.args["state"]:
+        abort(500)  #state does not match!
+
+    credentials = flow.credentials
+    request_session = requests.session()
+    cached_session = cachecontrol.CacheControl(request_session)
+    token_request = google.auth.transport.requests.Request(session=cached_session)
+
+    id_info = id_token.verify_oauth2_token(
+        id_token=credentials._id_token,
+        request=token_request,
+        audience=GOOGLE_CLIENT_ID
+    )
+
+    session["google_id"] = id_info.get("sub")  #defing the results to show on the page
+    session["name"] = id_info.get("name")
+    session["picture"] = id_info.get("picture")
+    return redirect("/protected_area")  #the final page where the authorized users will end up
+
+
+@app.route("/logout")
+def logout():
+    session.clear()
+    return redirect("/")
 
 @app.route('/')
 def home():
-    return render_template('index.html',names = name,pictures = picture)
+    session["name"] = ""
+    session["picture"] = ""
+    session["google_id"] = ""
+    return render_template('index.html',names =  session['name'],pictures =  session['picture'])
 
 
 @app.route("/user-manual")
@@ -133,7 +176,7 @@ def display_image(filename):
 def update(id):
     # student = db.admin.find({})
     # student = db.admin.find_one({ "_id": id})
-    return render_template("update.html", details=student)
+    return render_template("update.html")
 
 @app.route("/view/<id>")
 def view(id):
@@ -245,66 +288,24 @@ def UrlSearch():
         for item in links:
             return "<li>"+item+"</li>"
 
-@app.route("/login")
-def login():
-    authorization_url, state = flow.authorization_url()
-    session["state"] = state
-    return redirect(authorization_url)
-
-
-@app.route("/callback")
-def callback():
-    flow.fetch_token(authorization_response=request.url)
-
-    if not session["state"] == request.args["state"]:
-        abort(500)  # State does not match!
-
-    credentials = flow.credentials
-    request_session = requests.session()
-    cached_session = cachecontrol.CacheControl(request_session)
-    token_request = google.auth.transport.requests.Request(session=cached_session)
-
-    id_info = id_token.verify_oauth2_token(
-        id_token=credentials._id_token,
-        request=token_request,
-        audience=GOOGLE_CLIENT_ID
-    )
-
-    session["google_id"] = id_info.get("sub")
-    session["name"] = id_info.get("name")
-    session["picture"] = id_info.get("picture")
-    global name,picture,id_google
-    name = session["name"] 
-    picture = session["picture"] 
-    id_google = session["google_id"]
-    return redirect("/protected_area")
-
-@app.route("/logout")
-def logout():
-    session.clear()
-    global name,picture,users
-    name = ""
-    picture = ""
-    users = ""
-    return redirect("/")
 
 @app.route("/protected_area")
 @login_is_required
 def protected_area():
-    return render_template('index.html',names = name,pictures = picture)
+    return render_template('index.html',names =  session['name'],pictures =  session['picture'])
 
 @app.route('/detectfakenews')
 def detectfakenews():
-    return render_template('detect-fake-news.html',names = name,pictures = picture)
+    return render_template('detect-fake-news.html',names =  session['name'],pictures =  session['picture'])
 
 @app.route('/preventfakenews')
 def preventfakenews():
-    return render_template('prevent-fake-news.html',names = name,pictures = picture)
+    return render_template('prevent-fake-news.html',names =  session['name'],pictures =  session['picture'])
 
 @app.route('/usermanual')
 def usermanual():
     realnews = db.realnews.find({})
-    return render_template('user-manual.html',names = name,pictures = picture,reals =realnews )
+    return render_template('user-manual.html',names =  session['name'],pictures =  session['picture'],reals =realnews )
 
 @app.route('/forum')
 def forum():
@@ -315,7 +316,7 @@ def forum():
     health = db.forum_report.find({"Category":"health","Status":1}).limit(12)
     seciurity = db.forum_report.find({"Category":"seciurity","Status":1}).limit(12)
     other = db.forum_report.find({"Category":"other","Status":1}).limit(12)
-    return render_template('forum.html',names = name,pictures = picture,law =law,disaster=disaster,ecomomy = ecomomy,health = health, seciurity = seciurity,other=other)
+    return render_template('forum.html',names =  session['name'],pictures =  session['picture'],law =law,disaster=disaster,ecomomy = ecomomy,health = health, seciurity = seciurity,other=other)
 
 @app.route('/post')
 def post():
@@ -326,7 +327,7 @@ def post():
     health = db.forum_report.find({"Category":"health","Status":1}).limit(12)
     seciurity = db.forum_report.find({"Category":"seciurity","Status":1}).limit(12)
     other = db.forum_report.find({"Category":"other","Status":1}).limit(12)
-    return render_template('post.html',names = name,pictures = picture,law =law,disaster=disaster,ecomomy = ecomomy,health = health, seciurity = seciurity,other=other)
+    return render_template('post.html',names =  session['name'],pictures =  session['picture'],law =law,disaster=disaster,ecomomy = ecomomy,health = health, seciurity = seciurity,other=other)
 
 
 @app.route('/admin/mangeforum')
@@ -338,12 +339,12 @@ def mangeforum():
     health = db.forum_report.find({"Category":"health","Status":1}).limit(100)
     seciurity = db.forum_report.find({"Category":"seciurity","Status":1}).limit(100)
     other = db.forum_report.find({"Category":"other","Status":1}).limit(100)
-    return render_template('mangeforum.html',names = name,pictures = picture,law =law,disaster=disaster,ecomomy = ecomomy,health = health, seciurity = seciurity,other=other)
+    return render_template('mangeforum.html',names =  session['name'],pictures =  session['picture'],law =law,disaster=disaster,ecomomy = ecomomy,health = health, seciurity = seciurity,other=other)
 
 
 @app.route('/check')
 def check():
-    return render_template('check.html',names = name,pictures = picture)
+    return render_template('check.html',names =  session['name'],pictures =  session['picture'])
 
 @app.route('/admin/login/')
 def loginAdmin():
@@ -355,7 +356,7 @@ def dashboard():
     if not users:
         return redirect(url_for('login'))
     else:
-         return render_template('dashboard.html',names = users,ten = name,pictures = picture)
+         return render_template('dashboard.html',names = users,ten = name,pictures =  session['picture'])
    
 
 @app.route("/loginadmin", methods=['POST'])
@@ -379,8 +380,7 @@ def loginadmin():
             return redirect('login.html')
     else:
         return redirect('login.html')
-
-
+    
 if __name__ == '__main__':
     # Debug/Development
     # app.run(debug=True, host="0.0.0.0", port="5000")
