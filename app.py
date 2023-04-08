@@ -13,6 +13,8 @@ from pip._vendor import cachecontrol
 from werkzeug.utils import secure_filename
 import random 
 from bs4 import BeautifulSoup
+# from bson.objectid import ObjectId
+from gevent.pywsgi import WSGIServer
 
 app = Flask("Google Login App")  #naming our application
 UPLOAD_FOLDER = 'static/uploads/'
@@ -21,108 +23,67 @@ db = client.fakenews
 APP_ROOT = os.path.dirname(os.path.abspath(__file__))
 UPLOAD_FOLDER = 'static/uploads/'
 
-# app.secret_key = "secret key"
-app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
-app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024
- 
-ALLOWED_EXTENSIONS = set(['png', 'jpg', 'jpeg', 'gif'])
-db = client.fakenews
 
-APP_ROOT = os.path.dirname(os.path.abspath(__file__))
 app.secret_key = "secret key"
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024
+
 ALLOWED_EXTENSIONS = set(['png', 'jpg', 'jpeg', 'gif'])
-os.environ["OAUTHLIB_INSECURE_TRANSPORT"] = "1"  #this is to set our environment to https because OAuth 2.0 only supports https environments
-
 GOOGLE_CLIENT_ID = "214700386116-ib4rk9cnudl9nkr5gq3c3li2qcn92qt2.apps.googleusercontent.com"
-client_secrets_file = os.path.join(pathlib.Path(__file__).parent, "client_secret.json")  #set the path to where the .json file you got Google console is
+os.environ["OAUTHLIB_INSECURE_TRANSPORT"] = "1"
+client_secrets_file = os.path.join(
+    pathlib.Path(__file__).parent, "client_secret.json")
 
-flow = Flow.from_client_secrets_file(  #Flow is OAuth 2.0 a class that stores all the information on how we want to authorize our users
+flow = Flow.from_client_secrets_file(
     client_secrets_file=client_secrets_file,
-    scopes=["https://www.googleapis.com/auth/userinfo.profile", "https://www.googleapis.com/auth/userinfo.email", "openid"],  #here we are specifing what do we get after the authorization
-    redirect_uri="https://fakenewsdetection-czts.onrender.com/callback"  #and the redirect URI is the point where the user will end up after the authorization
+    scopes=["https://www.googleapis.com/auth/userinfo.profile",
+            "https://www.googleapis.com/auth/userinfo.email", "openid"],
+    redirect_uri="http://127.0.0.1:5000/callback"
 )
 
 
 def allowed_file(filename):
     return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
-def login_is_required(function):  #a function to check if the user is authorized or not
+
+def login_is_required(function):
     def wrapper(*args, **kwargs):
-        if "google_id" not in session:  #authorization required
+        if "google_id" not in session:
             return abort(401)
         else:
             return function()
-
     return wrapper
-
-
-@app.route("/login/")  #the page where the user can login
-def login():
-    authorization_url, state = flow.authorization_url()  #asking the flow class for the authorization (login) url
-    session["state"] = state
-    return redirect(authorization_url)
-
-
-@app.route("/callback")  #this is the page that will handle the callback process meaning process after the authorization
-def callback():
-    flow.fetch_token(authorization_response=request.url)
-
-    if not session["state"] == request.args["state"]:
-        abort(500)  #state does not match!
-
-    credentials = flow.credentials
-    request_session = requests.session()
-    cached_session = cachecontrol.CacheControl(request_session)
-    token_request = google.auth.transport.requests.Request(session=cached_session)
-
-    id_info = id_token.verify_oauth2_token(
-        id_token=credentials._id_token,
-        request=token_request,
-        audience=GOOGLE_CLIENT_ID
-    )
-
-    session["google_id"] = id_info.get("sub")  #defing the results to show on the page
-    session["name"] = id_info.get("name")
-    session["picture"] = id_info.get("picture")
-    return redirect("/protected_area")  #the final page where the authorized users will end up
-
-
-@app.route("/logout")
-def logout():
-    session.clear()
-    return redirect("/")
 
 @app.route('/')
 def home():
-    return render_template("index.html",names =  session['name'],pictures =  session['picture'])
+    return redirect("/protected_area")
+
 
 @app.route("/user-manual")
 def manual():
-       student = db.admin.find({})
-       return render_template("user-manual.html",details=student)
+    student = db.admin.find({})
+    return render_template("user-manual.html", details=student)
 
 
-@app.route("/insert",methods=['POST'])
+@app.route("/insert", methods=['POST'])
 def insert():
-       name = request.form.get('Fname')
-       mobile = request.form.get('mobile')
-       address = request.form.get('address')
-       comment = request.form.get('comment')
+    name = request.form.get('Fname')
+    mobile = request.form.get('mobile')
+    address = request.form.get('address')
+    comment = request.form.get('comment')
 
-       db.admin.insert_one(
-              {
-                     'name': name,
-                     'mobile': mobile,
-                     'address': address,
-                     'comment': comment
-              }
-       )
-       return redirect("/usermanual")
+    db.admin.insert_one(
+        {
+            'name': name,
+            'mobile': mobile,
+            'address': address,
+            'comment': comment
+        }
+    )
+    return redirect("/usermanual")
 
 
-@app.route("/reflect",methods=['POST'])
+@app.route("/reflect", methods=['POST'])
 def reflect():
     if 'image_upload' not in request.files:
         flash('No file part')
@@ -141,15 +102,15 @@ def reflect():
     if file and allowed_file(file.filename):
         filename = secure_filename(file.filename)
         file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-        db.realnews.insert_one({ 
-                     'email': email,
-                     'fullname': name,
-                     'phone': phone,
-                     'link': link,
-                     'content':content,
-                     'image':filename,
-                     'label':label,
-                     'date': today}) 
+        db.realnews.insert_one({
+            'email': email,
+            'fullname': name,
+            'phone': phone,
+            'link': link,
+            'content': content,
+            'image': filename,
+            'label': label,
+            'date': today})
         # print('upload_image filename: ' + filename)
         # flash('Image successfully uploaded and displayed below')
         return redirect("/check")
@@ -157,10 +118,12 @@ def reflect():
         # flash('Allowed image types are - png, jpg, jpeg, gif')
         return redirect(request.url)
 
+
 @app.route('/display/<filename>')
 def display_image(filename):
     #print('display_image filename: ' + filename)
     return redirect(url_for('static', filename='uploads/' + filename), code=301)
+
 
 @app.route("/update/<id>")
 def update(id):
@@ -168,30 +131,15 @@ def update(id):
     # student = db.admin.find_one({ "_id": id})
     return render_template("update.html")
 
+
 @app.route("/view/<id>")
 def view(id):
-    # new = db.realnews.find().limit(3)
-    pipeline = [
-        { '$sample': { 'size': 3 } },
-        { '$limit': 3 }
-    ]
-    new = db.forum_report.aggregate(pipeline)
-    news = db.forum_report.find_one({"_id": ObjectId(id)})
-    return render_template("view.html", details=news,newtop3=new)
-
-@app.route("/admin/view/<id>")
-def adminview(id):
-    # new = db.realnews.find().limit(3)
-    pipeline = [
-        { '$sample': { 'size': 3 } },
-        { '$limit': 3 }
-    ]
-    new = db.forum_report.aggregate(pipeline)
-    news = db.forum_report.find_one({"_id": ObjectId(id)})
-    return render_template("view.html", details=news,newtop3=new)
+    # student = db.admin.find({})
+    news = db.realnews.find_one({"_id": ObjectId(id)})
+    return render_template("view.html", details=news)
 
 
-@app.route("/update_record/<id>",methods=["POST"])
+@app.route("/update_record/<id>", methods=["POST"])
 def update_record(id):
 
     name = request.form.get('Fname')
@@ -200,18 +148,17 @@ def update_record(id):
     comment = request.form.get('comment')
 
     db.admin.update_one(
-            {"_id": id},
-           {'$set':
-                   {
-                            'name': name,
-                            'mobile': mobile,
-                            'address': address,
-                            'comment': comment
-                   }
-          })
+        {"_id": id},
+        {'$set':
+            {
+                'name': name,
+                'mobile': mobile,
+                'address': address,
+                'comment': comment
+            }
+         })
 
     return redirect('/show')
-
 
 
 @app.route('/delete/<id>/')
@@ -219,22 +166,26 @@ def delete(id):
     db.admin.delete_one({"_id": ObjectId(id)})
     return redirect("/usermanual ")
 
+
 @app.errorhandler(404)
 def error_404(e):
-       return render_template('404.html')
+    return render_template('404.html')
 
 
-@app.route('/predicts', methods=['GET','POST'])
+@app.route('/predicts', methods=['GET', 'POST'])
 def predicts():
     if ((request.method == 'POST') and (request.form['message'] != "")):
         query = request.form['message']
-        domains = ['nghiencuulichsu.com','nguoikesu.com', 'lyluanchinhtri.vn','tingia.gov.vn','thethao247.vn', 'chinhphu.vn', 'nld.com.vn', 'plo.vn', 'vtc.vn', 'tienphong.vn', 'quochoi.vn', 'baochinhphu.vn', 'laodong.vn',  'vietnamnet.vn', 'suckhoedoisong.vn', 'tuoitre.vn', 'thanhnien.vn', 'vov.vn', 'doisongphapluat.vn', 'hanoimoi.com.vn', 'tapchicongsan.org', 'hochiminh.org', 'nhandan.com.vn','baophapluat.vn', 'baodautu.vn', 'vnmedia.vn', 'giaoducthoidai.vn', 'baodansinh.vn', 'vanhien.vn', 'dantri.com.vn', 'baomoi.com', 'bnews.vn', 'vnanet.vn', 'vietnam.vnanet.vn', 'cucnghethuatbieudien.gov.vn', 'moh.gov.vn', 'covid19.gov.vn']
+        domains = ['nghiencuulichsu.com', 'nguoikesu.com', 'lyluanchinhtri.vn', 'tingia.gov.vn', 'thethao247.vn', 'chinhphu.vn', 'nld.com.vn', 'plo.vn', 'vtc.vn', 'tienphong.vn', 'quochoi.vn', 'baochinhphu.vn', 'laodong.vn',  'vietnamnet.vn', 'suckhoedoisong.vn', 'tuoitre.vn', 'thanhnien.vn', 'vov.vn', 'doisongphapluat.vn',
+                   'hanoimoi.com.vn', 'tapchicongsan.org', 'hochiminh.org', 'nhandan.com.vn', 'baophapluat.vn', 'baodautu.vn', 'vnmedia.vn', 'giaoducthoidai.vn', 'baodansinh.vn', 'vanhien.vn', 'dantri.com.vn', 'baomoi.com', 'bnews.vn', 'vnanet.vn', 'vietnam.vnanet.vn', 'cucnghethuatbieudien.gov.vn', 'moh.gov.vn', 'covid19.gov.vn']
         random.shuffle(domains)
         site_query = ' OR '.join([f'site:{domain}' for domain in domains])
-        url = "https://www.google.com/search?q=" + query.replace(" ", "+") + " " + site_query
+        url = "https://www.google.com/search?q=" + \
+            query.replace(" ", "+") + " " + site_query
         # print(url)
 
-        headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3'}
+        headers = {
+            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3'}
 
         response = requests.get(url, headers=headers)
         soup = BeautifulSoup(response.text, 'html.parser')
@@ -247,26 +198,29 @@ def predicts():
                 link = link[:-1]
             a = a + 1
             links.append("<tr><td>"+str(a)+"</td><td><a style='overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 1; /* number of lines to show */ line-clamp: 1; -webkit-box-orient: vertical;' target='_blank' href="+link+">"+link+"</a></td></tr>")
-        
+
         links_html = ''.join(links)  # Concatenate all links as HTML code
         return links_html  # Return the concatenated HTML code
 
-        
     else:
         # return redirect("/check")
-        return jsonify({'error' : 'Missing data!'})
+        return jsonify({'error': 'Missing data!'})
 
-@app.route('/searchurl', methods=['GET','POST'])
+
+@app.route('/searchurl', methods=['GET', 'POST'])
 def UrlSearch():
-     if ((request.method == 'POST') and (request.form['message'] != "")):
+    if ((request.method == 'POST') and (request.form['message'] != "")):
         query = request.form['message']
-        domains = ['thethao247.vn', 'chinhphu.vn', 'nld.com.vn', 'plo.vn', 'vtc.vn', 'tienphong.vn', 'quochoi.vn', 'baochinhphu.vn', 'laodong.vn',  'vietnamnet.vn', 'suckhoedoisong.vn', 'tuoitre.vn', 'thanhnien.vn', 'vov.vn', 'doisongphapluat.vn', 'hanoimoi.com.vn', 'tapchicongsan.org', 'hochiminh.org', 'nhandan.com.vn','baophapluat.vn', 'baodautu.vn', 'vnmedia.vn', 'giaoducthoidai.vn', 'baodansinh.vn', 'vanhien.vn', 'dantri.com.vn', 'baomoi.com', 'bnews.vn', 'vnanet.vn', 'vietnam.vnanet.vn', 'cucnghethuatbieudien.gov.vn', 'moh.gov.vn', 'covid19.gov.vn']
+        domains = ['thethao247.vn', 'chinhphu.vn', 'nld.com.vn', 'plo.vn', 'vtc.vn', 'tienphong.vn', 'quochoi.vn', 'baochinhphu.vn', 'laodong.vn',  'vietnamnet.vn', 'suckhoedoisong.vn', 'tuoitre.vn', 'thanhnien.vn', 'vov.vn', 'doisongphapluat.vn', 'hanoimoi.com.vn', 'tapchicongsan.org',
+                   'hochiminh.org', 'nhandan.com.vn', 'baophapluat.vn', 'baodautu.vn', 'vnmedia.vn', 'giaoducthoidai.vn', 'baodansinh.vn', 'vanhien.vn', 'dantri.com.vn', 'baomoi.com', 'bnews.vn', 'vnanet.vn', 'vietnam.vnanet.vn', 'cucnghethuatbieudien.gov.vn', 'moh.gov.vn', 'covid19.gov.vn']
         random.shuffle(domains)
         site_query = ' OR '.join([f'site:{domain}' for domain in domains])
-        url = "https://www.google.com/search?q=" + query.replace(" ", "+") + " " + site_query
+        url = "https://www.google.com/search?q=" + \
+            query.replace(" ", "+") + " " + site_query
         # print(url)
 
-        headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3'}
+        headers = {
+            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3'}
 
         response = requests.get(url, headers=headers)
         soup = BeautifulSoup(response.text, 'html.parser')
@@ -279,23 +233,67 @@ def UrlSearch():
             return "<li>"+item+"</li>"
 
 
+@app.route("/login/")
+def login():
+    authorization_url, state = flow.authorization_url()
+    session["state"] = state
+    return redirect(authorization_url)
+
+
+@app.route("/callback")
+def callback():
+    flow.fetch_token(authorization_response=request.url)
+
+    if not session["state"] == request.args["state"]:
+        abort(500)  # State does not match!
+
+    credentials = flow.credentials
+    request_session = requests.session()
+    cached_session = cachecontrol.CacheControl(request_session)
+    token_request = google.auth.transport.requests.Request(
+        session=cached_session)
+
+    id_info = id_token.verify_oauth2_token(
+        id_token=credentials._id_token,
+        request=token_request,
+        audience=GOOGLE_CLIENT_ID
+    )
+
+    session["google_id"] = id_info.get("sub")
+    session["name"] = id_info.get("name")
+    session["picture"] = id_info.get("picture")
+    return redirect("/protected_area")
+
+
+@app.route("/logout")
+def logout():
+    session.clear()
+    session["google_id"] = ""
+    session["name"] = ""
+    session["picture"] = ""
+    return redirect("/")
+
+
 @app.route("/protected_area")
 @login_is_required
 def protected_area():
-    return render_template('index.html',names =  session['name'],pictures =  session['picture'])
+    return render_template('index.html',names =  session["name"] , pictures = session["picture"] )
+
 
 @app.route('/detectfakenews')
 def detectfakenews():
-    return render_template('detect-fake-news.html',names =  session['name'],pictures =  session['picture'])
+    return render_template('detect-fake-news.html',names =  session["name"] , pictures = session["picture"] )
+
 
 @app.route('/preventfakenews')
 def preventfakenews():
-    return render_template('prevent-fake-news.html',names =  session['name'],pictures =  session['picture'])
+    return render_template('prevent-fake-news.html',names =  session["name"] , pictures = session["picture"] )
+
 
 @app.route('/usermanual')
 def usermanual():
     realnews = db.realnews.find({})
-    return render_template('user-manual.html',names =  session['name'],pictures =  session['picture'],reals =realnews )
+    return render_template('user-manual.html',names =  session["name"] , pictures = session["picture"] , reals=realnews)
 
 @app.route('/forum')
 def forum():
@@ -306,7 +304,8 @@ def forum():
     health = db.forum_report.find({"Category":"health","Status":1}).limit(12)
     seciurity = db.forum_report.find({"Category":"seciurity","Status":1}).limit(12)
     other = db.forum_report.find({"Category":"other","Status":1}).limit(12)
-    return render_template('forum.html',names =  session['name'],pictures =  session['picture'],law =law,disaster=disaster,ecomomy = ecomomy,health = health, seciurity = seciurity,other=other)
+    return render_template('forum.html',names =  session["name"] , pictures = session["picture"] ,law =law,disaster=disaster,ecomomy = ecomomy,health = health, seciurity = seciurity,other=other)
+
 
 @app.route('/post')
 def post():
@@ -317,37 +316,32 @@ def post():
     health = db.forum_report.find({"Category":"health","Status":1}).limit(12)
     seciurity = db.forum_report.find({"Category":"seciurity","Status":1}).limit(12)
     other = db.forum_report.find({"Category":"other","Status":1}).limit(12)
-    return render_template('post.html',names =  session['name'],pictures =  session['picture'],law =law,disaster=disaster,ecomomy = ecomomy,health = health, seciurity = seciurity,other=other)
-
+    return render_template('post.html',names =  session["name"] , pictures = session["picture"] ,law =law,disaster=disaster,ecomomy = ecomomy,health = health, seciurity = seciurity,other=other)
 
 @app.route('/admin/mangeforum')
 def mangeforum():
     # realnews = db.realnews.find({"label":1})
-    law = db.forum_report.find({"Category":"law","Status":1}).limit(100)
-    disaster = db.forum_report.find({"Category":"disaster","Status":1}).limit(100)
-    ecomomy = db.forum_report.find({"Category":"ecomomy","Status":1}).limit(100)
-    health = db.forum_report.find({"Category":"health","Status":1}).limit(100)
-    seciurity = db.forum_report.find({"Category":"seciurity","Status":1}).limit(100)
-    other = db.forum_report.find({"Category":"other","Status":1}).limit(100)
-    return render_template('mangeforum.html',names =  session['name'],pictures =  session['picture'],law =law,disaster=disaster,ecomomy = ecomomy,health = health, seciurity = seciurity,other=other)
-
+    law = db.forum_report.find({"Category": "law", "Status": 1}).limit(100)
+    disaster = db.forum_report.find(
+        {"Category": "disaster", "Status": 1}).limit(100)
+    ecomomy = db.forum_report.find(
+        {"Category": "ecomomy", "Status": 1}).limit(100)
+    health = db.forum_report.find(
+        {"Category": "health", "Status": 1}).limit(100)
+    seciurity = db.forum_report.find(
+        {"Category": "seciurity", "Status": 1}).limit(100)
+    other = db.forum_report.find({"Category": "other", "Status": 1}).limit(100)
+    return render_template('mangeforum.html', names=session['name'], pictures=session['picture'], law=law, disaster=disaster, ecomomy=ecomomy, health=health, seciurity=seciurity, other=other)
 
 @app.route('/check')
 def check():
-    return render_template('check.html',names =  session['name'],pictures =  session['picture'])
+    return render_template('check.html',names =  session["name"] , pictures = session["picture"] )
+
 
 @app.route('/admin/login/')
 def loginAdmin():
     return render_template('login.html')
 
-
-@app.route('/admin/dashboard/')
-def dashboard():
-    if not users:
-        return redirect(url_for('login'))
-    else:
-         return render_template('dashboard.html',names = users,ten = name,pictures =  session['picture'])
-   
 
 @app.route("/loginadmin", methods=['POST'])
 def loginadmin():
@@ -360,8 +354,8 @@ def loginadmin():
             passwordcheck = user_found['password']
             if password == passwordcheck:
                 session["user"] = user_val
-                global users,name
-                users  =  session["user"]
+                global users, name
+                users = session["user"]
                 name = user_found['name']
                 return redirect('/admin/dashboard/')
             else:
@@ -370,6 +364,15 @@ def loginadmin():
             return redirect('login.html')
     else:
         return redirect('login.html')
+
+
+@app.route('/admin/dashboard/')
+def dashboard():
+    if not users:
+        return redirect(url_for('login'))
+    else:
+        return render_template('dashboard.html', names=users, ten=name, pictures=session['picture'])
+
 
 if __name__ == '__main__':
     # Debug/Development
