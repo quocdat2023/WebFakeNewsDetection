@@ -21,6 +21,25 @@
     <link href="{{ url_for('static',filename='css/swiper.css') }}" rel="stylesheet">
     <link href="{{ url_for('static',filename='css/magnific-popup.css') }}" rel="stylesheet">
     <script src="https://cdn.ckeditor.com/4.21.0/standard/ckeditor.js"></script>
+    <link rel="stylesheet" type="text/css"
+    href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
+<script type="text/javascript"
+    src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+<script type="text/javascript" src="https://unpkg.com/jquery-tourer@1.0.1/dist/jquery-tourer.min.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/jquery-tourer@1.0.1/dist/jquery-tourer.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+    integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
+    crossorigin="anonymous" referrerpolicy="no-referrer">
+<link rel="icon"
+    href="https://media1.giphy.com/media/f9xvcrzFdRaHATv6me/giphy.gif?cid=6c09b95256e366c2930ac6483563c01a1c5f9a6d8e1e27ce&rid=giphy.gif&ct=s">
+<script src="https://unpkg.com/intro.js/minified/intro.min.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/intro.js/minified/introjs.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastify-js/1.12.0/toastify.js"
+    integrity="sha512-ZHzbWDQKpcZxIT9l5KhcnwQTidZFzwK/c7gpUUsFvGjEsxPusdUCyFxjjpc7e/Wj7vLhfMujNx7COwOmzbn+2w=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastify-js/1.12.0/toastify.css"
+    integrity="sha512-kT0v1BxcibEO2Yc+6Z3W1gNsN+2cZ/U6uITqHhIJl8SAvt9vpO8llugdCPXA7cCnp8G1xbuSqHNMRaR3Zlz9yA=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
 
     <style>
         a {
@@ -266,7 +285,7 @@
     <!-- end of preloader -->
 
     <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg navbar-dark navbar-custom fixed-top">
+    <nav style="background-color:#5f4dee" class="navbar navbar-expand-lg navbar-dark navbar-custom fixed-top">
         <div class="container">
 
             <!-- Text Logo - Use this if you don't have a graphic logo -->
@@ -298,7 +317,7 @@
                                 class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link page-scroll active" href="{{ url_for('forum')}}">DIỄN ĐÀN</a>
+                        <a class="nav-link page-scroll" href="{{ url_for('forum')}}">DIỄN ĐÀN</a>
                     </li>
                     <!-- <li class="nav-item">
                     <a class="nav-link page-scroll" href="#details">TIN GIẢ</a>
@@ -328,7 +347,7 @@
                     {% if not names %}
                     {% else %}
                     <li class="nav-item">
-                        <a class="nav-link page-scroll" href="{{ url_for('post')}}">ĐĂNG BÀI</a>
+                        <a class="nav-link page-scroll active" href="{{ url_for('post')}}" >ĐĂNG BÀI</a>
                     </li>
                     {% endif %}
 
@@ -350,85 +369,99 @@
     <!-- end of navigation -->
 
     <!-- Header -->
-    <header id="header" class="ex-header">
+    <!-- <header id="header" class="ex-header">
         <div class="container">
 
             <div class="row">
                 <div class="col-md-12">
                     <h1>ĐĂNG BÀI LÊN DIỄN ĐÀN ĐỂ MỌI NGƯỜI CÙNG THẢO LUẬN NHÉ</h1>
                     
-                </div>
+                </div> -->
                 <!-- end of col -->
-            </div>
+            <!-- </div> -->
             <!-- end of row -->
-        </div>
+        <!-- </div> -->
         <!-- end of container -->
-    </header>
+    <!-- </header> -->
     <!-- end of ex-header -->
     <!-- end of header -->
     <!-- Privacy Content -->
 
     <div class="ex-basic-2">
-        <div class="container">
+        <div class="container pt-5">
             
-            <h1 class="text-center">ĐĂNG BÀI LÊN DIỄN ĐÀN</h1>
-            <a class="float-right pr-3" style="color:#5f4dee;" href="http://"><i class="fa-solid fa-clock-rotate-left"></i> Lịch sử đăng bài</a>
+            <h1 class="text-center pt-5">ĐĂNG BÀI LÊN DIỄN ĐÀN</h1>
+            <a class="float-right pr-3" style="color:#5f4dee;" href="history/{{google_id}}/0"><i class="fa-solid fa-clock-rotate-left"></i> Lịch sử đăng bài</a>
             <br>
             <br>
             <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
-            <div class="container bootdey p-5">
+            <div class="container bootdey p-2">
                 <main>
-                    <form>
+                    <form name="formpost" action="{{ url_for('newspost')}}" method="POST" enctype="multipart/form-data">
                         <div class="form-row mb-3">
-                            <label for="to" class="col-2 col-sm-1 col-form-label">Tiêu đề:</label>
-                            <div class="col-10 col-sm-11">
-                                <input type="email" class="form-control" id="to" placeholder="Tiêu đề bài viết">
+                            <div class="col-6 col-sm-6">
+                                <label for="to" class="col-form-label">Tiêu đề</label>
+                                <input  style="display: none" type="text" name="iduser" class="form-control" value="{{google_id}}">
+                                <input  style="display: none" type="text" name="pictures" class="form-control" value="{{pictures}}">
+                                <input style="display: none"  type="text" name="nameuser" class="form-control" value="{{names}}">
+                                <input type="text" name="title" class="form-control" id="to" required>
+                            </div>
+                            <div class="col-6 col-sm-6">
+                                <label for="cc" class="col-form-label">Số điện thoại:</label>
+                                <input type="text" name="phone" class="form-control" id="cc"  required>
                             </div>
                         </div>
                         <div class="form-row mb-3">
-                            <label for="cc" class="col-2 col-sm-1 col-form-label">Link:</label>
-                            <div class="col-10 col-sm-11">
-                                <input type="email" class="form-control" id="cc" placeholder="Link bài viết nếu có">
-                            </div>
-                        </div>
-                        <div class="form-row mb-3">
-                            <label for="bcc" class="col-2 col-sm-1 col-form-label">Tóm tắt:</label>
-                            <div class="col-10 col-sm-11">
-                                <input type="email" class="form-control" id="bcc" placeholder="Tóm tắt nội dung khoảng 80 chữ">
-                            </div>
-                        </div>
-                        <div class="form-row mb-3">
-                            <label for="bcc" class="col-2 col-sm-1 col-form-label">Thể loại:</label>
-                            <div class="col-5 col-sm-5">
-                                <select class="form-control">
-                                    <option>Chính sách, pháp luật</option>
-                                    <option>Thiên tai, dịch bệnh</option>
-                                    <option>Kinh tế, chính trị</option>
-                                    <option>Lĩnh vực y tế, sản phẩm y tế liên quan đến sức khỏe con người</option>
-                                    <option>An ninh quốc gia, Trật tự an toàn – xã hội</option>
-                                    <option>Khác</option>
-
+                            <div class="col-6 col-sm-6">
+                                <label for="bcc" class=" col-form-label">Thể loại</label>
+                                <select name="type" class="form-control" required>
+                                    <option value="law">Chính sách, pháp luật</option>
+                                    <option value="disaster">Thiên tai, dịch bệnh</option>
+                                    <option value="ecomomy">Kinh tế, chính trị</option>
+                                    <option value="health">Lĩnh vực y tế, sản phẩm y tế liên quan đến sức khỏe con người</option>
+                                    <option value="seciurity">An ninh quốc gia, Trật tự an toàn – xã hội</option>
+                                    <option value="other">Khác</option>
                                 </select>
                             </div>
-                            <label for="bcc" class="col-2 col-sm-1 col-form-label">Nhãn:</label>
-                            <div class="col-5 col-sm-5">
-                                <select class="form-control">
-                                    <option>Tin giả</option>
-                                    <option>Tin Thật</option>
+                            <div class="col-6 col-sm-6">
+                                <label for="bcc" class="col-form-label">Nhãn</label>
+                                <select name="label" class="form-control" required>
+                                    <option value="0">Tin giả</option>
+                                    <option value="1">Tin Thật</option>
                                 </select>
                         </div>
+                        
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="inputPassword4">Link bài viết</label>
+                                <input type="text" class="form-control" name="link" id="inputPLink" required>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="inputPassword4">Chọn ảnh</label>
+                                <div class="custom-file pt-3">
+                                    <input type="file" class="custom-file-input" name="image_upload" id="image_upload" onchange="loadFile(event)" required>
+                                    <label class="custom-file-label" for="inputGroupFile01"></label>
+                                    <!-- <div class="text-center">
+                                        <img height="170" id="output"
+                                            src="/static/images/news.png" />
+                                    </div> -->
+                                </div>
+                            </div>
+                          
                         </div>
                     <div class="row">
-                        <div class="col-sm-11 ml-auto">
+                        <div class="col-sm-12 ml-auto">
                             <div class="form-group mt-4">
-                                <textarea class="form-control" id="message" name="body" style="height: 300px;"></textarea>
+                                <label for="bcc" class="col-form-label">Tóm tắt</label>
+                                <textarea class="form-control" id="message" name="content" style="height: 300px;" required></textarea>
                             </div>
                             <script>
-                                 CKEDITOR.replace( 'body' );
+                                 CKEDITOR.replace('content');
                             </script>
                             <div class="form-group">
-                                <button type="submit" class="btn btn-success">Xác nhận gửi</button>
-                                <button type="submit" class="btn btn-danger">Hủy</button>
+                                <button type="submit" onclick="Check()"  class="btn btn-success">Xác nhận gửi</button>
+                                <button type="button" class="btn btn-danger">Hủy</button>
                             </div>
                         </div>
                     </div>
@@ -475,6 +508,35 @@
     <script src="{{ url_for('static',filename='js/validator.min.js') }}">
     </script>
     <script src="{{ url_for('static',filename='js/scripts.js') }}">
+    </script>
+      <script src="https://cdn.jsdelivr.net/gh/reymon359/web-experiments/Social%20Signature/socialsignature.min.js"
+        crossorigin="anonymous"></script>
+    <script>
+        function Check() {
+            let title = document.forms["formpost"]["title"].value;
+            let phone = document.forms["formpost"]["phone"].value;
+            let type = document.forms["formpost"]["type"].value;
+            let label = document.forms["formpost"]["label"].value;
+            let link = document.forms["formpost"]["link"].value;
+            let image_upload = document.forms["formpost"]["image_upload"].value;
+            let content = document.forms["formpost"]["content"].value;
+
+            if (title == "" && content == "" && phone == "" && link == "" && image_upload == "") {
+                Toastify({
+                    text: "Không được phép để trống!",
+                    duration: 5000,
+                    backgroundColor: "linear-gradient(to right, #00b09b, #96c93d)",
+
+                }).showToast();
+            } else{
+                Toastify({
+                    text: "Tin của bạn sẽ được kiểm duyệt dau 24h!",
+                    duration: 100000
+                }).showToast();
+
+            }
+
+        }
     </script>
 </body>
 

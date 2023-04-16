@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 
 <html lang="en">
@@ -13,7 +12,7 @@
 
     <meta name="viewport" content="width=device-width initial-scale=1.0">
 
-    <title>IT-Zone - Trường ĐH Tôn Đức Thắng</title>
+    <title>Phát hiện tin giả bằng Machine Learning</title>
 
     <!-- GLOBAL MAINLY STYLES-->
 
@@ -32,8 +31,9 @@
     <link href="https://it-zone.club/public/assets/vendors/jvectormap/jquery-jvectormap-2.0.3.css" rel="stylesheet" />
 
     <!-- THEME STYLES-->
-
-    <link rel="icon" href="https://it-zone.club/public/assets/img/logo.jpg" type="image/x-icon">
+    <link rel="icon"
+        href="https://media1.giphy.com/media/f9xvcrzFdRaHATv6me/giphy.gif?cid=6c09b95256e366c2930ac6483563c01a1c5f9a6d8e1e27ce&rid=giphy.gif&ct=s"
+        type="image/x-icon">
 
     <link rel='shortcut icon' href='https://it-zone.club/public/assets/img/logo.jpg'>
 
@@ -67,7 +67,413 @@
             display: none;
 
         }
-        
+    </style>
+    <style>
+        .pyro>.before,
+        .pyro>.after {
+            position: absolute;
+            width: 7px;
+            height: 7px;
+            pointer-events: none;
+            z-index: 99999999;
+            border-radius: 50%;
+            box-shadow: -120px -218.66667px blue, 248px -16.66667px #00ff84, 190px 16.33333px #002bff, -113px -308.66667px #ff009d, -109px -287.66667px #ffb300, -50px -313.66667px #ff006e, 226px -31.66667px #ff4000, 180px -351.66667px #ff00d0, -12px -338.66667px #00f6ff, 220px -388.66667px #99ff00, -69px -27.66667px #ff0400, -111px -339.66667px #6200ff, 155px -237.66667px #00ddff, -152px -380.66667px #00ffd0, -50px -37.66667px #00ffdd, -95px -175.66667px #a6ff00, -88px 10.33333px #0d00ff, 112px -309.66667px #005eff, 69px -415.66667px #ff00a6, 168px -100.66667px #ff004c, -244px 24.33333px #ff6600, 97px -325.66667px #ff0066, -211px -182.66667px #00ffa2, 236px -126.66667px #b700ff, 140px -196.66667px #9000ff, 125px -175.66667px #00bbff, 118px -381.66667px #ff002f, 144px -111.66667px #ffae00, 36px -78.66667px #f600ff, -63px -196.66667px #c800ff, -218px -227.66667px #d4ff00, -134px -377.66667px #ea00ff, -36px -412.66667px #ff00d4, 209px -106.66667px #00fff2, 91px -278.66667px #000dff, -22px -191.66667px #9dff00, 139px -392.66667px #a6ff00, 56px -2.66667px #0099ff, -156px -276.66667px #ea00ff, -163px -233.66667px #00fffb, -238px -346.66667px #00ff73, 62px -363.66667px #0088ff, 244px -170.66667px #0062ff, 224px -142.66667px #b300ff, 141px -208.66667px #9000ff, 211px -285.66667px #ff6600, 181px -128.66667px #1e00ff, 90px -123.66667px #c800ff, 189px 70.33333px #00ffc8, -18px -383.66667px #00ff33, 100px -6.66667px #ff008c;
+            -moz-animation: 1s bang ease-out infinite backwards, 1s gravity ease-in infinite backwards, 5s position linear infinite backwards;
+            -webkit-animation: 1s bang ease-out infinite backwards, 1s gravity ease-in infinite backwards, 5s position linear infinite backwards;
+            -o-animation: 1s bang ease-out infinite backwards, 1s gravity ease-in infinite backwards, 5s position linear infinite backwards;
+            -ms-animation: 1s bang ease-out infinite backwards, 1s gravity ease-in infinite backwards, 5s position linear infinite backwards;
+            animation: 1s bang ease-out infinite backwards, 1s gravity ease-in infinite backwards, 5s position linear infinite backwards;
+        }
+
+        .pyro>.after {
+            -moz-animation-delay: 1.25s, 1.25s, 1.25s;
+            -webkit-animation-delay: 1.25s, 1.25s, 1.25s;
+            -o-animation-delay: 1.25s, 1.25s, 1.25s;
+            -ms-animation-delay: 1.25s, 1.25s, 1.25s;
+            animation-delay: 1.25s, 1.25s, 1.25s;
+            -moz-animation-duration: 1.25s, 1.25s, 6.25s;
+            -webkit-animation-duration: 1.25s, 1.25s, 6.25s;
+            -o-animation-duration: 1.25s, 1.25s, 6.25s;
+            -ms-animation-duration: 1.25s, 1.25s, 6.25s;
+            animation-duration: 1.25s, 1.25s, 6.25s;
+        }
+
+        @-webkit-keyframes bang {
+            from {
+                box-shadow: 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white;
+            }
+        }
+
+        @-moz-keyframes bang {
+            from {
+                box-shadow: 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white;
+            }
+        }
+
+        @-o-keyframes bang {
+            from {
+                box-shadow: 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white;
+            }
+        }
+
+        @-ms-keyframes bang {
+            from {
+                box-shadow: 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white;
+            }
+        }
+
+        @keyframes bang {
+            from {
+                box-shadow: 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white;
+            }
+        }
+
+        @-webkit-keyframes gravity {
+            to {
+                transform: translateY(200px);
+                -moz-transform: translateY(200px);
+                -webkit-transform: translateY(200px);
+                -o-transform: translateY(200px);
+                -ms-transform: translateY(200px);
+                opacity: 0;
+            }
+        }
+
+        @-moz-keyframes gravity {
+            to {
+                transform: translateY(200px);
+                -moz-transform: translateY(200px);
+                -webkit-transform: translateY(200px);
+                -o-transform: translateY(200px);
+                -ms-transform: translateY(200px);
+                opacity: 0;
+            }
+        }
+
+        @-o-keyframes gravity {
+            to {
+                transform: translateY(200px);
+                -moz-transform: translateY(200px);
+                -webkit-transform: translateY(200px);
+                -o-transform: translateY(200px);
+                -ms-transform: translateY(200px);
+                opacity: 0;
+            }
+        }
+
+        @-ms-keyframes gravity {
+            to {
+                transform: translateY(200px);
+                -moz-transform: translateY(200px);
+                -webkit-transform: translateY(200px);
+                -o-transform: translateY(200px);
+                -ms-transform: translateY(200px);
+                opacity: 0;
+            }
+        }
+
+        @keyframes gravity {
+            to {
+                transform: translateY(200px);
+                -moz-transform: translateY(200px);
+                -webkit-transform: translateY(200px);
+                -o-transform: translateY(200px);
+                -ms-transform: translateY(200px);
+                opacity: 0;
+            }
+        }
+
+        @-webkit-keyframes position {
+
+            0%,
+            19.9% {
+                margin-top: 10%;
+                margin-left: 40%;
+            }
+
+            20%,
+            39.9% {
+                margin-top: 40%;
+                margin-left: 30%;
+            }
+
+            40%,
+            59.9% {
+                margin-top: 20%;
+                margin-left: 70%;
+            }
+
+            60%,
+            79.9% {
+                margin-top: 30%;
+                margin-left: 20%;
+            }
+
+            80%,
+            99.9% {
+                margin-top: 30%;
+                margin-left: 80%;
+            }
+        }
+
+        @-moz-keyframes position {
+
+            0%,
+            19.9% {
+                margin-top: 10%;
+                margin-left: 40%;
+            }
+
+            20%,
+            39.9% {
+                margin-top: 40%;
+                margin-left: 30%;
+            }
+
+            40%,
+            59.9% {
+                margin-top: 20%;
+                margin-left: 70%;
+            }
+
+            60%,
+            79.9% {
+                margin-top: 30%;
+                margin-left: 20%;
+            }
+
+            80%,
+            99.9% {
+                margin-top: 30%;
+                margin-left: 80%;
+            }
+        }
+
+        @-o-keyframes position {
+
+            0%,
+            19.9% {
+                margin-top: 10%;
+                margin-left: 40%;
+            }
+
+            20%,
+            39.9% {
+                margin-top: 40%;
+                margin-left: 30%;
+            }
+
+            40%,
+            59.9% {
+                margin-top: 20%;
+                margin-left: 70%;
+            }
+
+            60%,
+            79.9% {
+                margin-top: 30%;
+                margin-left: 20%;
+            }
+
+            80%,
+            99.9% {
+                margin-top: 30%;
+                margin-left: 80%;
+            }
+        }
+
+        @-ms-keyframes position {
+
+            0%,
+            19.9% {
+                margin-top: 10%;
+                margin-left: 40%;
+            }
+
+            20%,
+            39.9% {
+                margin-top: 40%;
+                margin-left: 30%;
+            }
+
+            40%,
+            59.9% {
+                margin-top: 20%;
+                margin-left: 70%;
+            }
+
+            60%,
+            79.9% {
+                margin-top: 30%;
+                margin-left: 20%;
+            }
+
+            80%,
+            99.9% {
+                margin-top: 30%;
+                margin-left: 80%;
+            }
+        }
+
+        @keyframes position {
+
+            0%,
+            19.9% {
+                margin-top: 10%;
+                margin-left: 40%;
+            }
+
+            20%,
+            39.9% {
+                margin-top: 40%;
+                margin-left: 30%;
+            }
+
+            40%,
+            59.9% {
+                margin-top: 20%;
+                margin-left: 70%;
+            }
+
+            60%,
+            79.9% {
+                margin-top: 30%;
+                margin-left: 20%;
+            }
+
+            80%,
+            99.9% {
+                margin-top: 30%;
+                margin-left: 80%;
+            }
+        }
+
+
+        .clock {
+
+            position: absolute;
+
+            margin: auto;
+
+            height: 400px;
+
+            width: 400px;
+
+            background-color: #fff;
+
+            border-radius: 50%;
+
+            border: 24px solid #DF554C;
+
+            background-image:
+
+                radial-gradient(circle at center, #507D9C 8px, transparent 8px),
+
+                radial-gradient(circle at center, white 50%, transparent 50%, transparent 65%, white 65%),
+
+                linear-gradient(to right, transparent 50%, #507D9C 50%, transparent 51%),
+
+                linear-gradient(to bottom, transparent 50%, #507D9C 50%, transparent 51%),
+
+                linear-gradient(-30deg, transparent 50%, #507D9C 50%, transparent 51%),
+
+                linear-gradient(30deg, transparent 50%, #507D9C 50%, transparent 51%),
+
+                linear-gradient(60deg, transparent 50%, #507D9C 50%, transparent 51%),
+
+                linear-gradient(-60deg, transparent 50%, #507D9C 50%, transparent 51%);
+
+        }
+
+
+
+        .hour-hand {
+
+            position: absolute;
+
+            height: 80px;
+
+            width: 8px;
+
+            margin: auto;
+
+            top: -20%;
+
+            left: 0;
+
+            bottom: 0;
+
+            right: 0;
+
+            border-radius: 4px;
+
+            background-color: #507D9C;
+
+            transform-origin: bottom;
+
+            transform: rotate(0deg);
+
+        }
+
+
+
+        .minute-hand {
+
+            position: absolute;
+
+            height: 120px;
+
+            width: 8px;
+
+            margin: auto;
+
+            top: -30%;
+
+            left: 0;
+
+            bottom: 0;
+
+            right: 0;
+
+            border-radius: 4px;
+
+            background-color: #507D9C;
+
+            transform-origin: bottom;
+
+            transform: rotate(90deg);
+
+        }
+
+
+
+        .second-hand {
+
+            position: absolute;
+
+            height: 120px;
+
+            width: 2px;
+
+            margin: auto;
+
+            top: -30%;
+
+            left: 0;
+
+            bottom: 0;
+
+            right: 0;
+
+            border-radius: 4px;
+
+            background-color: #507D9C;
+
+            transform-origin: bottom;
+
+            transform: rotate(180deg);
+
+        }
     </style>
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
@@ -87,7 +493,7 @@
 
             <div class="page-brand" style="background-color: #0b3c81;">
 
-                <a class="link" href="Home/Dashboard">
+                <a class="link" href="{{ url_for('dashboard')}}">
 
                     <span class="brand" style="font-size:large;">PHÁT HIỆN TIN GIẢ
 
@@ -110,7 +516,8 @@
 
                     <li>
 
-                        <a class="nav-link sidebar-toggler js-sidebar-toggler"><i class="fa-solid fa-bars text-white"></i></a>
+                        <a class="nav-link sidebar-toggler js-sidebar-toggler"><i
+                                class="fa-solid fa-bars text-white"></i></a>
 
                     </li>
 
@@ -140,23 +547,23 @@
 
                     <li class="dropdown dropdown-inbox">
 
-                        <a class="nav-link dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bell rel text-white">
-                                <span class="notify-signal" style="background: #e74c3c;"></i></span>
-                            <!-- <span class="badge badge-danger envelope-badge"></span> -->
+                        <!-- <a class="nav-link dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bell rel text-white">
+                                <span class="notify-signal" style="background: #e74c3c;"></i></span> -->
+                        <!-- <span class="badge badge-danger envelope-badge"></span> -->
+                        <!-- 
+                        </a> -->
 
-                        </a>
-
-                        <ul class="dropdown-menu dropdown-menu-right dropdown-menu-media">
+                        <!-- <ul class="dropdown-menu dropdown-menu-right dropdown-menu-media">
 
                             <li class="dropdown-menu-header">
 
                                 <div>
 
-                                    <span><strong>Có 3 thông báo mới!</strong></span>
+                                    <span><strong>Có 3 thông báo mới!</strong></span> -->
 
-                                    <!-- <a class="pull-right" href="mailbox.html">view all</a> -->
+                        <!-- <a class="pull-right" href="mailbox.html">view all</a> -->
 
-                                </div>
+                        <!-- </div>
 
                             </li>
 
@@ -245,9 +652,9 @@
 
                                 </div>
 
-                            </li>
-
-                        </ul>
+                            </li> -->
+                        <!-- 
+                        </ul> -->
 
                     </li>
 
@@ -258,15 +665,17 @@
                             <img class="img-circle" src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png"
                                 width="45px" />
 
-                            <span>Administrator<i class="fa fa-angle-down m-l-5"></i></a>
-
+                            <span>Administrator
+                                <!-- <i class="fa fa-angle-down m-l-5"></i> -->
+                        </a>
+                        <!-- 
                         <ul style="padding-top: 10px; box-sizing: content-box; margin: 0; padding: 0 0 14px 14px; width: 338px;"
                             class="dropdown-menu dropdown-menu-right">
 
                             <li
                                 style="display: inline-block; height: 84px; list-style-type: none; padding: 6px; position: relative; transition: transform .2s cubic-bezier(.333,0,0,1); vertical-align: top; width: 84px;">
 
-                                <a class="text-center" href="Home/Dashboard">
+                                <a class="text-center" href="{{ url_for('dashboard')}}">
 
                                     <div class="text-center"><img
                                             src="https://amisplatform.misacdn.net/images/iconapps/market/newsfeed.svg"
@@ -411,7 +820,7 @@
 
 
 
-                        </ul>
+                        </ul> -->
 
 
                         <!-- END TOP-RIGHT TOOLBAR-->
@@ -447,7 +856,7 @@
 
                     <li>
 
-                        <a target="_self" class="active" href="Home/Dashboard"><i
+                        <a target="_self" class="active" href="{{ url_for('dashboard')}}"><i
                                 class="sidebar-item-icon fa fa-gauge"></i>
 
                             <span class="nav-label">Tổng quan hệ thống</span>
@@ -458,100 +867,58 @@
 
                     <li class="heading">THAO TÁC CHUNG</li>
 
-                    <li>
-
-                        <a target="_self" href="Home/ManageMember"><i class="sidebar-item-icon fa fa-users-gear"
-                                aria-hidden="true"></i>
-
-                            <span class="nav-label">Quản lý thành viên</span></a>
-
-                    </li>
-                    <li>
-
-                        <a target="_self" href="Home/ManageSemesterSchoolYear"><i
-                                class="sidebar-item-icon fa fa-calendar"></i>
-
-                            <span class="nav-label">Quản lý học kỳ & năm học</span></a>
-
-                    </li>
-                    <li>
-
-                        <a target="_self" href="Home/ManageTeam"><i
-                                class="fa-brands sidebar-item-icon fa-teamspeak"></i>
-                            <span class="nav-label">Quản lý team</span></a>
-
-                    </li>
-
-                    <li>
-
-                        <a target="_self" href="Home/ManageEvent"><i class="sidebar-item-icon fa fa-gift"></i>
-
-                            <span class="nav-label">Quản lý sự kiện & bài viết</span></a>
-
-                    </li>
-
-                    <li>
+                    <!-- <li>
 
                         <a target="_self" href="Home/ManageAccount"><i class="sidebar-item-icon fa fa-user-gear"></i>
 
                             <span class="nav-label">Quản lý tài khoản</span></a>
 
-                    </li>
-
+                    </li> -->
                     <li>
 
-                        <a target="_self" href="Home/ManageCalendar"><i
-                                class="sidebar-item-icon fa fa-calendar-check"></i>
+                        <a target="_self" href="javascript:;"><i class="sidebar-item-icon fa-solid fa-chart-pie"></i>
 
-                            <span class="nav-label">Quản lý lịch trực</span></a>
-
-                    </li>
-
-                    <li>
-
-                        <a target="_self" href="javascript:;"><i class="sidebar-item-icon fa-solid fa-laptop-medical">
-                                </"></i>
-
-                            <span class="nav-label">Quản lý sửa máy</span><i class="fa fa-angle-left arrow"></i></a>
+                            <span class="nav-label">Thống kê nguồn tin</span><i class="fa fa-angle-left arrow"></i></a>
 
                         <ul class="nav-2-level collapse">
 
                             <li>
 
-                                <a target="_self" href="Home/StaticFix">Thống kê sửa máy</a>
+                                <a target="_self" href="{{ url_for('fake_news_published')}}">Tin giả được công bố</a>
 
                             </li>
 
                             <li>
 
-                                <a target="_self" href="Home/ManageFix">Dữ liệu sửa máy</a>
+                                <a target="_self" href="{{ url_for('real_news_published')}}">Tin thật được công bố</a>
 
                             </li>
-
                         </ul>
 
-
-
                     </li>
 
                     <li>
 
-                        <a target="_self" href="javascript:;"><i class="sidebar-item-icon fa-solid fa-circle-check"></">
-                                </i>
+                        <a target="_self" href="javascript:;"><i class="sidebar-item-icon fa-solid fa-comments"></i>
 
-                            <span class="nav-label">Quản lý điểm danh</span><i class="fa fa-angle-left arrow"></i></a>
+                            <span class="nav-label">Quản lý diễn đàn</span><i class="fa fa-angle-left arrow"></i></a>
 
                         <ul class="nav-2-level collapse">
 
                             <li>
 
-                                <a target="_self" href="Home/StaticAttendance">Thống kê điểm danh</a>
+                                <a target="_self" href="{{ url_for('uncensored_new')}}">Tin tức chưa kiểm duyệt</a>
 
                             </li>
 
                             <li>
 
-                                <a target="_self" href="Home/Attendance">Dữ liệu điểm danh</a>
+                                <a target="_self" href="{{ url_for('censored_new')}}">Tin tức đã kiểm duyệt</a>
+
+                            </li>
+                            <li>
+
+                                <a target="_self" href="{{ url_for('deny_new')}}">Tin tức từ chối kiểm duyệt</a>
 
                             </li>
 
@@ -577,16 +944,17 @@
 
                     </li>
 
-                    <li>
+                    <!-- <li>
 
                         <a target="_self" href="Home/ChangePassWord"><i class="sidebar-item-icon fa fa-key"></i>
 
                             <span class="nav-label">Đổi mật khẩu</span></a>
 
-                    </li>
+                    </li> -->
                     <li>
 
-                        <a target="_self" href="{{ url_for('logout')}}"><i class="sidebar-item-icon fa fa-power-off"></i>
+                        <a target="_self" href="{{ url_for('logout')}}"><i
+                                class="sidebar-item-icon fa fa-power-off"></i>
 
                             <span class="nav-label">Đăng xuất</span></a>
 
@@ -601,29 +969,6 @@
 
         </nav>
 
-        <div class="theme-config">
-            <div class="theme-config-toggle"><i class="fa fa-cog theme-config-show"></i><i
-                    class="ti-close theme-config-close"></i></div>
-            <div class="theme-config-box">
-                <div class="text-center font-18 m-b-20">SETTINGS</div>
-                <div class="font-strong">LAYOUT OPTIONS</div>
-                <div class="check-list m-b-20 m-t-10">
-
-                    <label class="ui-checkbox ui-checkbox-gray">
-                        <input class="js-sidebar-toggler" type="checkbox">
-                        <span class="input-span"></span>Collapse sidebar</label>
-                </div>
-                <div class="font-strong">LAYOUT STYLE</div>
-                <div class="m-t-10">
-                    <label class="ui-radio ui-radio-gray m-r-10">
-                        <input type="radio" name="layout-style" value="" checked="">
-                        <span class="input-span"></span>Fluid</label>
-                    <label class="ui-radio ui-radio-gray">
-                        <input type="radio" name="layout-style" value="1">
-                        <span class="input-span"></span>Boxed</label>
-                </div>
-            </div>
-        </div>
         <script>
             function myFunction() {
 
@@ -634,414 +979,6 @@
 
         <!-- END SIDEBAR-->
         <!-- START PAGE CONTENT-->
-
-        <style>
-            .pyro>.before,
-            .pyro>.after {
-                position: absolute;
-                width: 7px;
-                height: 7px;
-                pointer-events: none;
-                z-index: 99999999;
-                border-radius: 50%;
-                box-shadow: -120px -218.66667px blue, 248px -16.66667px #00ff84, 190px 16.33333px #002bff, -113px -308.66667px #ff009d, -109px -287.66667px #ffb300, -50px -313.66667px #ff006e, 226px -31.66667px #ff4000, 180px -351.66667px #ff00d0, -12px -338.66667px #00f6ff, 220px -388.66667px #99ff00, -69px -27.66667px #ff0400, -111px -339.66667px #6200ff, 155px -237.66667px #00ddff, -152px -380.66667px #00ffd0, -50px -37.66667px #00ffdd, -95px -175.66667px #a6ff00, -88px 10.33333px #0d00ff, 112px -309.66667px #005eff, 69px -415.66667px #ff00a6, 168px -100.66667px #ff004c, -244px 24.33333px #ff6600, 97px -325.66667px #ff0066, -211px -182.66667px #00ffa2, 236px -126.66667px #b700ff, 140px -196.66667px #9000ff, 125px -175.66667px #00bbff, 118px -381.66667px #ff002f, 144px -111.66667px #ffae00, 36px -78.66667px #f600ff, -63px -196.66667px #c800ff, -218px -227.66667px #d4ff00, -134px -377.66667px #ea00ff, -36px -412.66667px #ff00d4, 209px -106.66667px #00fff2, 91px -278.66667px #000dff, -22px -191.66667px #9dff00, 139px -392.66667px #a6ff00, 56px -2.66667px #0099ff, -156px -276.66667px #ea00ff, -163px -233.66667px #00fffb, -238px -346.66667px #00ff73, 62px -363.66667px #0088ff, 244px -170.66667px #0062ff, 224px -142.66667px #b300ff, 141px -208.66667px #9000ff, 211px -285.66667px #ff6600, 181px -128.66667px #1e00ff, 90px -123.66667px #c800ff, 189px 70.33333px #00ffc8, -18px -383.66667px #00ff33, 100px -6.66667px #ff008c;
-                -moz-animation: 1s bang ease-out infinite backwards, 1s gravity ease-in infinite backwards, 5s position linear infinite backwards;
-                -webkit-animation: 1s bang ease-out infinite backwards, 1s gravity ease-in infinite backwards, 5s position linear infinite backwards;
-                -o-animation: 1s bang ease-out infinite backwards, 1s gravity ease-in infinite backwards, 5s position linear infinite backwards;
-                -ms-animation: 1s bang ease-out infinite backwards, 1s gravity ease-in infinite backwards, 5s position linear infinite backwards;
-                animation: 1s bang ease-out infinite backwards, 1s gravity ease-in infinite backwards, 5s position linear infinite backwards;
-            }
-
-            .pyro>.after {
-                -moz-animation-delay: 1.25s, 1.25s, 1.25s;
-                -webkit-animation-delay: 1.25s, 1.25s, 1.25s;
-                -o-animation-delay: 1.25s, 1.25s, 1.25s;
-                -ms-animation-delay: 1.25s, 1.25s, 1.25s;
-                animation-delay: 1.25s, 1.25s, 1.25s;
-                -moz-animation-duration: 1.25s, 1.25s, 6.25s;
-                -webkit-animation-duration: 1.25s, 1.25s, 6.25s;
-                -o-animation-duration: 1.25s, 1.25s, 6.25s;
-                -ms-animation-duration: 1.25s, 1.25s, 6.25s;
-                animation-duration: 1.25s, 1.25s, 6.25s;
-            }
-
-            @-webkit-keyframes bang {
-                from {
-                    box-shadow: 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white;
-                }
-            }
-
-            @-moz-keyframes bang {
-                from {
-                    box-shadow: 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white;
-                }
-            }
-
-            @-o-keyframes bang {
-                from {
-                    box-shadow: 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white;
-                }
-            }
-
-            @-ms-keyframes bang {
-                from {
-                    box-shadow: 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white;
-                }
-            }
-
-            @keyframes bang {
-                from {
-                    box-shadow: 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white;
-                }
-            }
-
-            @-webkit-keyframes gravity {
-                to {
-                    transform: translateY(200px);
-                    -moz-transform: translateY(200px);
-                    -webkit-transform: translateY(200px);
-                    -o-transform: translateY(200px);
-                    -ms-transform: translateY(200px);
-                    opacity: 0;
-                }
-            }
-
-            @-moz-keyframes gravity {
-                to {
-                    transform: translateY(200px);
-                    -moz-transform: translateY(200px);
-                    -webkit-transform: translateY(200px);
-                    -o-transform: translateY(200px);
-                    -ms-transform: translateY(200px);
-                    opacity: 0;
-                }
-            }
-
-            @-o-keyframes gravity {
-                to {
-                    transform: translateY(200px);
-                    -moz-transform: translateY(200px);
-                    -webkit-transform: translateY(200px);
-                    -o-transform: translateY(200px);
-                    -ms-transform: translateY(200px);
-                    opacity: 0;
-                }
-            }
-
-            @-ms-keyframes gravity {
-                to {
-                    transform: translateY(200px);
-                    -moz-transform: translateY(200px);
-                    -webkit-transform: translateY(200px);
-                    -o-transform: translateY(200px);
-                    -ms-transform: translateY(200px);
-                    opacity: 0;
-                }
-            }
-
-            @keyframes gravity {
-                to {
-                    transform: translateY(200px);
-                    -moz-transform: translateY(200px);
-                    -webkit-transform: translateY(200px);
-                    -o-transform: translateY(200px);
-                    -ms-transform: translateY(200px);
-                    opacity: 0;
-                }
-            }
-
-            @-webkit-keyframes position {
-
-                0%,
-                19.9% {
-                    margin-top: 10%;
-                    margin-left: 40%;
-                }
-
-                20%,
-                39.9% {
-                    margin-top: 40%;
-                    margin-left: 30%;
-                }
-
-                40%,
-                59.9% {
-                    margin-top: 20%;
-                    margin-left: 70%;
-                }
-
-                60%,
-                79.9% {
-                    margin-top: 30%;
-                    margin-left: 20%;
-                }
-
-                80%,
-                99.9% {
-                    margin-top: 30%;
-                    margin-left: 80%;
-                }
-            }
-
-            @-moz-keyframes position {
-
-                0%,
-                19.9% {
-                    margin-top: 10%;
-                    margin-left: 40%;
-                }
-
-                20%,
-                39.9% {
-                    margin-top: 40%;
-                    margin-left: 30%;
-                }
-
-                40%,
-                59.9% {
-                    margin-top: 20%;
-                    margin-left: 70%;
-                }
-
-                60%,
-                79.9% {
-                    margin-top: 30%;
-                    margin-left: 20%;
-                }
-
-                80%,
-                99.9% {
-                    margin-top: 30%;
-                    margin-left: 80%;
-                }
-            }
-
-            @-o-keyframes position {
-
-                0%,
-                19.9% {
-                    margin-top: 10%;
-                    margin-left: 40%;
-                }
-
-                20%,
-                39.9% {
-                    margin-top: 40%;
-                    margin-left: 30%;
-                }
-
-                40%,
-                59.9% {
-                    margin-top: 20%;
-                    margin-left: 70%;
-                }
-
-                60%,
-                79.9% {
-                    margin-top: 30%;
-                    margin-left: 20%;
-                }
-
-                80%,
-                99.9% {
-                    margin-top: 30%;
-                    margin-left: 80%;
-                }
-            }
-
-            @-ms-keyframes position {
-
-                0%,
-                19.9% {
-                    margin-top: 10%;
-                    margin-left: 40%;
-                }
-
-                20%,
-                39.9% {
-                    margin-top: 40%;
-                    margin-left: 30%;
-                }
-
-                40%,
-                59.9% {
-                    margin-top: 20%;
-                    margin-left: 70%;
-                }
-
-                60%,
-                79.9% {
-                    margin-top: 30%;
-                    margin-left: 20%;
-                }
-
-                80%,
-                99.9% {
-                    margin-top: 30%;
-                    margin-left: 80%;
-                }
-            }
-
-            @keyframes position {
-
-                0%,
-                19.9% {
-                    margin-top: 10%;
-                    margin-left: 40%;
-                }
-
-                20%,
-                39.9% {
-                    margin-top: 40%;
-                    margin-left: 30%;
-                }
-
-                40%,
-                59.9% {
-                    margin-top: 20%;
-                    margin-left: 70%;
-                }
-
-                60%,
-                79.9% {
-                    margin-top: 30%;
-                    margin-left: 20%;
-                }
-
-                80%,
-                99.9% {
-                    margin-top: 30%;
-                    margin-left: 80%;
-                }
-            }
-
-
-            .clock {
-
-                position: absolute;
-
-                margin: auto;
-
-                height: 400px;
-
-                width: 400px;
-
-                background-color: #fff;
-
-                border-radius: 50%;
-
-                border: 24px solid #DF554C;
-
-                background-image:
-
-                    radial-gradient(circle at center, #507D9C 8px, transparent 8px),
-
-                    radial-gradient(circle at center, white 50%, transparent 50%, transparent 65%, white 65%),
-
-                    linear-gradient(to right, transparent 50%, #507D9C 50%, transparent 51%),
-
-                    linear-gradient(to bottom, transparent 50%, #507D9C 50%, transparent 51%),
-
-                    linear-gradient(-30deg, transparent 50%, #507D9C 50%, transparent 51%),
-
-                    linear-gradient(30deg, transparent 50%, #507D9C 50%, transparent 51%),
-
-                    linear-gradient(60deg, transparent 50%, #507D9C 50%, transparent 51%),
-
-                    linear-gradient(-60deg, transparent 50%, #507D9C 50%, transparent 51%);
-
-            }
-
-
-
-            .hour-hand {
-
-                position: absolute;
-
-                height: 80px;
-
-                width: 8px;
-
-                margin: auto;
-
-                top: -20%;
-
-                left: 0;
-
-                bottom: 0;
-
-                right: 0;
-
-                border-radius: 4px;
-
-                background-color: #507D9C;
-
-                transform-origin: bottom;
-
-                transform: rotate(0deg);
-
-            }
-
-
-
-            .minute-hand {
-
-                position: absolute;
-
-                height: 120px;
-
-                width: 8px;
-
-                margin: auto;
-
-                top: -30%;
-
-                left: 0;
-
-                bottom: 0;
-
-                right: 0;
-
-                border-radius: 4px;
-
-                background-color: #507D9C;
-
-                transform-origin: bottom;
-
-                transform: rotate(90deg);
-
-            }
-
-
-
-            .second-hand {
-
-                position: absolute;
-
-                height: 120px;
-
-                width: 2px;
-
-                margin: auto;
-
-                top: -30%;
-
-                left: 0;
-
-                bottom: 0;
-
-                right: 0;
-
-                border-radius: 4px;
-
-                background-color: #507D9C;
-
-                transform-origin: bottom;
-
-                transform: rotate(180deg);
-
-            }
-        </style>
 
 
         <div class="content-wrapper">
@@ -1078,23 +1015,6 @@
 
 
                             <!-- Modal body -->
-
-                            <div class="modal-body">
-
-                                <form id="updateValues" action="update.php" method="POST" class="form">
-
-                                    <div class="form-group">
-
-                                        <label for="name">NAME</label>
-
-                                        <input type="text" class="form-control" name="name" id="name_sender">
-
-                                    </div>
-
-                                    <form>
-
-                            </div>
-
 
 
                             <!-- Modal footer -->
@@ -1135,78 +1055,31 @@
 
                                 </div>
                                 <ul class="media-list media-list-divider m-0">
-
+                                    {% for results in result %}
                                     <li class="media">
                                         <a class="media-img" href="javascript:;">
                                             <div
                                                 style="background: #EDF4FF; width: 40px; height: 40px; border-radius: 6px; margin-left: 12px; display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-align: center; -ms-flex-align: center; align-items: center; justify-content: center; -webkit-justify-content: center; -ms-flex-pack: center;">
                                                 <!--<img src="https://preschool.dreamguystech.com/template-rtl/assets/img/icons/award-icon-01.svg" width="25px;">-->
-                                                <img src="https://www.imanami.com/wp-content/uploads/2016/03/unknown-user.jpg"
-                                                    width="25px;">
+                                                <img src="{{results.GooglePicture}}" width="25px;">
                                             </div>
                                         </a>
                                         <div class="media-body">
                                             <div class="media-heading">
-                                                <a href="javascript:;">Trần Đinh Nhất Đăng</a>
-                                                <span class="font-16 float-right">
+                                                <a href="javascript:;">{{results.NameGoogle}} - {{results.Phone}}</a>
+                                                <!-- <span class="font-16 float-right">
                                                     <div
                                                         style="background: #EDF4FF; width: 40px; height: 40px; border-radius: 6px; margin-left: 12px; display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-align: center; -ms-flex-align: center; align-items: center; justify-content: center; -webkit-justify-content: center; -ms-flex-pack: center;">
                                                         <img src="https://cdn-icons-png.flaticon.com/512/2583/2583344.png"
                                                             width="25px;">
                                                     </div>
-                                                </span>
+                                                </span> -->
                                             </div>
-                                            <div class="font-13">Số lượng bài đăng <b>12</b> bài.</div>
+                                            <div class="font-13">Số lượng bài đăng <b>{{results.count}}</b>.</div>
                                         </div>
                                     </li>
+                                    {% endfor%}
 
-                                    <li class="media">
-                                        <a class="media-img" href="javascript:;">
-                                            <div
-                                                style="background: #EDF4FF; width: 40px; height: 40px; border-radius: 6px; margin-left: 12px; display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-align: center; -ms-flex-align: center; align-items: center; justify-content: center; -webkit-justify-content: center; -ms-flex-pack: center;">
-                                                <!--<img src="https://preschool.dreamguystech.com/template-rtl/assets/img/icons/award-icon-02.svg" width="25px;">-->
-                                                <img src="https://www.imanami.com/wp-content/uploads/2016/03/unknown-user.jpg"
-                                                    width="25px;">
-                                            </div>
-                                        </a>
-                                        <div class="media-body">
-                                            <div class="media-heading">
-                                                <a href="javascript:;">Lê Nguyễn Minh Kha </a>
-                                                <span class="font-16 float-right">
-                                                    <div
-                                                        style="background: #EDF4FF; width: 40px; height: 40px; border-radius: 6px; margin-left: 12px; display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-align: center; -ms-flex-align: center; align-items: center; justify-content: center; -webkit-justify-content: center; -ms-flex-pack: center;">
-                                                        <img src="https://cdn-icons-png.flaticon.com/512/2583/2583319.png"
-                                                            width="25px;">
-                                                    </div>
-                                                </span>
-                                            </div>
-                                            <div class="font-13">Số lượng bài đăng <b>8</b> bài.</div>
-                                        </div>
-                                    </li>
-
-                                    <li class="media">
-                                        <a class="media-img" href="javascript:;">
-                                            <div
-                                                style="background: #EDF4FF; width: 40px; height: 40px; border-radius: 6px; margin-left: 12px; display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-align: center; -ms-flex-align: center; align-items: center; justify-content: center; -webkit-justify-content: center; -ms-flex-pack: center;">
-                                                <!--<img src="https://preschool.dreamguystech.com/template-rtl/assets/img/icons/award-icon-03.svg" width="25px;">-->
-                                                <img src="https://www.imanami.com/wp-content/uploads/2016/03/unknown-user.jpg"
-                                                    width="25px;">
-                                            </div>
-                                        </a>
-                                        <div class="media-body">
-                                            <div class="media-heading">
-                                                <a href="javascript:;">Nguyễn Ngọc Anh</a>
-                                                <span class="font-16 float-right">
-                                                    <div
-                                                        style="background: #EDF4FF; width: 40px; height: 40px; border-radius: 6px; margin-left: 12px; display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-align: center; -ms-flex-align: center; align-items: center; justify-content: center; -webkit-justify-content: center; -ms-flex-pack: center;">
-                                                        <img src="https://cdn-icons-png.flaticon.com/512/2583/2583434.png"
-                                                            width="25px;">
-                                                    </div>
-                                                </span>
-                                            </div>
-                                            <div class="font-13">Số lượng bài đăng <b>8</b> bài.</div>
-                                        </div>
-                                    </li>
                                 </ul>
                             </div>
                         </div>
@@ -1220,11 +1093,12 @@
 
                                     <div class="ibox-body">
 
-                                        <h2 class="m-b-5 font-strong">3</h2>
+                                        <h2 class="m-b-5 font-strong">{{count_uncensored}}</h2>
 
                                         <div class="m-b-5">CHƯA KIỂM DUYỆT</div>
                                         <i class="fa-solid fa-circle-notch widget-stat-icon pt-5"></i>
-                                        
+                                        <div><i class="m-r-5"></i><small></small></div>
+
                                     </div>
 
                                 </div>
@@ -1237,11 +1111,12 @@
 
                                     <div class="ibox-body">
 
-                                        <h2 class="m-b-5 font-strong">72</h2>
+                                        <h2 class="m-b-5 font-strong">{{count_censored}}</h2>
 
-                                        <div class="m-b-5">ĐÃ KIỂM DUYỆT</div><i class="fa-regular fa-circle-check widget-stat-icon pt-5"></i>
+                                        <div class="m-b-5">ĐÃ KIỂM DUYỆT</div><i
+                                            class="fa-regular fa-circle-check widget-stat-icon pt-5"></i>
 
-                                        <!-- <div><i class="fa fa-level-up m-r-5"></i><small>17% higher</small></div> -->
+                                        <div><i class="m-r-5"></i><small></small></div>
 
                                     </div>
 
@@ -1249,30 +1124,35 @@
 
                             </div>
 
-                            <div class="col-lg-6 col-md-6">
+                            <div class="col-lg-6 col-md-6 pt-3">
 
                                 <div class="ibox bg-warning color-white widget-stat">
 
                                     <div class="ibox-body">
 
-                                        <h2 class="m-b-5 font-strong">3</h2>
+                                        <h2 class="m-b-5 font-strong">{{count_fake}}</h2>
 
-                                        <div class="m-b-5">SỐ LƯỢNG TIN GIẢ</div><i class="fa-regular fa-face-frown widget-stat-icon pt-5"></i>
+                                        <div class="m-b-5">SỐ LƯỢNG TIN GIẢ</div><i
+                                            class="fa-regular fa-face-frown widget-stat-icon pt-5"></i>
+                                        <div><i class="m-r-5"></i><small></small></div>
+
                                     </div>
 
                                 </div>
 
                             </div>
 
-                            <div class="col-lg-6 col-md-6">
+                            <div class="col-lg-6 col-md-6 pt-3">
 
                                 <div class="ibox bg-danger color-white widget-stat">
 
                                     <div class="ibox-body">
 
-                                        <h2 class="m-b-5 font-strong">41</h2>
+                                        <h2 class="m-b-5 font-strong">{{count_real}}</h2>
 
-                                        <div class="m-b-5">SỐ LƯỢNG TIN THẬT</div><i class="fa-regular fa-face-smile-beam widget-stat-icon pt-5"></i>
+                                        <div class="m-b-5">SỐ LƯỢNG TIN THẬT</div><i
+                                            class="fa-regular fa-face-smile-beam widget-stat-icon pt-5"></i>
+                                        <div><i class="m-r-5"></i><small></small></div>
 
                                     </div>
 
@@ -1316,2526 +1196,79 @@
 
                                 <table class="table table-striped table-bordered table-hover" id="example-table"
                                     cellspacing="0" width="100%">
-
                                     <thead>
-
                                         <tr>
 
                                             <th width="1%">#</th>
-
                                             <th width="auto">Người gửi</th>
-
-                                            <th width="auto">SĐT</th>
-                                            <th width="auto">Mô tả</th>
-
-                                            <th width="auto">KTV</th>
-
-                                            <th class="text-center" width="80px">Trạng thái</th>
-
-
+                                            <th width="auto">Tiêu đề</th>
+                                            <th class="text-center" width="80px">Thao tác</th>
                                         </tr>
 
                                     </thead>
 
                                     <tbody>
-
-
-                                        <tr>
-
-                                            <td class="stt">1</td>
-                                            <td>
-                                                <a data-html="true" data-toggle="popover" title="41900580"
-                                                    data-content="
-                                          Ngày: 
-                                        29-03-2023<br>Giờ: 09:13:17                                        <br>Password: nguyenxuannguyetanh2000A                                        ">Huỳnh
-                                                    Trung Toàn</a>
-
-                                            </td>
-
-                                            <td class="phone_sender">0775270302</td>
-
-                                            <td class="phone_sender">Cài lại win</td>
-
-
-                                            </td>
-
-                                            <td class="name_sender"></td>
-
-                                            <td class="status text-center"><span class="badge badge-warning">Đang tìm
-                                                    kiếm KTV</span></td>
-
-
-                                        </tr>
-
-
-
-
-                                        <tr>
-
-                                            <td class="stt">2</td>
-                                            <td>
-                                                <a data-html="true" data-toggle="popover" title="62100760"
-                                                    data-content="
-                                          Ngày: 
-                                        29-03-2023<br>Giờ: 10:44:17                                        <br>Password:                                         ">Võ Nguyễn
-                                                    Kim Tuyền</a>
-
-                                            </td>
-
-                                            <td class="phone_sender">0936258965</td>
-
-                                            <td class="phone_sender">Phần mềm autocard </td>
-
-
-                                            </td>
-
-                                            <td class="name_sender"></td>
-
-                                            <td class="status text-center"><span class="badge badge-warning">Đang tìm
-                                                    kiếm KTV</span></td>
-
-
-                                        </tr>
-
-
-
-
-                                        <tr>
-
-                                            <td class="stt">3</td>
-                                            <td>
-                                                <a data-html="true" data-toggle="popover" title="82200039"
-                                                    data-content="
-                                          Ngày: 
-                                        29-03-2023<br>Giờ: 15:29:30                                        <br>Password: 796876                                        ">Lê Hồ
-                                                    Khánh Đại </a>
-
-                                            </td>
-
-                                            <td class="phone_sender">0708629342</td>
-
-                                            <td class="phone_sender">Nâng cấp work</td>
-
-
-                                            </td>
-
-                                            <td class="name_sender"></td>
-
-                                            <td class="status text-center"><span class="badge badge-warning">Đang tìm
-                                                    kiếm KTV</span></td>
-
-
-                                        </tr>
-
-
-
-
-                                        <tr>
-
-                                            <td class="stt">4</td>
-                                            <td>
-                                                <a data-html="true" data-toggle="popover" title="72200344"
-                                                    data-content="
-                                          Ngày: 
-                                        01-03-2023<br>Giờ: 12:01:21                                        <br>Password: 131095                                        ">Võ
-                                                    Thanh Ngân</a>
-
-                                            </td>
-
-                                            <td class="phone_sender">0386459791</td>
-
-                                            <td class="phone_sender"></td>
-
-
-                                            </td>
-
-                                            <td class="name_sender">Nguyễn Chí Anh</td>
-
-                                            <td class="status text-center"><span class="badge badge-primary">Đã có KTV
-                                                    tiếp nhận</span></td>
-
-
-                                        </tr>
-
-
-
-
-                                        <tr>
-
-                                            <td class="stt">5</td>
-                                            <td>
-                                                <a data-html="true" data-toggle="popover" title="02000238"
-                                                    data-content="
-                                          Ngày: 
-                                        27-03-2023<br>Giờ: 12:34:40                                        <br>Password: candydell122708                                        ">Lê
-                                                    Thị Bảo Trân</a>
-
-                                            </td>
-
-                                            <td class="phone_sender">0962028039</td>
-
-                                            <td class="phone_sender">cài office 365</td>
-
-
-                                            </td>
-
-                                            <td class="name_sender">Lê Nguyễn Minh Kha </td>
-
-                                            <td class="status text-center"><span class="badge badge-primary">Đã có KTV
-                                                    tiếp nhận</span></td>
-
-
-                                        </tr>
-
-
-
-
-                                        <tr>
-
-                                            <td class="stt">6</td>
-                                            <td>
-                                                <a data-html="true" data-toggle="popover" title="H2100046"
-                                                    data-content="
-                                          Ngày: 
-                                        31-03-2023<br>Giờ: 12:47:59                                        <br>Password: 010203                                        ">Nguyễn
-                                                    Thị Ngọc Huyền</a>
-
-                                            </td>
-
-                                            <td class="phone_sender">0845200127</td>
-
-                                            <td class="phone_sender">cài office 365</td>
-
-
-                                            </td>
-
-                                            <td class="name_sender">Tạ Tiến Đạt</td>
-
-                                            <td class="status text-center"><span class="badge badge-primary">Đã có KTV
-                                                    tiếp nhận</span></td>
-
-
-                                        </tr>
-
-
-
-
-                                        <tr>
-
-                                            <td class="stt">7</td>
-                                            <td>
-                                                <a data-html="true" data-toggle="popover" title="B2200056"
-                                                    data-content="
-                                          Ngày: 
-                                        31-03-2023<br>Giờ: 15:26:59                                        <br>Password:                                         ">Mai An
-                                                    Na</a>
-
-                                            </td>
-
-                                            <td class="phone_sender">0921275839</td>
-
-                                            <td class="phone_sender">cài office 2016</td>
-
-
-                                            </td>
-
-                                            <td class="name_sender">Danh Nguyễn Nhựt An</td>
-
-                                            <td class="status text-center"><span class="badge badge-primary">Đã có KTV
-                                                    tiếp nhận</span></td>
-
-
-                                        </tr>
-
-
-
-
-                                        <tr>
-
-                                            <td class="stt">8</td>
-                                            <td>
-                                                <a data-html="true" data-toggle="popover" title="42200448"
-                                                    data-content="
-                                          Ngày: 
-                                        15-03-2023<br>Giờ: 09:31:27                                        <br>Password:                                         ">Dương Đức
-                                                    Thắng </a>
-
-                                            </td>
-
-                                            <td class="phone_sender">0327727359</td>
-
-                                            <td class="phone_sender">Cài lại office 2016</td>
-
-
-                                            </td>
-
-                                            <td class="name_sender">Lê Thành Đạt</td>
-
-                                            <td class="status text-center"><span class="badge badge-secondary">Đã hỗ trợ
-                                                    xong</span></td>
-
-
-                                        </tr>
-
-
-
-
-                                        <tr>
-
-                                            <td class="stt">9</td>
-                                            <td>
-                                                <a data-html="true" data-toggle="popover" title="222H0107"
-                                                    data-content="
-                                          Ngày: 
-                                        20-02-2023<br>Giờ: 14:31:16                                        <br>Password:                                         ">Nguyễn
-                                                    Phương Lam</a>
-
-                                            </td>
-
-                                            <td class="phone_sender">0909484360</td>
-
-                                            <td class="phone_sender">Cài office 2016</td>
-
-
-                                            </td>
-
-                                            <td class="name_sender">Nguyễn Huỳnh Anh Khoa</td>
-
-                                            <td class="status text-center"><span class="badge badge-success">Đã bàn giao
-                                                    máy</span></td>
-
-
-                                        </tr>
-
-
-
-
-                                        <tr>
-
-                                            <td class="stt">10</td>
-                                            <td>
-                                                <a data-html="true" data-toggle="popover" title="02200165"
-                                                    data-content="
-                                          Ngày: 
-                                        20-02-2023<br>Giờ: 14:34:18                                        <br>Password:                                         ">Hà Liêu Quế
-                                                </a>
-
-                                            </td>
-
-                                            <td class="phone_sender">0374354310</td>
-
-                                            <td class="phone_sender">Cài office 2016</td>
-
-
-                                            </td>
-
-                                            <td class="name_sender">Nguyễn Huỳnh Anh Khoa</td>
-
-                                            <td class="status text-center"><span class="badge badge-success">Đã bàn giao
-                                                    máy</span></td>
-
-
-                                        </tr>
-
-
-
-
-                                        <tr>
-
-                                            <td class="stt">11</td>
-                                            <td>
-                                                <a data-html="true" data-toggle="popover" title="02200178"
-                                                    data-content="
-                                          Ngày: 
-                                        20-02-2023<br>Giờ: 14:36:05                                        <br>Password: 030692                                        ">Huỳnh
-                                                    Thanh Thảo </a>
-
-                                            </td>
-
-                                            <td class="phone_sender">0949333409</td>
-
-                                            <td class="phone_sender">Cài Word </td>
-
-
-                                            </td>
-
-                                            <td class="name_sender">Lê Nguyễn Minh Kha </td>
-
-                                            <td class="status text-center"><span class="badge badge-success">Đã bàn giao
-                                                    máy</span></td>
-
-
-                                        </tr>
-
-
-
-
-                                        <tr>
-
-                                            <td class="stt">12</td>
-                                            <td>
-                                                <a data-html="true" data-toggle="popover" title="H2100316"
-                                                    data-content="
-                                          Ngày: 
-                                        20-02-2023<br>Giờ: 16:42:12                                        <br>Password:                                         ">Vy Quỳnh
-                                                    Yến Nhi</a>
-
-                                            </td>
-
-                                            <td class="phone_sender">0818606084</td>
-
-                                            <td class="phone_sender">cài office</td>
-
-
-                                            </td>
-
-                                            <td class="name_sender">Trần Đinh Nhất Đăng</td>
-
-                                            <td class="status text-center"><span class="badge badge-success">Đã bàn giao
-                                                    máy</span></td>
-
-
-                                        </tr>
-
-
-
-
-                                        <tr>
-
-                                            <td class="stt">13</td>
-                                            <td>
-                                                <a data-html="true" data-toggle="popover" title="H2100419"
-                                                    data-content="
-                                          Ngày: 
-                                        20-02-2023<br>Giờ: 16:52:01                                        <br>Password:                                         ">Nguyễn Anh
-                                                    Khoa</a>
-
-                                            </td>
-
-                                            <td class="phone_sender">0974965250</td>
-
-                                            <td class="phone_sender">cài office</td>
-
-
-                                            </td>
-
-                                            <td class="name_sender">Trương Trí Phong</td>
-
-                                            <td class="status text-center"><span class="badge badge-success">Đã bàn giao
-                                                    máy</span></td>
-
-
-                                        </tr>
-
-
-
-
-                                        <tr>
-
-                                            <td class="stt">14</td>
-                                            <td>
-                                                <a data-html="true" data-toggle="popover" title="72200384"
-                                                    data-content="
-                                          Ngày: 
-                                        22-02-2023<br>Giờ: 08:24:51                                        <br>Password: 123321                                        ">Lê
-                                                    Thị Kim Ngân</a>
-
-                                            </td>
-
-                                            <td class="phone_sender">0366967259</td>
-
-                                            <td class="phone_sender">cài office 2016 + winrar</td>
-
-
-                                            </td>
-
-                                            <td class="name_sender">Hồ Nguyễn An Khang</td>
-
-                                            <td class="status text-center"><span class="badge badge-success">Đã bàn giao
-                                                    máy</span></td>
-
-
-                                        </tr>
-
-
-
-
-                                        <tr>
-
-                                            <td class="stt">15</td>
-                                            <td>
-                                                <a data-html="true" data-toggle="popover" title="720H1520"
-                                                    data-content="
-                                          Ngày: 
-                                        22-02-2023<br>Giờ: 09:55:33                                        <br>Password:                                         ">Trần Mỹ
-                                                    Châu</a>
-
-                                            </td>
-
-                                            <td class="phone_sender">0911382340</td>
-
-                                            <td class="phone_sender">cài office 2016</td>
-
-
-                                            </td>
-
-                                            <td class="name_sender">Nguyễn Ngọc Anh</td>
-
-                                            <td class="status text-center"><span class="badge badge-success">Đã bàn giao
-                                                    máy</span></td>
-
-
-                                        </tr>
-
-
-
-
-                                        <tr>
-
-                                            <td class="stt">16</td>
-                                            <td>
-                                                <a data-html="true" data-toggle="popover" title="72200333"
-                                                    data-content="
-                                          Ngày: 
-                                        22-02-2023<br>Giờ: 10:19:29                                        <br>Password: 04129204                                        ">Trần
-                                                    Thy My</a>
-
-                                            </td>
-
-                                            <td class="phone_sender">0912630654</td>
-
-                                            <td class="phone_sender">Cài Office 2016</td>
-
-
-                                            </td>
-
-                                            <td class="name_sender">Trần Đinh Nhất Đăng</td>
-
-                                            <td class="status text-center"><span class="badge badge-success">Đã bàn giao
-                                                    máy</span></td>
-
-
-                                        </tr>
-
-
-
-
-                                        <tr>
-
-                                            <td class="stt">17</td>
-                                            <td>
-                                                <a data-html="true" data-toggle="popover" title="02200160"
-                                                    data-content="
-                                          Ngày: 
-                                        22-02-2023<br>Giờ: 15:25:29                                        <br>Password:                                         ">Đỗ Thị
-                                                    Tường Vi</a>
-
-                                            </td>
-
-                                            <td class="phone_sender">0569932153</td>
-
-                                            <td class="phone_sender">cài office</td>
-
-
-                                            </td>
-
-                                            <td class="name_sender">Lê Nguyễn Minh Kha </td>
-
-                                            <td class="status text-center"><span class="badge badge-success">Đã bàn giao
-                                                    máy</span></td>
-
-
-                                        </tr>
-
-
-
-
-                                        <tr>
-
-                                            <td class="stt">18</td>
-                                            <td>
-                                                <a data-html="true" data-toggle="popover" title="B2000424"
-                                                    data-content="
-                                          Ngày: 
-                                        24-02-2023<br>Giờ: 08:58:38                                        <br>Password:                                         ">Đoàn Thuỳ
-                                                    Trang</a>
-
-                                            </td>
-
-                                            <td class="phone_sender">0799423208</td>
-
-                                            <td class="phone_sender">Office</td>
-
-
-                                            </td>
-
-                                            <td class="name_sender">Nguyễn Huỳnh Anh Khoa</td>
-
-                                            <td class="status text-center"><span class="badge badge-success">Đã bàn giao
-                                                    máy</span></td>
-
-
-                                        </tr>
-
-
-
-
-                                        <tr>
-
-                                            <td class="stt">19</td>
-                                            <td>
-                                                <a data-html="true" data-toggle="popover" title="72200370"
-                                                    data-content="
-                                          Ngày: 
-                                        24-02-2023<br>Giờ: 09:06:26                                        <br>Password: 311809                                        ">Huỳnh
-                                                    Quốc Vinh</a>
-
-                                            </td>
-
-                                            <td class="phone_sender">0817185224</td>
-
-                                            <td class="phone_sender">Office 2016</td>
-
-
-                                            </td>
-
-                                            <td class="name_sender">Lê Tấn Huy</td>
-
-                                            <td class="status text-center"><span class="badge badge-success">Đã bàn giao
-                                                    máy</span></td>
-
-
-                                        </tr>
-
-
-
-
-                                        <tr>
-
-                                            <td class="stt">20</td>
-                                            <td>
-                                                <a data-html="true" data-toggle="popover" title="72200236"
-                                                    data-content="
-                                          Ngày: 
-                                        24-02-2023<br>Giờ: 10:17:06                                        <br>Password:                                         ">Trình Quach
-                                                    Vy </a>
-
-                                            </td>
-
-                                            <td class="phone_sender">0826616055</td>
-
-                                            <td class="phone_sender">caif office 2016</td>
-
-
-                                            </td>
-
-                                            <td class="name_sender">Lê Tấn Huy</td>
-
-                                            <td class="status text-center"><span class="badge badge-success">Đã bàn giao
-                                                    máy</span></td>
-
-
-                                        </tr>
-
-
-
-
-                                        <tr>
-
-                                            <td class="stt">21</td>
-                                            <td>
-                                                <a data-html="true" data-toggle="popover" title="62100023"
-                                                    data-content="
-                                          Ngày: 
-                                        24-02-2023<br>Giờ: 10:21:14                                        <br>Password:                                         ">Pham Hoang
-                                                    Linh Chi</a>
-
-                                            </td>
-
-                                            <td class="phone_sender">0703347459</td>
-
-                                            <td class="phone_sender">autocad</td>
-
-
-                                            </td>
-
-                                            <td class="name_sender">Nguyễn Ngọc Thiện</td>
-
-                                            <td class="status text-center"><span class="badge badge-success">Đã bàn giao
-                                                    máy</span></td>
-
-
-                                        </tr>
-
-
-
-
-                                        <tr>
-
-                                            <td class="stt">22</td>
-                                            <td>
-                                                <a data-html="true" data-toggle="popover" title="82200041"
-                                                    data-content="
-                                          Ngày: 
-                                        24-02-2023<br>Giờ: 11:36:26                                        <br>Password:                                         ">Lê Hữu
-                                                    Tài</a>
-
-                                            </td>
-
-                                            <td class="phone_sender">0908963525</td>
-
-                                            <td class="phone_sender">Cài office 2016</td>
-
-
-                                            </td>
-
-                                            <td class="name_sender">Mã Lương Khánh </td>
-
-                                            <td class="status text-center"><span class="badge badge-success">Đã bàn giao
-                                                    máy</span></td>
-
-
-                                        </tr>
-
-
-
-
-                                        <tr>
-
-                                            <td class="stt">23</td>
-                                            <td>
-                                                <a data-html="true" data-toggle="popover" title="62100023"
-                                                    data-content="
-                                          Ngày: 
-                                        24-02-2023<br>Giờ: 14:01:46                                        <br>Password:                                         ">phạm hoàng
-                                                    linh chi </a>
-
-                                            </td>
-
-                                            <td class="phone_sender"></td>
-
-                                            <td class="phone_sender">cài autocad</td>
-
-
-                                            </td>
-
-                                            <td class="name_sender">Hoàng Thị Xuân Ny </td>
-
-                                            <td class="status text-center"><span class="badge badge-success">Đã bàn giao
-                                                    máy</span></td>
-
-
-                                        </tr>
-
-
-
-
-                                        <tr>
-
-                                            <td class="stt">24</td>
-                                            <td>
-                                                <a data-html="true" data-toggle="popover" title="22200054"
-                                                    data-content="
-                                          Ngày: 
-                                        24-02-2023<br>Giờ: 14:13:58                                        <br>Password:                                         ">Nguyễn Ngọc
-                                                    Bảo Trâm</a>
-
-                                            </td>
-
-                                            <td class="phone_sender">0938677831</td>
-
-                                            <td class="phone_sender"></td>
-
-
-                                            </td>
-
-                                            <td class="name_sender">Lê Tùng Dương</td>
-
-                                            <td class="status text-center"><span class="badge badge-success">Đã bàn giao
-                                                    máy</span></td>
-
-
-                                        </tr>
-
-
-
-
-                                        <tr>
-
-                                            <td class="stt">25</td>
-                                            <td>
-                                                <a data-html="true" data-toggle="popover" title="h2200176"
-                                                    data-content="
-                                          Ngày: 
-                                        24-02-2023<br>Giờ: 16:01:01                                        <br>Password:                                         ">Trần Thanh
-                                                    Việt </a>
-
-                                            </td>
-
-                                            <td class="phone_sender">0925650414</td>
-
-                                            <td class="phone_sender">cài office</td>
-
-
-                                            </td>
-
-                                            <td class="name_sender">Nguyễn Ngọc Anh</td>
-
-                                            <td class="status text-center"><span class="badge badge-success">Đã bàn giao
-                                                    máy</span></td>
-
-
-                                        </tr>
-
-
-
-
-                                        <tr>
-
-                                            <td class="stt">26</td>
-                                            <td>
-                                                <a data-html="true" data-toggle="popover" title="62200260"
-                                                    data-content="
-                                          Ngày: 
-                                        24-02-2023<br>Giờ: 16:36:34                                        <br>Password:                                         ">Lê Hà
-                                                    My</a>
-
-                                            </td>
-
-                                            <td class="phone_sender">0377653241</td>
-
-                                            <td class="phone_sender">Cài office</td>
-
-
-                                            </td>
-
-                                            <td class="name_sender">Danh Nguyễn Nhựt An</td>
-
-                                            <td class="status text-center"><span class="badge badge-success">Đã bàn giao
-                                                    máy</span></td>
-
-
-                                        </tr>
-
-
-
-
-                                        <tr>
-
-                                            <td class="stt">27</td>
-                                            <td>
-                                                <a data-html="true" data-toggle="popover" title="72200433"
-                                                    data-content="
-                                          Ngày: 
-                                        24-02-2023<br>Giờ: 16:51:36                                        <br>Password:                                         ">Trương Trần
-                                                    Kim Thoa</a>
-
-                                            </td>
-
-                                            <td class="phone_sender">0838698757</td>
-
-                                            <td class="phone_sender">Cài office </td>
-
-
-                                            </td>
-
-                                            <td class="name_sender">Phạm Văn Phúc</td>
-
-                                            <td class="status text-center"><span class="badge badge-success">Đã bàn giao
-                                                    máy</span></td>
-
-
-                                        </tr>
-
-
-
-
-                                        <tr>
-
-                                            <td class="stt">28</td>
-                                            <td>
-                                                <a data-html="true" data-toggle="popover" title="02200213"
-                                                    data-content="
-                                          Ngày: 
-                                        27-02-2023<br>Giờ: 08:45:07                                        <br>Password:                                         ">Nguyễn Lê
-                                                    Yến Vy</a>
-
-                                            </td>
-
-                                            <td class="phone_sender">0334496036</td>
-
-                                            <td class="phone_sender">cài office 2016</td>
-
-
-                                            </td>
-
-                                            <td class="name_sender">Lê Tùng Dương</td>
-
-                                            <td class="status text-center"><span class="badge badge-success">Đã bàn giao
-                                                    máy</span></td>
-
-
-                                        </tr>
-
-
-
-
-                                        <tr>
-
-                                            <td class="stt">29</td>
-                                            <td>
-                                                <a data-html="true" data-toggle="popover" title="72200228"
-                                                    data-content="
-                                          Ngày: 
-                                        27-02-2023<br>Giờ: 11:37:25                                        <br>Password:                                         ">Trần Nguyễn
-                                                    Phương Thy</a>
-
-                                            </td>
-
-                                            <td class="phone_sender">0332361954</td>
-
-                                            <td class="phone_sender">cài word 2016</td>
-
-
-                                            </td>
-
-                                            <td class="name_sender">Trương Trí Phong</td>
-
-                                            <td class="status text-center"><span class="badge badge-success">Đã bàn giao
-                                                    máy</span></td>
-
-
-                                        </tr>
-
-
-
-
-                                        <tr>
-
-                                            <td class="stt">30</td>
-                                            <td>
-                                                <a data-html="true" data-toggle="popover" title="82200065"
-                                                    data-content="
-                                          Ngày: 
-                                        28-02-2023<br>Giờ: 13:57:37                                        <br>Password:                                         ">Nguyễn Đoàn
-                                                    Anh Thư</a>
-
-                                            </td>
-
-                                            <td class="phone_sender">0787780293</td>
-
-                                            <td class="phone_sender">cài office 2016</td>
-
-
-                                            </td>
-
-                                            <td class="name_sender">Nguyễn Ngọc Anh</td>
-
-                                            <td class="status text-center"><span class="badge badge-success">Đã bàn giao
-                                                    máy</span></td>
-
-
-                                        </tr>
-
-
-
-
-                                        <tr>
-
-                                            <td class="stt">31</td>
-                                            <td>
-                                                <a data-html="true" data-toggle="popover" title="31800783"
-                                                    data-content="
-                                          Ngày: 
-                                        01-03-2023<br>Giờ: 08:51:53                                        <br>Password:                                         ">Trần Trọng
-                                                    Hiếu</a>
-
-                                            </td>
-
-                                            <td class="phone_sender">0338451779</td>
-
-                                            <td class="phone_sender">Cài office 2016</td>
-
-
-                                            </td>
-
-                                            <td class="name_sender">Hồ Nguyễn An Khang</td>
-
-                                            <td class="status text-center"><span class="badge badge-success">Đã bàn giao
-                                                    máy</span></td>
-
-
-                                        </tr>
-
-
-
-
-                                        <tr>
-
-                                            <td class="stt">32</td>
-                                            <td>
-                                                <a data-html="true" data-toggle="popover" title="72200230"
-                                                    data-content="
-                                          Ngày: 
-                                        01-03-2023<br>Giờ: 09:18:59                                        <br>Password: 1357924680                                        ">Trần
-                                                    Phan Hoàng Triều </a>
-
-                                            </td>
-
-                                            <td class="phone_sender">0327876796</td>
-
-                                            <td class="phone_sender">Cài office</td>
-
-
-                                            </td>
-
-                                            <td class="name_sender">Lê Nguyễn Minh Kha </td>
-
-                                            <td class="status text-center"><span class="badge badge-success">Đã bàn giao
-                                                    máy</span></td>
-
-
-                                        </tr>
-
-
-
-
-                                        <tr>
-
-                                            <td class="stt">33</td>
-                                            <td>
-                                                <a data-html="true" data-toggle="popover" title="H2200169"
-                                                    data-content="
-                                          Ngày: 
-                                        01-03-2023<br>Giờ: 11:55:30                                        <br>Password:                                         ">Trần Ngọc
-                                                    Như</a>
-
-                                            </td>
-
-                                            <td class="phone_sender">0911358961</td>
-
-                                            <td class="phone_sender">cài office2016</td>
-
-
-                                            </td>
-
-                                            <td class="name_sender">Lê Nguyễn Minh Kha </td>
-
-                                            <td class="status text-center"><span class="badge badge-success">Đã bàn giao
-                                                    máy</span></td>
-
-
-                                        </tr>
-
-
-
-
-                                        <tr>
-
-                                            <td class="stt">34</td>
-                                            <td>
-                                                <a data-html="true" data-toggle="popover" title="H220184"
-                                                    data-content="
-                                          Ngày: 
-                                        01-03-2023<br>Giờ: 11:57:13                                        <br>Password: Trangngockim@29012004                                        ">Trang
-                                                    Ngọc Kim</a>
-
-                                            </td>
-
-                                            <td class="phone_sender">0886324119</td>
-
-                                            <td class="phone_sender">cài office 2016</td>
-
-
-                                            </td>
-
-                                            <td class="name_sender">Lê Nguyễn Minh Kha </td>
-
-                                            <td class="status text-center"><span class="badge badge-success">Đã bàn giao
-                                                    máy</span></td>
-
-
-                                        </tr>
-
-
-
-
-                                        <tr>
-
-                                            <td class="stt">35</td>
-                                            <td>
-                                                <a data-html="true" data-toggle="popover" title="02200185"
-                                                    data-content="
-                                          Ngày: 
-                                        01-03-2023<br>Giờ: 12:13:23                                        <br>Password:                                         ">Lê Hoàn
-                                                    Mỹ</a>
-
-                                            </td>
-
-                                            <td class="phone_sender">0335862299</td>
-
-                                            <td class="phone_sender">cài office 2016</td>
-
-
-                                            </td>
-
-                                            <td class="name_sender">Lê Nguyễn Minh Kha </td>
-
-                                            <td class="status text-center"><span class="badge badge-success">Đã bàn giao
-                                                    máy</span></td>
-
-
-                                        </tr>
-
-
-
-
-                                        <tr>
-
-                                            <td class="stt">36</td>
-                                            <td>
-                                                <a data-html="true" data-toggle="popover" title="62200087"
-                                                    data-content="
-                                          Ngày: 
-                                        01-03-2023<br>Giờ: 13:29:44                                        <br>Password:                                         ">Ngô Tuyết
-                                                    Ý</a>
-
-                                            </td>
-
-                                            <td class="phone_sender">0946552434</td>
-
-                                            <td class="phone_sender">Cài office 2016</td>
-
-
-                                            </td>
-
-                                            <td class="name_sender">Trần Đinh Nhất Đăng</td>
-
-                                            <td class="status text-center"><span class="badge badge-success">Đã bàn giao
-                                                    máy</span></td>
-
-
-                                        </tr>
-
-
-
-
-                                        <tr>
-
-                                            <td class="stt">37</td>
-                                            <td>
-                                                <a data-html="true" data-toggle="popover" title="22000440"
-                                                    data-content="
-                                          Ngày: 
-                                        01-03-2023<br>Giờ: 13:50:25                                        <br>Password:                                         ">Nguyễn Thị
-                                                    Thùy Vân</a>
-
-                                            </td>
-
-                                            <td class="phone_sender">0769503509</td>
-
-                                            <td class="phone_sender">Cài office</td>
-
-
-                                            </td>
-
-                                            <td class="name_sender">Phạm Quốc Việt</td>
-
-                                            <td class="status text-center"><span class="badge badge-success">Đã bàn giao
-                                                    máy</span></td>
-
-
-                                        </tr>
-
-
-
-
-                                        <tr>
-
-                                            <td class="stt">38</td>
-                                            <td>
-                                                <a data-html="true" data-toggle="popover" title="62200114"
-                                                    data-content="
-                                          Ngày: 
-                                        01-03-2023<br>Giờ: 14:50:55                                        <br>Password:                                         ">Nguyễn Minh
-                                                    Trí</a>
-
-                                            </td>
-
-                                            <td class="phone_sender">0342772632</td>
-
-                                            <td class="phone_sender">Cài đặt office 2016</td>
-
-
-                                            </td>
-
-                                            <td class="name_sender">Nguyễn Ngọc Anh</td>
-
-                                            <td class="status text-center"><span class="badge badge-success">Đã bàn giao
-                                                    máy</span></td>
-
-
-                                        </tr>
-
-
-
-
-                                        <tr>
-
-                                            <td class="stt">39</td>
-                                            <td>
-                                                <a data-html="true" data-toggle="popover" title="A2200015"
-                                                    data-content="
-                                          Ngày: 
-                                        01-03-2023<br>Giờ: 15:32:29                                        <br>Password: 111111                                        ">Hồ
-                                                    Thị Thuý</a>
-
-                                            </td>
-
-                                            <td class="phone_sender">0367505548</td>
-
-                                            <td class="phone_sender">Cài đặt word 2016</td>
-
-
-                                            </td>
-
-                                            <td class="name_sender">Phạm Quốc Việt</td>
-
-                                            <td class="status text-center"><span class="badge badge-success">Đã bàn giao
-                                                    máy</span></td>
-
-
-                                        </tr>
-
-
-
-
-                                        <tr>
-
-                                            <td class="stt">40</td>
-                                            <td>
-                                                <a data-html="true" data-toggle="popover" title="A2200039"
-                                                    data-content="
-                                          Ngày: 
-                                        01-03-2023<br>Giờ: 15:33:04                                        <br>Password: khai2607                                        ">Ngô
-                                                    Thị Mỹ Duyên</a>
-
-                                            </td>
-
-                                            <td class="phone_sender">0336545655</td>
-
-                                            <td class="phone_sender">Cài Office</td>
-
-
-                                            </td>
-
-                                            <td class="name_sender">Phạm Quốc Việt</td>
-
-                                            <td class="status text-center"><span class="badge badge-success">Đã bàn giao
-                                                    máy</span></td>
-
-
-                                        </tr>
-
-
-
-
-                                        <tr>
-
-                                            <td class="stt">41</td>
-                                            <td>
-                                                <a data-html="true" data-toggle="popover" title="022H0018"
-                                                    data-content="
-                                          Ngày: 
-                                        01-03-2023<br>Giờ: 15:53:32                                        <br>Password: Dt@12345                                        ">Danh
-                                                    Ngọc Lan Nhi</a>
-
-                                            </td>
-
-                                            <td class="phone_sender">0392049140</td>
-
-                                            <td class="phone_sender">Cài Office 2016</td>
-
-
-                                            </td>
-
-                                            <td class="name_sender">Hồ Nguyễn An Khang</td>
-
-                                            <td class="status text-center"><span class="badge badge-success">Đã bàn giao
-                                                    máy</span></td>
-
-
-                                        </tr>
-
-
-
-
-                                        <tr>
-
-                                            <td class="stt">42</td>
-                                            <td>
-                                                <a data-html="true" data-toggle="popover" title="72200010"
-                                                    data-content="
-                                          Ngày: 
-                                        03-03-2023<br>Giờ: 10:06:25                                        <br>Password:                                         ">Hà Kim
-                                                    Ngân</a>
-
-                                            </td>
-
-                                            <td class="phone_sender">0353903993</td>
-
-                                            <td class="phone_sender">microsoft office 2016 </td>
-
-
-                                            </td>
-
-                                            <td class="name_sender">Nguyễn Ngọc Thiện</td>
-
-                                            <td class="status text-center"><span class="badge badge-success">Đã bàn giao
-                                                    máy</span></td>
-
-
-                                        </tr>
-
-
-
-
-                                        <tr>
-
-                                            <td class="stt">43</td>
-                                            <td>
-                                                <a data-html="true" data-toggle="popover" title="72200236"
-                                                    data-content="
-                                          Ngày: 
-                                        03-03-2023<br>Giờ: 10:07:35                                        <br>Password: 020804                                        ">Trình
-                                                    Quách Vy</a>
-
-                                            </td>
-
-                                            <td class="phone_sender">0826616055</td>
-
-                                            <td class="phone_sender">microsoft office 2016 </td>
-
-
-                                            </td>
-
-                                            <td class="name_sender">Nguyễn Ngọc Thiện</td>
-
-                                            <td class="status text-center"><span class="badge badge-success">Đã bàn giao
-                                                    máy</span></td>
-
-
-                                        </tr>
-
-
-
-
-                                        <tr>
-
-                                            <td class="stt">44</td>
-                                            <td>
-                                                <a data-html="true" data-toggle="popover" title="72200374"
-                                                    data-content="
-                                          Ngày: 
-                                        03-03-2023<br>Giờ: 11:01:05                                        <br>Password:                                         ">Huỳnh Thị
-                                                    Mỹ Duyên</a>
-
-                                            </td>
-
-                                            <td class="phone_sender"></td>
-
-                                            <td class="phone_sender">cài office 2016</td>
-
-
-                                            </td>
-
-                                            <td class="name_sender">Danh Nguyễn Nhựt An</td>
-
-                                            <td class="status text-center"><span class="badge badge-success">Đã bàn giao
-                                                    máy</span></td>
-
-
-                                        </tr>
-
-
-
-
-                                        <tr>
-
-                                            <td class="stt">45</td>
-                                            <td>
-                                                <a data-html="true" data-toggle="popover" title="221H0021"
-                                                    data-content="
-                                          Ngày: 
-                                        03-03-2023<br>Giờ: 11:02:34                                        <br>Password:                                         ">Nguyễn Đỗ
-                                                    Nhật Hạ</a>
-
-                                            </td>
-
-                                            <td class="phone_sender">0916470008</td>
-
-                                            <td class="phone_sender">Cài office 2016</td>
-
-
-                                            </td>
-
-                                            <td class="name_sender">Danh Nguyễn Nhựt An</td>
-
-                                            <td class="status text-center"><span class="badge badge-success">Đã bàn giao
-                                                    máy</span></td>
-
-
-                                        </tr>
-
-
-
-
-                                        <tr>
-
-                                            <td class="stt">46</td>
-                                            <td>
-                                                <a data-html="true" data-toggle="popover" title="72200302"
-                                                    data-content="
-                                          Ngày: 
-                                        03-03-2023<br>Giờ: 13:20:41                                        <br>Password: 12345                                        ">Nguyễn
-                                                    Thị Thanh Mai</a>
-
-                                            </td>
-
-                                            <td class="phone_sender">0359442524</td>
-
-                                            <td class="phone_sender">Cài office 2016</td>
-
-
-                                            </td>
-
-                                            <td class="name_sender">Hoàng Thị Xuân Ny </td>
-
-                                            <td class="status text-center"><span class="badge badge-success">Đã bàn giao
-                                                    máy</span></td>
-
-
-                                        </tr>
-
-
-
-
-                                        <tr>
-
-                                            <td class="stt">47</td>
-                                            <td>
-                                                <a data-html="true" data-toggle="popover" title="02100928"
-                                                    data-content="
-                                          Ngày: 
-                                        03-03-2023<br>Giờ: 15:40:36                                        <br>Password:                                         ">Nguyễn
-                                                    Huyền Trân</a>
-
-                                            </td>
-
-                                            <td class="phone_sender">0399717916</td>
-
-                                            <td class="phone_sender">Cài office 2016</td>
-
-
-                                            </td>
-
-                                            <td class="name_sender">Trương Trí Phong</td>
-
-                                            <td class="status text-center"><span class="badge badge-success">Đã bàn giao
-                                                    máy</span></td>
-
-
-                                        </tr>
-
-
-
-
-                                        <tr>
-
-                                            <td class="stt">48</td>
-                                            <td>
-                                                <a data-html="true" data-toggle="popover" title="02200223"
-                                                    data-content="
-                                          Ngày: 
-                                        13-03-2023<br>Giờ: 09:27:09                                        <br>Password:                                         ">Nguyễn Thị
-                                                    Diễm My</a>
-
-                                            </td>
-
-                                            <td class="phone_sender">0394854214</td>
-
-                                            <td class="phone_sender">cài word</td>
-
-
-                                            </td>
-
-                                            <td class="name_sender">Nguyễn Thị Huyền Diệu</td>
-
-                                            <td class="status text-center"><span class="badge badge-success">Đã bàn giao
-                                                    máy</span></td>
-
-
-                                        </tr>
-
-
-
-
-                                        <tr>
-
-                                            <td class="stt">49</td>
-                                            <td>
-                                                <a data-html="true" data-toggle="popover" title="42200429"
-                                                    data-content="
-                                          Ngày: 
-                                        13-03-2023<br>Giờ: 09:34:26                                        <br>Password:                                         ">Bùi Gia
-                                                    Quỳnh</a>
-
-                                            </td>
-
-                                            <td class="phone_sender">0908549324</td>
-
-                                            <td class="phone_sender">Microsoft Office</td>
-
-
-                                            </td>
-
-                                            <td class="name_sender">Nguyễn Thị Huyền Diệu</td>
-
-                                            <td class="status text-center"><span class="badge badge-success">Đã bàn giao
-                                                    máy</span></td>
-
-
-                                        </tr>
-
-
-
-
-                                        <tr>
-
-                                            <td class="stt">50</td>
-                                            <td>
-                                                <a data-html="true" data-toggle="popover" title="52200090"
-                                                    data-content="
-                                          Ngày: 
-                                        13-03-2023<br>Giờ: 10:07:50                                        <br>Password: 52200090                                        ">Bùi
-                                                    Lưu Thành Đạt</a>
-
-                                            </td>
-
-                                            <td class="phone_sender">0931503406</td>
-
-                                            <td class="phone_sender">Không crack được phần mềm Geoslope (Geostudio), Cần
-                                                trong hôm nay</td>
-
-
-                                            </td>
-
-                                            <td class="name_sender">Nguyễn Huỳnh Anh Khoa</td>
-
-                                            <td class="status text-center"><span class="badge badge-success">Đã bàn giao
-                                                    máy</span></td>
-
-
-                                        </tr>
-
-
-
-
-                                        <tr>
-
-                                            <td class="stt">51</td>
-                                            <td>
-                                                <a data-html="true" data-toggle="popover" title="A1900001"
-                                                    data-content="
-                                          Ngày: 
-                                        13-03-2023<br>Giờ: 10:13:36                                        <br>Password: 1607                                        ">Võ Thị
-                                                    Nhựt Băng </a>
-
-                                            </td>
-
-                                            <td class="phone_sender">0397266599</td>
-
-                                            <td class="phone_sender">Cài office 2016</td>
-
-
-                                            </td>
-
-                                            <td class="name_sender">Nguyễn Thị Huyền Diệu</td>
-
-                                            <td class="status text-center"><span class="badge badge-success">Đã bàn giao
-                                                    máy</span></td>
-
-
-                                        </tr>
-
-
-
-
-                                        <tr>
-
-                                            <td class="stt">52</td>
-                                            <td>
-                                                <a data-html="true" data-toggle="popover" title="72001686"
-                                                    data-content="
-                                          Ngày: 
-                                        13-03-2023<br>Giờ: 10:35:52                                        <br>Password: socconsieukuz                                        ">Tạ
-                                                    Gia Linh</a>
-
-                                            </td>
-
-                                            <td class="phone_sender">0969171321</td>
-
-                                            <td class="phone_sender">Cài đặt phần mềm edit animation After Effects của
-                                                Adobe</td>
-
-
-                                            </td>
-
-                                            <td class="name_sender">Nguyễn Huỳnh Anh Khoa</td>
-
-                                            <td class="status text-center"><span class="badge badge-success">Đã bàn giao
-                                                    máy</span></td>
-
-
-                                        </tr>
-
-
-
-
-                                        <tr>
-
-                                            <td class="stt">53</td>
-                                            <td>
-                                                <a data-html="true" data-toggle="popover" title="32200302"
-                                                    data-content="
-                                          Ngày: 
-                                        13-03-2023<br>Giờ: 15:17:36                                        <br>Password: 32200302                                        ">Lê
-                                                    Nguyễn Kiều My</a>
-
-                                            </td>
-
-                                            <td class="phone_sender">0907892402</td>
-
-                                            <td class="phone_sender">Cài đặt Microsoft Word</td>
-
-
-                                            </td>
-
-                                            <td class="name_sender">Trương Trí Phong</td>
-
-                                            <td class="status text-center"><span class="badge badge-success">Đã bàn giao
-                                                    máy</span></td>
-
-
-                                        </tr>
-
-
-
-
-                                        <tr>
-
-                                            <td class="stt">54</td>
-                                            <td>
-                                                <a data-html="true" data-toggle="popover" title="82200245"
-                                                    data-content="
-                                          Ngày: 
-                                        15-03-2023<br>Giờ: 08:49:13                                        <br>Password:                                         ">Nguyễn Ngọc
-                                                    Hoàng Lam</a>
-
-                                            </td>
-
-                                            <td class="phone_sender">0921781801</td>
-
-                                            <td class="phone_sender">AutoCad2018</td>
-
-
-                                            </td>
-
-                                            <td class="name_sender">Nguyễn Ngọc Anh</td>
-
-                                            <td class="status text-center"><span class="badge badge-success">Đã bàn giao
-                                                    máy</span></td>
-
-
-                                        </tr>
-
-
-
-
-                                        <tr>
-
-                                            <td class="stt">55</td>
-                                            <td>
-                                                <a data-html="true" data-toggle="popover" title="72200204"
-                                                    data-content="
-                                          Ngày: 
-                                        15-03-2023<br>Giờ: 15:33:00                                        <br>Password: ihtbs**                                        ">Nguyễn
-                                                    Thị Quế Trâm </a>
-
-                                            </td>
-
-                                            <td class="phone_sender">0768835895</td>
-
-                                            <td class="phone_sender">Cài Office </td>
-
-
-                                            </td>
-
-                                            <td class="name_sender">Hồ Nguyễn An Khang</td>
-
-                                            <td class="status text-center"><span class="badge badge-success">Đã bàn giao
-                                                    máy</span></td>
-
-
-                                        </tr>
-
-
-
-
-                                        <tr>
-
-                                            <td class="stt">56</td>
-                                            <td>
-                                                <a data-html="true" data-toggle="popover" title="422H0079"
-                                                    data-content="
-                                          Ngày: 
-                                        15-03-2023<br>Giờ: 15:34:35                                        <br>Password:                                         ">Lê Trần
-                                                    Hoàng Khánh</a>
-
-                                            </td>
-
-                                            <td class="phone_sender">0775686491</td>
-
-                                            <td class="phone_sender">Office 2016 autocad</td>
-
-
-                                            </td>
-
-                                            <td class="name_sender">Lê Tùng Dương</td>
-
-                                            <td class="status text-center"><span class="badge badge-success">Đã bàn giao
-                                                    máy</span></td>
-
-
-                                        </tr>
-
-
-
-
-                                        <tr>
-
-                                            <td class="stt">57</td>
-                                            <td>
-                                                <a data-html="true" data-toggle="popover" title="722h0050"
-                                                    data-content="
-                                          Ngày: 
-                                        15-03-2023<br>Giờ: 16:30:36                                        <br>Password: nguyenminhtri2004                                        ">Nguyễn
-                                                    Minh Trí</a>
-
-                                            </td>
-
-                                            <td class="phone_sender">0909000430</td>
-
-                                            <td class="phone_sender">cài giúp em bộ Office 2016 của trường ạ. Em cảm ơn
-                                            </td>
-
-
-                                            </td>
-
-                                            <td class="name_sender">Nguyễn Huỳnh Anh Khoa</td>
-
-                                            <td class="status text-center"><span class="badge badge-success">Đã bàn giao
-                                                    máy</span></td>
-
-
-                                        </tr>
-
-
-
-
-                                        <tr>
-
-                                            <td class="stt">58</td>
-                                            <td>
-                                                <a data-html="true" data-toggle="popover" title="32200385"
-                                                    data-content="
-                                          Ngày: 
-                                        17-03-2023<br>Giờ: 15:11:40                                        <br>Password: 09012004                                        ">Trần
-                                                    Thị Ngọc Huyền </a>
-
-                                            </td>
-
-                                            <td class="phone_sender">0374905394</td>
-
-                                            <td class="phone_sender">cài office </td>
-
-
-                                            </td>
-
-                                            <td class="name_sender">Trần Đinh Nhất Đăng</td>
-
-                                            <td class="status text-center"><span class="badge badge-success">Đã bàn giao
-                                                    máy</span></td>
-
-
-                                        </tr>
-
-
-
-
-                                        <tr>
-
-                                            <td class="stt">59</td>
-                                            <td>
-                                                <a data-html="true" data-toggle="popover" title="72001680"
-                                                    data-content="
-                                          Ngày: 
-                                        20-03-2023<br>Giờ: 08:18:57                                        <br>Password: khuyenvi                                        ">Nguyễn
-                                                    Thị Vĩ Khuyên</a>
-
-                                            </td>
-
-                                            <td class="phone_sender">0779093729</td>
-
-                                            <td class="phone_sender">Cần hỗ trợ cài microsoft office cho macbook</td>
-
-
-                                            </td>
-
-                                            <td class="name_sender">Lê Tùng Dương</td>
-
-                                            <td class="status text-center"><span class="badge badge-success">Đã bàn giao
-                                                    máy</span></td>
-
-
-                                        </tr>
-
-
-
-
-                                        <tr>
-
-                                            <td class="stt">60</td>
-                                            <td>
-                                                <a data-html="true" data-toggle="popover" title="A1900114"
-                                                    data-content="
-                                          Ngày: 
-                                        20-03-2023<br>Giờ: 15:27:51                                        <br>Password:                                         ">Phạm Gia
-                                                    Khiêm</a>
-
-                                            </td>
-
-                                            <td class="phone_sender">0375142031</td>
-
-                                            <td class="phone_sender">Lỗi bàn phím</td>
-
-
-                                            </td>
-
-                                            <td class="name_sender">Trần Đinh Nhất Đăng</td>
-
-                                            <td class="status text-center"><span class="badge badge-success">Đã bàn giao
-                                                    máy</span></td>
-
-
-                                        </tr>
-
-
-
-
-                                        <tr>
-
-                                            <td class="stt">61</td>
-                                            <td>
-                                                <a data-html="true" data-toggle="popover" title="022H0018"
-                                                    data-content="
-                                          Ngày: 
-                                        21-03-2023<br>Giờ: 08:30:37                                        <br>Password: Dt@12345                                        ">Danh
-                                                    Ngọc Lan Nhi</a>
-
-                                            </td>
-
-                                            <td class="phone_sender">0392049140</td>
-
-                                            <td class="phone_sender">Cài Office 2016</td>
-
-
-                                            </td>
-
-                                            <td class="name_sender">Lê Nguyễn Minh Kha </td>
-
-                                            <td class="status text-center"><span class="badge badge-success">Đã bàn giao
-                                                    máy</span></td>
-
-
-                                        </tr>
-
-
-
-
-                                        <tr>
-
-                                            <td class="stt">62</td>
-                                            <td>
-                                                <a data-html="true" data-toggle="popover" title="422H0059"
-                                                    data-content="
-                                          Ngày: 
-                                        22-03-2023<br>Giờ: 09:22:07                                        <br>Password: 00990099                                        ">Đinh
-                                                    Vương Bình</a>
-
-                                            </td>
-
-                                            <td class="phone_sender">0789417959</td>
-
-                                            <td class="phone_sender">Bạn cần cài Auto CAD</td>
-
-
-                                            </td>
-
-                                            <td class="name_sender">Nguyễn Ngọc Anh</td>
-
-                                            <td class="status text-center"><span class="badge badge-success">Đã bàn giao
-                                                    máy</span></td>
-
-
-                                        </tr>
-
-
-
-
-                                        <tr>
-
-                                            <td class="stt">63</td>
-                                            <td>
-                                                <a data-html="true" data-toggle="popover" title="422H0058"
-                                                    data-content="
-                                          Ngày: 
-                                        22-03-2023<br>Giờ: 09:22:11                                        <br>Password: tl555555                                        ">Đinh
-                                                    Thiên Minh </a>
-
-                                            </td>
-
-                                            <td class="phone_sender">0789413534</td>
-
-                                            <td class="phone_sender">Cài đặt Auto CAD</td>
-
-
-                                            </td>
-
-                                            <td class="name_sender">Nguyễn Ngọc Anh</td>
-
-                                            <td class="status text-center"><span class="badge badge-success">Đã bàn giao
-                                                    máy</span></td>
-
-
-                                        </tr>
-
-
-
-
-                                        <tr>
-
-                                            <td class="stt">64</td>
-                                            <td>
-                                                <a data-html="true" data-toggle="popover" title="62200195"
-                                                    data-content="
-                                          Ngày: 
-                                        22-03-2023<br>Giờ: 09:25:55                                        <br>Password: mintthu12345                                        ">Trần
-                                                    Ngọc Minh Thư</a>
-
-                                            </td>
-
-                                            <td class="phone_sender">0908473463</td>
-
-                                            <td class="phone_sender">PHẦN MỀM GIẢI NÉN</td>
-
-
-                                            </td>
-
-                                            <td class="name_sender">Trần Văn Huy</td>
-
-                                            <td class="status text-center"><span class="badge badge-success">Đã bàn giao
-                                                    máy</span></td>
-
-
-                                        </tr>
-
-
-
-
-                                        <tr>
-
-                                            <td class="stt">65</td>
-                                            <td>
-                                                <a data-html="true" data-toggle="popover" title="H2100449"
-                                                    data-content="
-                                          Ngày: 
-                                        22-03-2023<br>Giờ: 10:51:36                                        <br>Password: 100103                                        ">Lê
-                                                    Mai Phương</a>
-
-                                            </td>
-
-                                            <td class="phone_sender">0907938975</td>
-
-                                            <td class="phone_sender">Cài bản off của word, pdf và ppt</td>
-
-
-                                            </td>
-
-                                            <td class="name_sender">Trần Văn Huy</td>
-
-                                            <td class="status text-center"><span class="badge badge-success">Đã bàn giao
-                                                    máy</span></td>
-
-
-                                        </tr>
-
-
-
-
-                                        <tr>
-
-                                            <td class="stt">66</td>
-                                            <td>
-                                                <a data-html="true" data-toggle="popover" title="72200279"
-                                                    data-content="
-                                          Ngày: 
-                                        22-03-2023<br>Giờ: 11:16:35                                        <br>Password: 25049794                                        ">Lương
-                                                    Phương Anh</a>
-
-                                            </td>
-
-                                            <td class="phone_sender">0373758662</td>
-
-                                            <td class="phone_sender">Cài Word 2016 và Excel 2016</td>
-
-
-                                            </td>
-
-                                            <td class="name_sender">Nguyễn Ngọc Anh</td>
-
-                                            <td class="status text-center"><span class="badge badge-success">Đã bàn giao
-                                                    máy</span></td>
-
-
-                                        </tr>
-
-
-
-
-                                        <tr>
-
-                                            <td class="stt">67</td>
-                                            <td>
-                                                <a data-html="true" data-toggle="popover" title="82200183"
-                                                    data-content="
-                                          Ngày: 
-                                        22-03-2023<br>Giờ: 14:15:30                                        <br>Password:                                         ">Lê Ngọc Anh
-                                                    Thư</a>
-
-                                            </td>
-
-                                            <td class="phone_sender">0889125422</td>
-
-                                            <td class="phone_sender">Cài office 2016</td>
-
-
-                                            </td>
-
-                                            <td class="name_sender">Lê Nguyễn Minh Kha </td>
-
-                                            <td class="status text-center"><span class="badge badge-success">Đã bàn giao
-                                                    máy</span></td>
-
-
-                                        </tr>
-
-
-
-
-                                        <tr>
-
-                                            <td class="stt">68</td>
-                                            <td>
-                                                <a data-html="true" data-toggle="popover" title="H2200145"
-                                                    data-content="
-                                          Ngày: 
-                                        22-03-2023<br>Giờ: 15:18:46                                        <br>Password:                                         ">Phạm Hoàng
-                                                    Yến Nhi</a>
-
-                                            </td>
-
-                                            <td class="phone_sender">0943148066</td>
-
-                                            <td class="phone_sender">Cài word</td>
-
-
-                                            </td>
-
-                                            <td class="name_sender">Phạm Quốc Việt</td>
-
-                                            <td class="status text-center"><span class="badge badge-success">Đã bàn giao
-                                                    máy</span></td>
-
-
-                                        </tr>
-
-
-
-
-                                        <tr>
-
-                                            <td class="stt">69</td>
-                                            <td>
-                                                <a data-html="true" data-toggle="popover" title="62100960"
-                                                    data-content="
-                                          Ngày: 
-                                        22-03-2023<br>Giờ: 15:22:27                                        <br>Password:                                         ">Nguyễn Minh
-                                                    Đức</a>
-
-                                            </td>
-
-                                            <td class="phone_sender">0932407478</td>
-
-                                            <td class="phone_sender">Cài AutoCAD</td>
-
-
-                                            </td>
-
-                                            <td class="name_sender">Hồ Nguyễn An Khang</td>
-
-                                            <td class="status text-center"><span class="badge badge-success">Đã bàn giao
-                                                    máy</span></td>
-
-
-                                        </tr>
-
-
-
-
-                                        <tr>
-
-                                            <td class="stt">70</td>
-                                            <td>
-                                                <a data-html="true" data-toggle="popover" title="72200426"
-                                                    data-content="
-                                          Ngày: 
-                                        27-03-2023<br>Giờ: 13:40:48                                        <br>Password: 160904                                        ">Trần
-                                                    Thị Ngọc Nhi</a>
-
-                                            </td>
-
-                                            <td class="phone_sender">0386122653</td>
-
-                                            <td class="phone_sender">Cài office</td>
-
-
-                                            </td>
-
-                                            <td class="name_sender">Trương Trí Phong</td>
-
-                                            <td class="status text-center"><span class="badge badge-success">Đã bàn giao
-                                                    máy</span></td>
-
-
-                                        </tr>
-
-
-
-
-                                        <tr>
-
-                                            <td class="stt">71</td>
-                                            <td>
-                                                <a data-html="true" data-toggle="popover" title="32200133"
-                                                    data-content="
-                                          Ngày: 
-                                        27-03-2023<br>Giờ: 15:38:34                                        <br>Password: không                                        ">Lê Thị
-                                                    Cẩm Thư</a>
-
-                                            </td>
-
-                                            <td class="phone_sender">0933986840</td>
-
-                                            <td class="phone_sender">Em cần cài office</td>
-
-
-                                            </td>
-
-                                            <td class="name_sender">Trần Văn Huy</td>
-
-                                            <td class="status text-center"><span class="badge badge-success">Đã bàn giao
-                                                    máy</span></td>
-
-
-                                        </tr>
-
-
-
-
-                                        <tr>
-
-                                            <td class="stt">72</td>
-                                            <td>
-                                                <a data-html="true" data-toggle="popover" title="222h0044"
-                                                    data-content="
-                                          Ngày: 
-                                        27-03-2023<br>Giờ: 16:25:56                                        <br>Password:                                         ">Lê Minh
-                                                    Đạt</a>
-
-                                            </td>
-
-                                            <td class="phone_sender">0765964533</td>
-
-                                            <td class="phone_sender">Cài Office</td>
-
-
-                                            </td>
-
-                                            <td class="name_sender">Trần Đinh Nhất Đăng</td>
-
-                                            <td class="status text-center"><span class="badge badge-success">Đã bàn giao
-                                                    máy</span></td>
-
-
-                                        </tr>
-
-
-
-
-                                        <tr>
-
-                                            <td class="stt">73</td>
-                                            <td>
-                                                <a data-html="true" data-toggle="popover" title="62101134"
-                                                    data-content="
-                                          Ngày: 
-                                        29-03-2023<br>Giờ: 08:37:45                                        <br>Password: 0336803596                                        ">Nguyễn
-                                                    Thị Trí Linh</a>
-
-                                            </td>
-
-                                            <td class="phone_sender">0336803596</td>
-
-                                            <td class="phone_sender">Máy không kết nối được wifi</td>
-
-
-                                            </td>
-
-                                            <td class="name_sender">Nguyễn Ngọc Thiện</td>
-
-                                            <td class="status text-center"><span class="badge badge-success">Đã bàn giao
-                                                    máy</span></td>
-
-
-                                        </tr>
-
-
-
-
-                                        <tr>
-
-                                            <td class="stt">74</td>
-                                            <td>
-                                                <a data-html="true" data-toggle="popover" title="d2200058"
-                                                    data-content="
-                                          Ngày: 
-                                        29-03-2023<br>Giờ: 08:58:03                                        <br>Password: Thuyvy@2004                                        ">mai
-                                                    nguyễn thúy vy</a>
-
-                                            </td>
-
-                                            <td class="phone_sender">0916295024</td>
-
-                                            <td class="phone_sender">bị treo máy</td>
-
-
-                                            </td>
-
-                                            <td class="name_sender">Trần Đinh Nhất Đăng</td>
-
-                                            <td class="status text-center"><span class="badge badge-success">Đã bàn giao
-                                                    máy</span></td>
-
-
-                                        </tr>
-
-
-
-
-                                        <tr>
-
-                                            <td class="stt">75</td>
-                                            <td>
-                                                <a data-html="true" data-toggle="popover" title="62200201"
-                                                    data-content="
-                                          Ngày: 
-                                        29-03-2023<br>Giờ: 22:00:53                                        <br>Password:                                         ">Trần Thanh
-                                                    Ngân </a>
-
-                                            </td>
-
-                                            <td class="phone_sender">0344561277</td>
-
-                                            <td class="phone_sender">Dạ em chào anh chị,
-                                                Em muốn thay đổi word, powerpoint, excel bản 2016 anh chị giúp em với ạ.
-                                                Cám mơn anh chị. </td>
-
-
-                                            </td>
-
-                                            <td class="name_sender">Trần Đinh Nhất Đăng</td>
-
-                                            <td class="status text-center"><span class="badge badge-success">Đã bàn giao
-                                                    máy</span></td>
-
-
-                                        </tr>
-
-
-
-
-                                        <tr>
-
-                                            <td class="stt">76</td>
-                                            <td>
-                                                <a data-html="true" data-toggle="popover" title="61900205"
-                                                    data-content="
-                                          Ngày: 
-                                        31-03-2023<br>Giờ: 10:20:27                                        <br>Password: 23102001                                        ">Nguyễn
-                                                    Thị Bích Phương </a>
-
-                                            </td>
-
-                                            <td class="phone_sender">0912881627</td>
-
-                                            <td class="phone_sender">Tải Chemdraw
-                                                Sigmaplot
-                                                Origin</td>
-
-
-                                            </td>
-
-                                            <td class="name_sender">Trương Trí Phong</td>
-
-                                            <td class="status text-center"><span class="badge badge-success">Đã bàn giao
-                                                    máy</span></td>
-
-
-                                        </tr>
-
-
-
-
-                                        <tr>
-
-                                            <td class="stt">77</td>
-                                            <td>
-                                                <a data-html="true" data-toggle="popover" title="B2200056"
-                                                    data-content="
-                                          Ngày: 
-                                        31-03-2023<br>Giờ: 15:21:41                                        <br>Password:                                         ">Mai An
-                                                    Na</a>
-
-                                            </td>
-
-                                            <td class="phone_sender">0921275839</td>
-
-                                            <td class="phone_sender">Cài office </td>
-
-
-                                            </td>
-
-                                            <td class="name_sender">Trần Đinh Nhất Đăng</td>
-
-                                            <td class="status text-center"><span class="badge badge-success">Đã bàn giao
-                                                    máy</span></td>
-
-
-                                        </tr>
-
-
-
-
-                                        <tr>
-
-                                            <td class="stt">78</td>
-                                            <td>
-                                                <a data-html="true" data-toggle="popover" title="42200060"
-                                                    data-content="
-                                          Ngày: 
-                                        31-03-2023<br>Giờ: 16:26:08                                        <br>Password: 220523                                        ">Nguyễn
-                                                    Lâm Phát</a>
-
-                                            </td>
-
-                                            <td class="phone_sender">0364605371</td>
-
-                                            <td class="phone_sender">Cài word 2016</td>
-
-
-                                            </td>
-
-                                            <td class="name_sender">Trần Đinh Nhất Đăng</td>
-
-                                            <td class="status text-center"><span class="badge badge-success">Đã bàn giao
-                                                    máy</span></td>
-
-
-                                        </tr>
-
-
-
-
-                                        <tr>
-
-                                            <td class="stt">79</td>
-                                            <td>
-                                                <a data-html="true" data-toggle="popover" title="42200015"
-                                                    data-content="
-                                          Ngày: 
-                                        31-03-2023<br>Giờ: 16:26:33                                        <br>Password: 116789                                        ">Dương
-                                                    Minh Hoài </a>
-
-                                            </td>
-
-                                            <td class="phone_sender">0328647929</td>
-
-                                            <td class="phone_sender">cài word 2016 </td>
-
-
-                                            </td>
-
-                                            <td class="name_sender">Trần Đinh Nhất Đăng</td>
-
-                                            <td class="status text-center"><span class="badge badge-success">Đã bàn giao
-                                                    máy</span></td>
-
-
-                                        </tr>
-
-
-
-
-                                        <tr>
-
-                                            <td class="stt">80</td>
-                                            <td>
-                                                <a data-html="true" data-toggle="popover" title="42200040"
-                                                    data-content="
-                                          Ngày: 
-                                        31-03-2023<br>Giờ: 16:26:46                                        <br>Password: 092222                                        ">Mai
-                                                    hoàng phúc</a>
-
-                                            </td>
-
-                                            <td class="phone_sender">0703083845</td>
-
-                                            <td class="phone_sender">Cài word 2016</td>
-
-
-                                            </td>
-
-                                            <td class="name_sender">Trần Đinh Nhất Đăng</td>
-
-                                            <td class="status text-center"><span class="badge badge-success">Đã bàn giao
-                                                    máy</span></td>
-
-
-                                        </tr>
-
-
-
-
-                                        <tr>
-
-                                            <td class="stt">81</td>
-                                            <td>
-                                                <a data-html="true" data-toggle="popover" title="B22H0015"
-                                                    data-content="
-                                          Ngày: 
-                                        15-03-2023<br>Giờ: 15:25:00                                        <br>Password: THAO04012004                                        ">Đặng
-                                                    Thị Thảo</a>
-
-                                            </td>
-
-                                            <td class="phone_sender">0344194082</td>
-
-                                            <td class="phone_sender">Cài photoshop</td>
-
-
-                                            </td>
-
-                                            <td class="name_sender">Trần Văn Huy</td>
-
-                                            <td class="status text-center"><span class="badge badge-info">Không thể
-                                                    sửa</span></td>
-
-
-                                        </tr>
-
-
-
-
-                                        <tr>
-
-                                            <td class="stt">82</td>
-                                            <td>
-                                                <a data-html="true" data-toggle="popover" title="72200148"
-                                                    data-content="
-                                          Ngày: 
-                                        15-03-2023<br>Giờ: 15:34:43                                        <br>Password: dtd2204383                                        ">Đào
-                                                    Thục Dinh</a>
-
-                                            </td>
-
-                                            <td class="phone_sender">0779999029</td>
-
-                                            <td class="phone_sender">Cài Office, Lightroom</td>
-
-
-                                            </td>
-
-                                            <td class="name_sender">Trần Văn Huy</td>
-
-                                            <td class="status text-center"><span class="badge badge-info">Không thể
-                                                    sửa</span></td>
-
-
-                                        </tr>
-
-
-
-
-                                        <tr>
-
-                                            <td class="stt">83</td>
-                                            <td>
-                                                <a data-html="true" data-toggle="popover" title="41501044"
-                                                    data-content="
-                                          Ngày: 
-                                        15-03-2023<br>Giờ: 16:09:20                                        <br>Password:                                         ">HUỲNH VĂN
-                                                    QUÂN</a>
-
-                                            </td>
-
-                                            <td class="phone_sender">0939895876</td>
-
-                                            <td class="phone_sender">Cài Matlab</td>
-
-
-                                            </td>
-
-                                            <td class="name_sender">Hồ Nguyễn An Khang</td>
-
-                                            <td class="status text-center"><span class="badge badge-info">Không thể
-                                                    sửa</span></td>
-
-
-                                        </tr>
-
-
-
+                                        {% for uncensoreds in uncensored %}
+                                        <tr>
+                                            <td>{{loop.index}}</td>
+                                            <td>
+                                                <img class="img-circle" src="{{ uncensoreds.GooglePicture }}"
+                                                    width="45px">
+                                                {{uncensoreds.NameGoogle}}
+                                            </td>
+                                            <td>
+                                                <b> {{uncensoreds.Title}} </b><br>
+                                                {% if uncensoreds.Category == 'law' %}
+                                                <span class="badge badge-warning">Chính sách, pháp luật</span>
+                                                {% elif uncensoreds.Category == 'disaster' %}
+                                                <span class="badge badge-warning">Thiên tai, dịch bệnh</span>
+                                                {% elif uncensoreds.Category == 'ecomomy' %}
+                                                <span class="badge badge-warning">Kinh tế, chính trị</span>
+                                                {% elif uncensoreds.Category == 'health' %}
+                                                <span class="badge badge-warning">Lĩnh vực y tế, sản phẩm y tế liên quan
+                                                    đến sức khỏe con người</span>
+                                                {% elif uncensoreds.Category == 'seciurity' %}
+                                                <span class="badge badge-warning">An ninh quốc gia, Trật tự an toàn – xã
+                                                    hội</span>
+                                                {% elif uncensoreds.Category == 'other' %}
+                                                <span class="badge badge-warning">Khác</span>
+                                                {% endif %}
+                                                {% if uncensoreds.Label == 1 %}
+                                                <span class="badge badge" style="background-color:#00cc99">Tin
+                                                    thật</span>
+                                                {% else %}
+                                                <span class="badge badge-danger">Tin giả</span>
+                                                {% endif %}
+                                                <span class="badge" style="background-color:#1a8cff"> <i
+                                                        class="fa-solid fa-clock"></i> {{uncensoreds.DatePost}}</span>
+
+                                            </td>
+                                            <td>
+                                                <div class="btn-group">
+                                                    <button class="btn btn-primary dropdown-toggle btn-sm" data-toggle="dropdown" aria-expanded="false">
+                                                        <i class="fa fa-cogs"></i>Thao tác <i class="fa fa-angle-down"></i>
+                                                    </button>
+                                                    <ul class="dropdown-menu" x-placement="bottom-start" style="position: absolute; transform: translate3d(0px, 26px, 0px); top: 0px; left: 0px; will-change: transform;">
+                                                        <li style="width: 78%">
+                                                            <form action="/uncensoreds/{{uncensoreds._id}}/1" method="post">
+                                                                <button type="submit" class="dropdown-item" href="javascript:;">
+                                                                    <i class="fa-solid fa-circle-check text-success"></i> Phê duyệt
+                                                                </button>
+                                                            </form>
+                                                        </li>
+                                                        <li style="width: 78%">
+                                                            <form action="/uncensoreds/{{uncensoreds._id}}/2" method="post">
+                                                                <button type="submit" class="dropdown-item" href="javascript:;">
+                                                                    <i class="fa-solid fa-circle-xmark text-danger"></i> Từ chối
+                                                                </button>
+                                                            </form>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                                
+                                            </td>
+                                        </tr>
+                                        {% endfor %}
 
                                     </tbody>
 
@@ -3844,241 +1277,7 @@
                             </div>
 
                         </div>
-                        <div class="row">
-                            <div class="col-lg-12">
-                                <div class="ibox">
 
-                                    <div class="ibox-head">
-
-                                        <div class="ibox-title">Sự kiện</div>
-
-                                        <div class="ibox-tools">
-
-                                            <a class="ibox-collapse"><i class="fa fa-minus"></i></a>
-
-                                            <a class="fullscreen-link"><i class="fa fa-expand"></i></a>
-
-                                        </div>
-
-                                    </div>
-
-                                    <div class="ibox-body">
-
-                                        <ul class="media-list media-list-divider m-0">
-
-                                            <li class="list-group list-group-divider scroller" height="50%"
-                                                data-color="#71808f">
-
-
-
-
-                                                <a target="_blank" lass="list-group-item"
-                                                    href="https://it-zone.club/Home/ViewBlog/36">
-
-
-
-                                                    <div class="media">
-
-
-
-                                                        <div
-                                                            style="background: #EDF4FF; width: 40px; height: 40px; border-radius: 6px; margin-left: 12px; display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-align: center; -ms-flex-align: center; align-items: center; justify-content: center; -webkit-justify-content: center; -ms-flex-pack: center;">
-                                                            <img src="https://preschool.dreamguystech.com/template/assets/img/icons/teacher-icon-02.svg"
-                                                                width="25px" />
-                                                        </div>
-
-
-
-                                                        <div class="media-body">
-
-
-                                                            <!--style="width: 180px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;" -->
-                                                            <div class="font-strong pl-3">
-                                                                HẠP BÌ BỚT ĐẦY TU DU NGUYỄN NGỌC ANH </div>
-
-                                                            <small class="text-muted float-right"><i
-                                                                    class="fas fa-calendar-alt me-2"></i>
-                                                                20-01-2023</small>
-
-
-
-                                                            <!-- <div style="width: 150px; white-space: nowrap; overflow: hidden;" class="font-13"> <span class="badge badge-secondary m-l-5"><i class="ti-alarm-clock"></i> Ca 4</span></div> -->
-
-
-
-                                                        </div>
-
-
-
-                                                    </div>
-
-
-
-                                                </a>
-
-
-
-
-                                                <a target="_blank" lass="list-group-item"
-                                                    href="https://it-zone.club/Home/ViewBlog/37">
-
-
-
-                                                    <div class="media">
-
-
-
-                                                        <div
-                                                            style="background: #EDF4FF; width: 40px; height: 40px; border-radius: 6px; margin-left: 12px; display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-align: center; -ms-flex-align: center; align-items: center; justify-content: center; -webkit-justify-content: center; -ms-flex-pack: center;">
-                                                            <img src="https://preschool.dreamguystech.com/template/assets/img/icons/teacher-icon-02.svg"
-                                                                width="25px" />
-                                                        </div>
-
-
-
-                                                        <div class="media-body">
-
-
-                                                            <!--style="width: 180px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;" -->
-                                                            <div class="font-strong pl-3">
-                                                                [THÔNG BÁO TẠM DỪNG HOẠT ĐỘNG] </div>
-
-                                                            <small class="text-muted float-right"><i
-                                                                    class="fas fa-calendar-alt me-2"></i>
-                                                                18-02-2023</small>
-
-
-
-                                                            <!-- <div style="width: 150px; white-space: nowrap; overflow: hidden;" class="font-13"> <span class="badge badge-secondary m-l-5"><i class="ti-alarm-clock"></i> Ca 4</span></div> -->
-
-
-
-                                                        </div>
-
-
-
-                                                    </div>
-
-
-
-                                                </a>
-
-
-
-
-                                                <a target="_blank" lass="list-group-item"
-                                                    href="https://it-zone.club/Home/ViewBlog/38">
-
-
-
-                                                    <div class="media">
-
-
-
-                                                        <div
-                                                            style="background: #EDF4FF; width: 40px; height: 40px; border-radius: 6px; margin-left: 12px; display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-align: center; -ms-flex-align: center; align-items: center; justify-content: center; -webkit-justify-content: center; -ms-flex-pack: center;">
-                                                            <img src="https://preschool.dreamguystech.com/template/assets/img/icons/teacher-icon-02.svg"
-                                                                width="25px" />
-                                                        </div>
-
-
-
-                                                        <div class="media-body">
-
-
-                                                            <!--style="width: 180px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;" -->
-                                                            <div class="font-strong pl-3">
-                                                                TỔNG KẾT CHẶN ĐƯỜNG NĂM 2022 </div>
-
-                                                            <small class="text-muted float-right"><i
-                                                                    class="fas fa-calendar-alt me-2"></i>
-                                                                10-03-2023</small>
-
-
-
-                                                            <!-- <div style="width: 150px; white-space: nowrap; overflow: hidden;" class="font-13"> <span class="badge badge-secondary m-l-5"><i class="ti-alarm-clock"></i> Ca 4</span></div> -->
-
-
-
-                                                        </div>
-
-
-
-                                                    </div>
-
-
-
-                                                </a>
-
-
-
-
-                                                <a target="_blank" lass="list-group-item"
-                                                    href="https://it-zone.club/Home/ViewBlog/40">
-
-
-
-                                                    <div class="media">
-
-
-
-                                                        <div
-                                                            style="background: #EDF4FF; width: 40px; height: 40px; border-radius: 6px; margin-left: 12px; display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-align: center; -ms-flex-align: center; align-items: center; justify-content: center; -webkit-justify-content: center; -ms-flex-pack: center;">
-                                                            <img src="https://preschool.dreamguystech.com/template/assets/img/icons/teacher-icon-02.svg"
-                                                                width="25px" />
-                                                        </div>
-
-
-
-                                                        <div class="media-body">
-
-
-                                                            <!--style="width: 180px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;" -->
-                                                            <div class="font-strong pl-3">
-                                                                SEMINAR VỀ ỨNG DỤNG CỦA TỰ ĐỘNG HOÁ </div>
-
-                                                            <small class="text-muted float-right"><i
-                                                                    class="fas fa-calendar-alt me-2"></i>
-                                                                15-03-2023</small>
-
-
-
-                                                            <!-- <div style="width: 150px; white-space: nowrap; overflow: hidden;" class="font-13"> <span class="badge badge-secondary m-l-5"><i class="ti-alarm-clock"></i> Ca 4</span></div> -->
-
-
-
-                                                        </div>
-
-
-
-                                                    </div>
-
-
-
-                                                </a>
-
-
-
-
-                                    </div>
-
-
-
-                                    </li>
-
-                                    </ul>
-
-                                </div>
-
-                                <!-- <div class="ibox-footer text-center">
-
-                        <a href="javascript:;">Xem tất cả</a>
-
-                    </div> -->
-
-                            </div>
-
-                        </div>
                     </div>
                 </div>
 
@@ -4180,23 +1379,30 @@
 
 
             <footer class="page-footer">
+                <!-- <div class="font-13">© Copyright <b>IT-Zone</b>. All Rights Reserved</div> -->
 
-                <div class="font-13">© Copyright <b>IT-Zone</b>. All Rights Reserved</div>
+                <div class="font-13">Copyright © 2023. All Rights Reserved.</div>
+
 
                 <div class="to-top" style="display: block;"><i class="fa fa-circle-up"></i></div>
 
             </footer>
         </div>
 
-        <script src="https://it-zone.club/public/assets/vendors/jquery/dist/jquery.min.js" type="text/javascript"></script>
+        <script src="https://it-zone.club/public/assets/vendors/jquery/dist/jquery.min.js"
+            type="text/javascript"></script>
 
-        <script src="https://it-zone.club/public/assets/vendors/popper.js/dist/umd/popper.min.js" type="text/javascript"></script>
+        <script src="https://it-zone.club/public/assets/vendors/popper.js/dist/umd/popper.min.js"
+            type="text/javascript"></script>
 
-        <script src="https://it-zone.club/public/assets/vendors/bootstrap/dist/js/bootstrap.min.js" type="text/javascript"></script>
+        <script src="https://it-zone.club/public/assets/vendors/bootstrap/dist/js/bootstrap.min.js"
+            type="text/javascript"></script>
 
-        <script src="https://it-zone.club/public/assets/vendors/metisMenu/dist/metisMenu.min.js" type="text/javascript"></script>
+        <script src="https://it-zone.club/public/assets/vendors/metisMenu/dist/metisMenu.min.js"
+            type="text/javascript"></script>
 
-        <script src="https://it-zone.club/public/assets/vendors/jquery-slimscroll/jquery.slimscroll.min.js" type="text/javascript"></script>
+        <script src="https://it-zone.club/public/assets/vendors/jquery-slimscroll/jquery.slimscroll.min.js"
+            type="text/javascript"></script>
         <script src="https://it-zone.club/public/assets/vendors/jquery-sparkline/dist/jquery.sparkline.min.js"
             type="text/javascript"></script>
         <script src="phttps://it-zone.club/ublic/assets/js/scripts/sparkline-demo.js" type="text/javascript"></script>
@@ -4206,7 +1412,8 @@
         <!-- PAGE LEVEL SCRIPTS-->
 
 
-        <script src="https://it-zone.club/public/assets/vendors/DataTables/datatables.min.js" type="text/javascript"></script>
+        <script src="https://it-zone.club/public/assets/vendors/DataTables/datatables.min.js"
+            type="text/javascript"></script>
 
         <script type="text/javascript">
             $(function () {

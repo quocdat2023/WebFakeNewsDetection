@@ -297,7 +297,7 @@
 
         <div class="container">
             <div class="row accordion" id="accordion">
-                <div class="col-xl-8">
+                <div class="col-xl-12">
                     <div class="row">
                         <div class="col-lg-12">
                             <div class="card accordion-item product_list">
@@ -333,7 +333,8 @@
                                     </div>
                                 </div>
                                 <div id="itemone" class="accordion-collapse collapse show" data-bs-parent="#accordion" >
-                                    <p class="text">{{details.Content}}</p>  
+                                    <input style="display:none" type="text" id="myText" value="{{details.Content}}">
+                                    <div id="myDiv"></div>
                                 </div>
                                 <div id="fb-root"></div>
                                 <script async defer crossorigin="anonymous" src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v16.0&appId=686959902689516&autoLogAppEvents=1" nonce="RwUjxcOc"></script>
@@ -429,7 +430,7 @@
                         </div> -->
                     </div>
                 </div>
-                <div class="col-xl-4">
+                <!-- <div class="col-xl-12">
                     <div class="row">
                         {%  for newstop in newtop3 %}
                         <div class="col-lg-12">
@@ -520,7 +521,7 @@
 
                     </div>
                 </div>
-               
+                -->
             </div>
         </div>
         <!-- end of container -->
@@ -561,6 +562,11 @@
     <script src="{{ url_for('static',filename='js/validator.min.js') }}">
     </script>
     <script src="{{ url_for('static',filename='js/scripts.js') }}">
+    </script>
+    <script>
+        var s = document.getElementById("myText").value;
+        document.getElementById('myDiv').innerHTML = s;
+
     </script>
 </body>
 

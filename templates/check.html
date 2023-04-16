@@ -49,12 +49,11 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastify-js/1.12.0/toastify.css"
         integrity="sha512-kT0v1BxcibEO2Yc+6Z3W1gNsN+2cZ/U6uITqHhIJl8SAvt9vpO8llugdCPXA7cCnp8G1xbuSqHNMRaR3Zlz9yA=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
-        <style>
-            a:hover {
+    <style>
+        a:hover {
             color: #5f4dee;
-            }
-
-        </style>
+        }
+    </style>
 
 
 </head>
@@ -130,14 +129,14 @@
                     <li class="nav-item">
                         <a class="nav-link page-scroll active" href="{{ url_for('check')}}">KIỂM TRA</a>
                     </li>
-                     
+
                     {% if not names %}
                     {% else %}
                     <li class="nav-item">
                         <a class="nav-link page-scroll" href="{{ url_for('post')}}">ĐĂNG BÀI</a>
                     </li>
                     {% endif %}
-                 
+
                 </ul>
                 <span class="nav-item">
                     {% if not names %}
@@ -168,8 +167,8 @@
                 <div class="col-lg-12">
                     <div class="above-heading">KIỂM TRA TIN TỨC</div>
                     <h3 class="h2-heading">Hệ thống phát hiện tin giả bằng Machine Learning và Deep Learning</h3>
-                    <p class="p-heading">Ứng dụng hỗ trợ phát hiện tin giả và đề xuất nội dung chính xác cho người Việt
-                        Nam
+                    <p class="p-heading">Nên lưu ý rằng hệ thống đang trong quá trình phát triển, do đó người dùng cần
+                        cân nhắc và không nên hoàn toàn tin tưởng 100% vào kết quả đầu ra của mô hình.
                     </p>
                 </div>
                 <!-- end of col -->
@@ -185,19 +184,19 @@
                         aria-controls="tab-1" aria-selected="true"><i class="fas fa-font"></i>Kiểm Tra</a>
                 </li>
                 <!-- <li class="nav-item" id="img">
-                    <a class="nav-link" id="nav-tab-2" data-toggle="tab" href="#tab-2" role="tab"
-                        aria-controls="tab-2" aria-selected="false"><i class="fas fa-camera"></i>Hình ảnh</a>
+                    <a class="nav-link" id="nav-tab-2" data-toggle="tab" href="#tab-2" role="tab" aria-controls="tab-2"
+                        aria-selected="false"><i class="fas fa-camera"></i>Hình ảnh</a>
                 </li> -->
             </ul>
             <div class="row">
                 <div class="col-lg-12">
 
                     <!-- Tabs Links -->
-                    
+
                     <!-- end of tabs links -->
                     <div class="form-message">
                         <div id="nmsgSubmit" class="h3 text-center text-danger">
-                            Tin của bạn dược dự đoán là TIN GIẢ với độ tin cậy được dự đoán là 87%.
+                            Dự đoán cho thấy tin của bạn có khả năng là tin giả, với độ tin cậy được ước tính là 87%.
                         </div>
                     </div>
                     <!-- Tabs Content -->
@@ -213,9 +212,10 @@
                                             id="newsletterForm" data-toggle="validator" data-focus="false">
                                             <div class="form-group bg-white">
 
-                                                <textarea rows="6" cols="85"
+                                                <textarea rows="7" cols="100"
                                                     placeholder="Nhập thông báo, tin tức hoặc nội dung mà bạn muốn kiểm tra"
-                                                    style="overflow: auto; border: none; outline: none;" name="message" type="text" id="message"
+                                                    style="overflow: auto; border: none; outline: none; box-sizing: border-box; max-width: 100%; height: 176px;"
+                                                    name="message" type="text" id="message"
                                                     class="string-example  hwt-input hwt-content" required></textarea>
 
 
@@ -239,39 +239,41 @@
                                                 TRA</button>
                                             {% if not names %}
                                             {% else%}
-                                            <button id="submit2" type="submit" data-toggle="modal"
+                                            <a type="button" id="submit2" data-toggle="modal"
                                                 data-target=".bd-example-modal-lg"
                                                 style='display: inline-block; padding: 1.1875rem 2.125rem 1.1875rem 2.125rem; border: 0.125rem solid #d9534f; border-radius: 2rem; background-color: #d9534f; color: #fff; font: 700 0.875rem/0 "Open Sans", sans-serif; text-decoration: none; transition: all 0.2s;'>TIẾP
-                                                NHẬN PHẢN ÁNH</button>
+                                                NHẬN PHẢN ÁNH</a>
                                             {% endif %}
                                         </form>
+
                                     </div>
-                                    
+
                                     <!-- end of text-container -->
 
                                 </div>
                                 <!-- end of col -->
                                 <div class="col-lg-12">
                                     <div class="text-container"
-                                    style="max-width: 800px; margin: 10px auto; padding: 0 20px;color: #495057;">
-                                    <table class="table table-bordered">
-                                        <thead class="thead" style="background-color: #5f4dee; color: #fff; display: none;">
-                                            <tr>
-                                                <th scope="col">STT</th>
-                                                <th scope="col">Đường dẫn đề xuất xác minh nội dung</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody  class="results" >
-                                           
-                                        </tbody>
-                                    </table> 
+                                        style="max-width: 800px; margin: 10px auto; padding: 0 20px;color: #495057;">
+                                        <table class="table table-bordered">
+                                            <thead class="thead"
+                                                style="background-color: #5f4dee; color: #fff; display: none;">
+                                                <tr>
+                                                    <th scope="col">STT</th>
+                                                    <th scope="col">Đường dẫn đề xuất xác minh nội dung</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody class="results">
+
+                                            </tbody>
+                                        </table>
                                     </div>
-                                    
+
                                 </div>
                                 <!-- end of col -->
-                                
+
                             </div>
-                            
+
                             <!-- end of row -->
                         </div>
                         <!-- end of tab-pane -->
@@ -280,57 +282,86 @@
                         <!-- Tab -->
                         <div class="tab-pane fade" id="tab-2" role="tabpanel" aria-labelledby="tab-2">
                             <div class="row">
-                                <div class="col-lg-6">
-                                    <div class="text-container">
-                                        <div class="file-upload">
-                                            <!-- <button class="file-upload-btn" type="button"
-                                                onclick="$('.file-upload-input').trigger( 'click' )">Thêm ảnh</button> -->
-                                            <div class="image-upload-wrap">
-                                                <input class="file-upload-input" type='file' onchange="readURL(this);"
-                                                    accept="image/*" />
-                                                <div class="drag-text">
-                                                    <h3>Kéo và thả tệp để thêm hình ảnh
-                                                    </h3>
+                                <div class="col-lg-12">
+                                    <div class="text-container"
+                                        style="max-width: 800px; margin: 10px auto; padding: 0 20px;color: #495057;">
+                                        <form name="form1" action="{{ url_for('predicts')}}" method="POST"
+                                            id="newsletterForm" data-toggle="validator" data-focus="false">
+                                            <div class="form-group">
+                                                <div class="file-upload">
+                                                    <!-- <button class="file-upload-btn" type="button"
+                                                        onclick="$('.file-upload-input').trigger( 'click' )">Thêm ảnh</button> -->
+                                                    <div class="image-upload-wrap">
+                                                        <input class="file-upload-input" type='file' onchange="readURL(this);"
+                                                            accept="image/*" />
+                                                        <div class="drag-text">
+                                                            <h3>Kéo và thả tệp để thêm hình ảnh
+                                                            </h3>
+                                                        </div>
+                                                    </div>
+                                                    <div class="file-upload-content">
+                                                        <img height="100%" class="file-upload-image" src="" alt="your image" />
+                                                        <div class="image-title-wrap">
+                                                            <!-- <button type="button" onclick="removeUpload()" class="remove-image">Xóa <span class="image-title">Uploaded Image</span></button> -->
+                                                            <button type="button" onclick="removeUpload()"
+                                                                class="remove-image btn-sm">Hủy tải lên</button>
+                                                        </div>
+                                                    </div>
                                                 </div>
+
                                             </div>
-                                            <div class="file-upload-content">
-                                                <img height="100%" class="file-upload-image" src="" alt="your image" />
-                                                <div class="image-title-wrap">
-                                                    <!-- <button type="button" onclick="removeUpload()" class="remove-image">Xóa <span class="image-title">Uploaded Image</span></button> -->
-                                                    <button type="button" onclick="removeUpload()"
-                                                        class="remove-image btn-sm">Hủy tải lên</button>
-                                                </div>
+                                            <!-- <div class="help-block">
+                                                <p style="color:#5f4dee; font-size: small;">Tổng số từ: <span
+                                                        class='count'>0</span></p>
+                                            </div> -->
+
+
+                                            <!-- <div class="form-group">
+                                                <button type="submit" class="form-control-submit-button">KIỂM TRA</button>
+                                            </div> -->
+                                            <div class="form-group checkbox">
+                                                <a type="text" id="nterms">Sau khi nhấn nút "Kiểm tra" vui lòng đợi
+                                                    trong giây
+                                                    lát. </a>
                                             </div>
-                                        </div>
-                                        <div class="form-group checkbox pt-3">
-                                            <a type="text" id="nterms">Sau khi nhấn nút "Kiểm tra" vui lòng đợi trong
-                                                giây
-                                                lát. </a>
-                                        </div>
-                                        <a onclick="Check()" class="btn-solid-reg popup-with-move-anim"
-                                            href="#details-lightbox-1">KIỂM
-                                            TRA</a>
-                                        {% if not names %}
-                                        {% else%}
-                                        <button id="submit2" type="submit" data-toggle="modal"
-                                            data-target=".bd-example-modal-lg"
-                                            style='display: inline-block; padding: 1.1875rem 2.125rem 1.1875rem 2.125rem; border: 0.125rem solid #d9534f; border-radius: 2rem; background-color: #d9534f; color: #fff; font: 700 0.875rem/0 "Open Sans", sans-serif; text-decoration: none; transition: all 0.2s;'>TIẾP
-                                            NHẬN PHẢN ÁNH</button>
-                                        {% endif %}
+                                            <button onclick="Check()" id="submit1" type="submit"
+                                                class="btn-solid-reg popup-with-move-anim">KIỂM
+                                                TRA</button>
+                                            {% if not names %}
+                                            {% else%}
+                                            <a type="button" id="submit2" data-toggle="modal"
+                                                data-target=".bd-example-modal-lg"
+                                                style='display: inline-block; padding: 1.1875rem 2.125rem 1.1875rem 2.125rem; border: 0.125rem solid #d9534f; border-radius: 2rem; background-color: #d9534f; color: #fff; font: 700 0.875rem/0 "Open Sans", sans-serif; text-decoration: none; transition: all 0.2s;'>TIẾP
+                                                NHẬN PHẢN ÁNH</a>
+                                            {% endif %}
+                                        </form>
+
                                     </div>
+
                                     <!-- end of text-container -->
-                                </div>
-                                <!-- end of col -->
-                                <div class="col-lg-6">
-                                    <div class="image-container">
-                                        <img class="img-fluid"
-                                            src="{{ url_for('static',filename='images/features-1.png') }}"
-                                            alt="alternative">
-                                    </div>
-                                    <!-- end of image-container -->
 
                                 </div>
                                 <!-- end of col -->
+                                <div class="col-lg-12">
+                                    <div class="text-container"
+                                        style="max-width: 800px; margin: 10px auto; padding: 0 20px;color: #495057;">
+                                        <table class="table table-bordered">
+                                            <thead class="thead"
+                                                style="background-color: #5f4dee; color: #fff; display: none;">
+                                                <tr>
+                                                    <th scope="col">STT</th>
+                                                    <th scope="col">Đường dẫn đề xuất xác minh nội dung</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody class="results">
+
+                                            </tbody>
+                                        </table>
+                                    </div>
+
+                                </div>
+                                <!-- end of col -->
+
                             </div>
                             <!-- end of row -->
                         </div>
@@ -353,53 +384,85 @@
         aria-hidden="true">
         <div class="modal-dialog modal-lg">
             <div class="modal-content" style="padding:15px;">
-                <h1 class="text-center">PHẢN ÁNH TIN GIẢ TRỰC TUYẾN </h1>
-                <form name="myForm" action="{{ url_for('reflect')}}" method="POST" id="newsletterForms"
-                    data-toggle="validator" data-focus="false" enctype="multipart/form-data">
-                    <div class="form-row">
-                        <div class="form-group col-md-6">
-                            <label for="inputEmail4">Email</label>
-                            <input type="email" class="form-control" name="email" id="inputEmail4" placeholder="Email">
+                <h3 class="text-center" style="color:#5f4dee">PHẢN ÁNH TIN GIẢ TRỰC TUYẾN </h3>
+                <form name="formpost" action="{{ url_for('reflect')}}" method="POST" enctype="multipart/form-data">
+                    <div class="form-row mb-3">
+                        <div class="col-6 col-sm-6">
+                            <label for="to" class="col-form-label">Tiêu đề</label>
+                            <input style="display: none" type="text" name="iduser" class="form-control"
+                                value="{{google_id}}">
+                            <input style="display: none" type="text" name="pictures" class="form-control"
+                                value="{{pictures}}">
+                            <input style="display: none" type="text" name="nameuser" class="form-control"
+                                value="{{names}}">
+                            <input type="text" name="title" class="form-control" id="to" required>
                         </div>
-                        <div class="form-group col-md-6">
-                            <label for="inputPassword4">Họ tên</label>
-                            <input type="text" class="form-control" name="fullname" id="inputFullname"
-                                placeholder="Họ và tên">
+                        <div class="col-6 col-sm-6">
+                            <label for="cc" class="col-form-label">Số điện thoại:</label>
+                            <input type="text" name="phone" class="form-control" id="cc" required>
                         </div>
                     </div>
-                    <div class="form-row">
-                        <div class="form-group col-md-6">
-                            <label for="inputEmail4">Số điện thoại</label>
-                            <input type="text" class="form-control" name="phone" id="inputPhone"
-                                placeholder="Số điện thoại">
+                    <div class="form-row mb-3">
+                        <div class="col-6 col-sm-6">
+                            <label for="bcc" class=" col-form-label">Thể loại</label>
+                            <select name="type" class="form-control" required>
+                                <option value="law">Chính sách, pháp luật</option>
+                                <option value="disaster">Thiên tai, dịch bệnh</option>
+                                <option value="ecomomy">Kinh tế, chính trị</option>
+                                <option value="health">Lĩnh vực y tế, sản phẩm y tế liên quan đến sức khỏe con người
+                                </option>
+                                <option value="seciurity">An ninh quốc gia, Trật tự an toàn – xã hội</option>
+                                <option value="other">Khác</option>
+                            </select>
                         </div>
+                        <div class="col-6 col-sm-6">
+                            <label for="bcc" class="col-form-label">Nhãn</label>
+                            <select name="label" class="form-control" required>
+                                <option value="0">Tin giả</option>
+                                <option value="1">Tin Thật</option>
+                            </select>
+                        </div>
+
+                    </div>
+                    <div class="form-row">
                         <div class="form-group col-md-6">
                             <label for="inputPassword4">Link bài viết</label>
-                            <input type="text" class="form-control" name="link" id="inputPLink"
-                                placeholder="Link bài viết nếu có">
+                            <input type="text" class="form-control" name="link" id="inputPLink" required>
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="inputAddress">Nội dung phản ánh</label>
-                        <textarea class="form-control" name="content" placeholder="Nội dung phản ánh" id="inputContent"
-                            rows="3"></textarea>
-                    </div>
-                    <div class="form-group pb-5">
-                        <label for="inputPassword4">Chọn ảnh</label>
-                        <div class="custom-file pt-3">
-                            <input type="file" class="custom-file-input" name="image_upload" id="inputimage"
-                                onchange="loadFile(event)" multiple />
-                            <label class="custom-file-label" for="inputGroupFile01"></label>
-                            <!-- <div class="text-center">
-                                <img height="170" id="output"
-                                    src="{{ url_for('static',filename='images/news.png') }}" />
-                            </div> -->
+                        <div class="form-group col-md-6">
+                            <label for="inputPassword4">Chọn ảnh</label>
+                            <div class="custom-file pt-3">
+                                <input type="file" class="custom-file-input" name="image_upload" id="image_upload"
+                                    onchange="loadFile(event)" required>
+                                <label class="custom-file-label" for="inputGroupFile01"></label>
+                                <!-- <div class="text-center">
+                                    <img height="170" id="output"
+                                        src="/static/images/news.png" />
+                                </div> -->
+                            </div>
                         </div>
+
                     </div>
-                    <div class="form-group">
-                        <div class="text-center pt-2">
-                            <button type="submit" name="reflect" class="btn-solid-reg popup-with-move-anim">Gửi phản
-                                ánh</button>
+                    <div class="row">
+                        <div class="col-sm-12 ml-auto">
+                            <div class="form-group">
+                                <label for="bcc" class="col-form-label">Tóm tắt</label>
+                                <textarea class="form-control" id="message" name="content" style="height: 300px;"
+                                    required></textarea>
+                            </div>
+                            <script>
+                                CKEDITOR.replace('content');
+                            </script>
+                            <div class="form-group">
+                                <div class="text-center">
+                                    <button type="submit" onclick="Check2()" name="reflect"
+                                        class="btn-solid-reg popup-with-move-anim">Gửi
+                                        phản
+                                        ánh</button>
+                                    <a type="button" data-dismiss="modal" class="btn-solid-reg popup-with-move-anim"
+                                        style="display: inline-block; padding: 1.1875rem 2.125rem 1.1875rem 2.125rem; border: 0.125rem solid #d9534f; border-radius: 2rem; background-color: #d9534f; color: #fff;">Hủy</a>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </form>
@@ -575,6 +638,33 @@
                 URL.revokeObjectURL(output.src) // free memory
             }
         };
+    </script>
+    <script>
+        function Check2() {
+            let title = document.forms["formpost"]["title"].value;
+            let phone = document.forms["formpost"]["phone"].value;
+            let type = document.forms["formpost"]["type"].value;
+            let label = document.forms["formpost"]["label"].value;
+            let link = document.forms["formpost"]["link"].value;
+            let image_upload = document.forms["formpost"]["image_upload"].value;
+            let content = document.forms["formpost"]["content"].value;
+
+            if (title == "" && content == "" && phone == "" && link == "" && image_upload == "") {
+                Toastify({
+                    text: "Không được phép để trống!",
+                    duration: 5000,
+                    backgroundColor: "linear-gradient(to right, #00b09b, #96c93d)",
+
+                }).showToast();
+            } else {
+                Toastify({
+                    text: "Tin của bạn sẽ được kiểm duyệt dau 24h!",
+                    duration: 100000
+                }).showToast();
+
+            }
+
+        }
     </script>
     <script>
         function Check() {
