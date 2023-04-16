@@ -49,3 +49,4 @@ streamlit
 pymongo
 flask_pymongo
 gevent
+cloudinary
