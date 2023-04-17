@@ -34,7 +34,6 @@ cloudinary.config(
     api_key="738714684352559",
     api_secret="BTs_rShwlDvWSABA5M553OLn4pY"
 )
-session["users"] = ""
 
 app = Flask("Google Login App")  # naming our application
 UPLOAD_FOLDER = 'static/uploads/'
@@ -508,9 +507,9 @@ def loginadmin():
             user_val = user_found['user']
             passwordcheck = user_found['password']
             if password == passwordcheck:
-                session["users"] = user_val
+                session["user"] = user_val
                 global users, name
-                users = session["users"]
+                users = session["user"]
                 name = user_found['name']
                 return redirect('/admin/dashboard/')
             else:
@@ -544,9 +543,8 @@ def dashboard():
     ]
         # Thực thi pipeline để đếm số lượng bản ghi và nhóm chúng
     result = list(db.forum_report.aggregate(pipeline))
-    name_session = session.get('users')
-    if name_session =="":
-           return redirect(url_for('index'))
+    if not users:
+        return redirect(url_for('login'))
     else:
         return render_template('dashboard.html', uncensored=uncensored, result=result, count_uncensored=count_uncensored, count_censored=count_censored, count_real=count_real, count_fake=count_fake)
 
@@ -555,8 +553,8 @@ def dashboard():
 def fake_news_published():
     fake = db.forum_report.find({"Status": 1,"Label":0})
     name_session = session.get('users')
-    if name_session =="":
-           return redirect(url_for('index'))
+    if not users:
+        return redirect(url_for('login'))
     else:
         return render_template('fake_news_published.html',fake=fake)
 
@@ -565,8 +563,8 @@ def fake_news_published():
 def real_news_published():
     real = db.forum_report.find({"Status": 1,"Label":1})
     name_session = session.get('users')
-    if name_session =="":
-           return redirect(url_for('index'))
+    if not users:
+        return redirect(url_for('login'))
     else:
         return render_template('real_news_published.html',real=real)
 
@@ -575,8 +573,8 @@ def real_news_published():
 def uncensored_new():
     uncensored_new = db.forum_report.find({"Status": 0})
     name_session = session.get('users')
-    if name_session =="":
-           return redirect(url_for('index'))
+    if not users:
+        return redirect(url_for('login'))
     else:
         return render_template('uncensored_new.html',uncensored_new=uncensored_new)
 
@@ -585,8 +583,8 @@ def uncensored_new():
 def censored_new():
     censored_new = db.forum_report.find({"Status": 1})
     name_session = session.get('users')
-    if name_session =="":
-           return redirect(url_for('index'))
+    if not users:
+        return redirect(url_for('login'))
     else:
         return render_template('censored_new.html',censored_new=censored_new)
 
@@ -594,8 +592,8 @@ def censored_new():
 def deny_new():
     deny_new = db.forum_report.find({"Status": 2})
     name_session = session.get('users')
-    if name_session =="":
-           return redirect(url_for('index'))
+    if not users:
+        return redirect(url_for('login'))
     else:
         return render_template('deny_new.html',deny_new=deny_new)
 
