@@ -34,7 +34,7 @@ cloudinary.config(
     api_key="738714684352559",
     api_secret="BTs_rShwlDvWSABA5M553OLn4pY"
 )
-
+session["users"] = ""
 
 app = Flask("Google Login App")  # naming our application
 UPLOAD_FOLDER = 'static/uploads/'
