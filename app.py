@@ -498,11 +498,63 @@ def check():
 def loginAdmin():
     return render_template('login.html')
 
+@app.route("/loginadmin", methods=['POST'])
+def loginadmin():
+    if request.method == "POST":
+        user = request.form.get("user")
+        password = request.form.get("password")
+        user_found = db.admin.find_one({"user": user})
+        if user_found:
+            user_val = user_found['user']
+            passwordcheck = user_found['password']
+            if password == passwordcheck:
+                session["users"] = user_val
+                global users, name
+                users = session["users"]
+                name = user_found['name']
+                return redirect('/admin/dashboard/')
+            else:
+                return redirect('login.html')
+        else:
+            return redirect('login.html')
+    else:
+        return redirect('login.html')
+
+
+@app.route('/admin/dashboard/')
+def dashboard():
+    count_uncensored = db.forum_report.count_documents({"Status": 0})
+    count_censored = db.forum_report.count_documents({"Status": 1})
+    count_real = db.forum_report.count_documents({"Status": 1, "Label": 1})
+    count_fake = db.forum_report.count_documents({"Status": 1, "Label": 0})
+    uncensored = db.forum_report.find({"Status": 0})
+    pipeline = [
+        {
+            '$group': {
+                '_id': '$GoogleId',  # Trường để nhóm theo, ở đây là trường 'field'
+                'count': {'$sum': 1},  # Đếm số lượng bản ghi trong mỗi nhóm
+                'NameGoogle': {'$first': '$NameGoogle'},
+                'GooglePicture': {'$first': '$GooglePicture'},
+                'Phone':{'$first':'$Phone'}
+            }
+        },
+        {
+            '$limit': 3  # Số lượng kết quả trả về được giới hạn là 10
+        }
+    ]
+        # Thực thi pipeline để đếm số lượng bản ghi và nhóm chúng
+    result = list(db.forum_report.aggregate(pipeline))
+    name_session = session.get('users')
+    if name_session =="":
+           return redirect(url_for('index'))
+    else:
+        return render_template('dashboard.html', uncensored=uncensored, result=result, count_uncensored=count_uncensored, count_censored=count_censored, count_real=count_real, count_fake=count_fake)
+
 
 @app.route('/admin/fake_news_published/')
 def fake_news_published():
     fake = db.forum_report.find({"Status": 1,"Label":0})
-   name_session = session.get('users')
+    name_session = session.get('users')
     if name_session =="":
            return redirect(url_for('index'))
     else:
@@ -546,58 +598,6 @@ def deny_new():
            return redirect(url_for('index'))
     else:
         return render_template('deny_new.html',deny_new=deny_new)
-
-@app.route("/loginadmin", methods=['POST'])
-def loginadmin():
-    if request.method == "POST":
-        user = request.form.get("user")
-        password = request.form.get("password")
-        user_found = db.admin.find_one({"user": user})
-        if user_found:
-            user_val = user_found['user']
-            passwordcheck = user_found['password']
-            if password == passwordcheck:
-                session["user"] = user_val
-                global users, name
-                users = session["user"]
-                name = user_found['name']
-                return redirect('/admin/dashboard/')
-            else:
-                return redirect('login.html')
-        else:
-            return redirect('login.html')
-    else:
-        return redirect('login.html')
-
-
-@app.route('/admin/dashboard/')
-def dashboard():
-    count_uncensored = db.forum_report.count_documents({"Status": 0})
-    count_censored = db.forum_report.count_documents({"Status": 1})
-    count_real = db.forum_report.count_documents({"Status": 1, "Label": 1})
-    count_fake = db.forum_report.count_documents({"Status": 1, "Label": 0})
-    uncensored = db.forum_report.find({"Status": 0})
-    pipeline = [
-        {
-            '$group': {
-                '_id': '$GoogleId',  # Trường để nhóm theo, ở đây là trường 'field'
-                'count': {'$sum': 1},  # Đếm số lượng bản ghi trong mỗi nhóm
-                'NameGoogle': {'$first': '$NameGoogle'},
-                'GooglePicture': {'$first': '$GooglePicture'},
-                'Phone':{'$first':'$Phone'}
-            }
-        },
-        {
-            '$limit': 3  # Số lượng kết quả trả về được giới hạn là 10
-        }
-    ]
-        # Thực thi pipeline để đếm số lượng bản ghi và nhóm chúng
-    result = list(db.forum_report.aggregate(pipeline))
-    name_session = session.get('users')
-    if name_session =="":
-           return redirect(url_for('index'))
-    else:
-        return render_template('dashboard.html', uncensored=uncensored, result=result, count_uncensored=count_uncensored, count_censored=count_censored, count_real=count_real, count_fake=count_fake)
 
 
 if __name__ == '__main__':
