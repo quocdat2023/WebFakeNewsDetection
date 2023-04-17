@@ -501,30 +501,50 @@ def loginAdmin():
 @app.route('/admin/fake_news_published/')
 def fake_news_published():
     fake = db.forum_report.find({"Status": 1,"Label":0})
-    return render_template('fake_news_published.html',fake=fake)
+    name_session = session.get('user')
+    if name_session =="":
+        return redirect(url_for('index'))
+    else:
+        return render_template('fake_news_published.html',fake=fake)
 
 
 @app.route('/admin/real_news_published/')
 def real_news_published():
     real = db.forum_report.find({"Status": 1,"Label":1})
-    return render_template('real_news_published.html',real=real)
+    name_session = session.get('user')
+    if name_session =="":
+        return redirect(url_for('index'))
+    else:
+        return render_template('real_news_published.html',real=real)
 
 
 @app.route('/admin/uncensored_new/')
 def uncensored_new():
     uncensored_new = db.forum_report.find({"Status": 0})
-    return render_template('uncensored_new.html',uncensored_new=uncensored_new)
+    name_session = session.get('user')
+    if name_session =="":
+        return redirect(url_for('index'))
+    else:
+        return render_template('uncensored_new.html',uncensored_new=uncensored_new)
 
 
 @app.route('/admin/censored_new/')
 def censored_new():
     censored_new = db.forum_report.find({"Status": 1})
-    return render_template('censored_new.html',censored_new=censored_new)
+    name_session = session.get('user')
+    if name_session =="":
+        return redirect(url_for('index'))
+    else:
+        return render_template('censored_new.html',censored_new=censored_new)
 
 @app.route('/admin/deny_new/')
 def deny_new():
     deny_new = db.forum_report.find({"Status": 2})
-    return render_template('deny_new.html',deny_new=deny_new)
+    name_session = session.get('user')
+    if name_session =="":
+        return redirect(url_for('index'))
+    else:
+        return render_template('deny_new.html',deny_new=deny_new)
 
 @app.route("/loginadmin", methods=['POST'])
 def loginadmin():
@@ -572,8 +592,7 @@ def dashboard():
     ]
         # Thực thi pipeline để đếm số lượng bản ghi và nhóm chúng
     result = list(db.forum_report.aggregate(pipeline))
-    name_session = session.get('name')
-    print(name_session)
+    name_session = session.get('user')
     if name_session =="":
            return redirect(url_for('index'))
     else:
