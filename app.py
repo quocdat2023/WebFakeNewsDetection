@@ -513,7 +513,7 @@ def fake_news_published():
 def real_news_published():
     real = db.forum_report.find({"Status": 1,"Label":1})
     name_session = session.get('users')
-    if name_session =="":
+    if users =="":
         return redirect(url_for('index'))
     else:
         return render_template('real_news_published.html',real=real)
@@ -541,7 +541,7 @@ def censored_new():
 @app.route('/admin/deny_new/')
 def deny_new():
     deny_new = db.forum_report.find({"Status": 2})
-    name_session = session.get('name')
+    name_session = session.get('users')
     if name_session =="":
         return redirect(url_for('index'))
     else:
