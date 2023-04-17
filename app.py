@@ -501,7 +501,7 @@ def loginAdmin():
 @app.route('/admin/fake_news_published/')
 def fake_news_published():
     fake = db.forum_report.find({"Status": 1,"Label":0})
-    name_session = session.get('name')
+    name_session = session.get('users')
     if name_session =="":
         return redirect(url_for('index'))
     else:
@@ -511,7 +511,7 @@ def fake_news_published():
 @app.route('/admin/real_news_published/')
 def real_news_published():
     real = db.forum_report.find({"Status": 1,"Label":1})
-    name_session = session.get('name')
+    name_session = session.get('users')
     if name_session =="":
         return redirect(url_for('index'))
     else:
@@ -521,7 +521,7 @@ def real_news_published():
 @app.route('/admin/uncensored_new/')
 def uncensored_new():
     uncensored_new = db.forum_report.find({"Status": 0})
-    name_session = session.get('name')
+    name_session = session.get('users')
     if name_session =="":
         return redirect(url_for('index'))
     else:
@@ -531,7 +531,7 @@ def uncensored_new():
 @app.route('/admin/censored_new/')
 def censored_new():
     censored_new = db.forum_report.find({"Status": 1})
-    name_session = session.get('name')
+    name_session = session.get('users')
     if name_session =="":
         return redirect(url_for('index'))
     else:
@@ -592,7 +592,7 @@ def dashboard():
     ]
         # Thực thi pipeline để đếm số lượng bản ghi và nhóm chúng
     result = list(db.forum_report.aggregate(pipeline))
-    name_session = session.get('name')
+    name_session = session.get('users')
     print(name_session)
     if name_session =="":
            return redirect(url_for('index'))
