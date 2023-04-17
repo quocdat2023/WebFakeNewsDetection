@@ -593,11 +593,7 @@ def dashboard():
     ]
         # Thực thi pipeline để đếm số lượng bản ghi và nhóm chúng
     result = list(db.forum_report.aggregate(pipeline))
-    name_session = session.get('users')
-    if name_session is None:
-           return redirect(url_for('index'))
-    else:
-        return render_template('dashboard.html', uncensored=uncensored, result=result, count_uncensored=count_uncensored, count_censored=count_censored, count_real=count_real, count_fake=count_fake)
+    return render_template('dashboard.html', uncensored=uncensored, result=result, count_uncensored=count_uncensored, count_censored=count_censored, count_real=count_real, count_fake=count_fake)
 
 
 if __name__ == '__main__':
