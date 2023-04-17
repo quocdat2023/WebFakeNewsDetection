@@ -318,6 +318,7 @@ def logout():
     session["name"] = ""
     session["email"] = ""
     session["picture"] = ""
+    session["picture"] = ""
     return redirect("/")
 
 
