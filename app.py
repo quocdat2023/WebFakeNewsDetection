@@ -317,7 +317,7 @@ def logout():
     session["google_id"] = ""
     session["name"] = ""
     session["email"] = ""
-    session["picture"] = ""
+    session["users"] = ""
     session["picture"] = ""
     return redirect("/")
 
@@ -513,7 +513,7 @@ def fake_news_published():
 def real_news_published():
     real = db.forum_report.find({"Status": 1,"Label":1})
     name_session = session.get('users')
-    if users =="":
+    if name_session =="":
         return redirect(url_for('index'))
     else:
         return render_template('real_news_published.html',real=real)
