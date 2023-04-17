@@ -35,6 +35,7 @@ cloudinary.config(
     api_secret="BTs_rShwlDvWSABA5M553OLn4pY"
 )
 
+
 app = Flask("Google Login App")  # naming our application
 UPLOAD_FOLDER = 'static/uploads/'
 client = MongoClient(
@@ -316,7 +317,6 @@ def logout():
     session["google_id"] = ""
     session["name"] = ""
     session["email"] = ""
-    session["users"] = ""
     session["picture"] = ""
     return redirect("/")
 
@@ -497,6 +497,35 @@ def check():
 def loginAdmin():
     return render_template('login.html')
 
+
+@app.route('/admin/fake_news_published/')
+def fake_news_published():
+    fake = db.forum_report.find({"Status": 1,"Label":0})
+    return render_template('fake_news_published.html',fake=fake)
+
+
+@app.route('/admin/real_news_published/')
+def real_news_published():
+    real = db.forum_report.find({"Status": 1,"Label":1})
+    return render_template('real_news_published.html',real=real)
+
+
+@app.route('/admin/uncensored_new/')
+def uncensored_new():
+    uncensored_new = db.forum_report.find({"Status": 0})
+    return render_template('uncensored_new.html',uncensored_new=uncensored_new)
+
+
+@app.route('/admin/censored_new/')
+def censored_new():
+    censored_new = db.forum_report.find({"Status": 1})
+    return render_template('censored_new.html',censored_new=censored_new)
+
+@app.route('/admin/deny_new/')
+def deny_new():
+    deny_new = db.forum_report.find({"Status": 2})
+    return render_template('deny_new.html',deny_new=deny_new)
+
 @app.route("/loginadmin", methods=['POST'])
 def loginadmin():
     if request.method == "POST":
@@ -518,7 +547,8 @@ def loginadmin():
             return redirect('login.html')
     else:
         return redirect('login.html')
-    
+
+
 @app.route('/admin/dashboard/')
 def dashboard():
     count_uncensored = db.forum_report.count_documents({"Status": 0})
@@ -542,54 +572,12 @@ def dashboard():
     ]
         # Thực thi pipeline để đếm số lượng bản ghi và nhóm chúng
     result = list(db.forum_report.aggregate(pipeline))
-    if not users:
-        return redirect(url_for('login'))
+    name_session = session.get('name')
+    print(name_session)
+    if name_session =="":
+           return redirect(url_for('index'))
     else:
         return render_template('dashboard.html', uncensored=uncensored, result=result, count_uncensored=count_uncensored, count_censored=count_censored, count_real=count_real, count_fake=count_fake)
-
-
-@app.route('/admin/fake_news_published/')
-def fake_news_published():
-    fake = db.forum_report.find({"Status": 1,"Label":0})
-    if not users:
-        return redirect(url_for('login'))
-    else:
-        return render_template('fake_news_published.html',fake=fake)
-
-
-@app.route('/admin/real_news_published/')
-def real_news_published():
-    real = db.forum_report.find({"Status": 1,"Label":1})
-    if not users:
-        return redirect(url_for('login'))
-    else:
-        return render_template('real_news_published.html',real=real)
-
-
-@app.route('/admin/uncensored_new/')
-def uncensored_new():
-    uncensored_new = db.forum_report.find({"Status": 0})
-    if not users:
-        return redirect(url_for('login'))
-    else:
-        return render_template('uncensored_new.html',uncensored_new=uncensored_new)
-
-
-@app.route('/admin/censored_new/')
-def censored_new():
-    censored_new = db.forum_report.find({"Status": 1})
-    if not users:
-        return redirect(url_for('login'))
-    else:
-        return render_template('censored_new.html',censored_new=censored_new)
-
-@app.route('/admin/deny_new/')
-def deny_new():
-    deny_new = db.forum_report.find({"Status": 2})
-    if not users:
-        return redirect(url_for('login'))
-    else:
-        return render_template('deny_new.html',deny_new=deny_new)
 
 
 if __name__ == '__main__':
