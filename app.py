@@ -518,8 +518,7 @@ def loginadmin():
             return redirect('login.html')
     else:
         return redirect('login.html')
-
-
+    
 @app.route('/admin/dashboard/')
 def dashboard():
     count_uncensored = db.forum_report.count_documents({"Status": 0})
@@ -552,7 +551,6 @@ def dashboard():
 @app.route('/admin/fake_news_published/')
 def fake_news_published():
     fake = db.forum_report.find({"Status": 1,"Label":0})
-    name_session = session.get('users')
     if not users:
         return redirect(url_for('login'))
     else:
@@ -562,7 +560,6 @@ def fake_news_published():
 @app.route('/admin/real_news_published/')
 def real_news_published():
     real = db.forum_report.find({"Status": 1,"Label":1})
-    name_session = session.get('users')
     if not users:
         return redirect(url_for('login'))
     else:
@@ -572,7 +569,6 @@ def real_news_published():
 @app.route('/admin/uncensored_new/')
 def uncensored_new():
     uncensored_new = db.forum_report.find({"Status": 0})
-    name_session = session.get('users')
     if not users:
         return redirect(url_for('login'))
     else:
@@ -582,7 +578,6 @@ def uncensored_new():
 @app.route('/admin/censored_new/')
 def censored_new():
     censored_new = db.forum_report.find({"Status": 1})
-    name_session = session.get('users')
     if not users:
         return redirect(url_for('login'))
     else:
@@ -591,7 +586,6 @@ def censored_new():
 @app.route('/admin/deny_new/')
 def deny_new():
     deny_new = db.forum_report.find({"Status": 2})
-    name_session = session.get('users')
     if not users:
         return redirect(url_for('login'))
     else:
