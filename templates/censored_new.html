@@ -1088,8 +1088,7 @@
                                         <tr>
 
                                             <th width="1%">#</th>
-                                            <th width="20%">Người gửi</th>
-                                            <th width="auto">Tiêu đề</th>
+                                            <th width="auto">Bài viết</th>
                                             <!-- <th class="text-center" width="80px">Thao tác</th> -->
                                         </tr>
 
@@ -1100,11 +1099,10 @@
                                         <tr>
                                             <td>{{loop.index}}</td>
                                             <td>
-                                                <img class="img-circle" src="{{ censored_new.GooglePicture }}"
+                                                 <img class="img-circle" src="{{ censored_new.GooglePicture }}"
                                                     width="30px">
                                                 {{censored_new.NameGoogle}}
-                                            </td>
-                                            <td>
+                                                <br>
                                                 <a href="view/{{censored_new._id}}"><b> {{censored_new.Title}} </b></a>
                                                 <br>
                                                 {% if censored_new.Category == 'law' %}
