@@ -1087,8 +1087,7 @@
                                         <tr>
 
                                             <th width="1%">#</th>
-                                            <th width="20%">Người gửi</th>
-                                            <th width="auto">Tiêu đề</th>
+                                            <th width="auto">Bài viếtviết</th>
                                             <!-- <th class="text-center" width="80px">Thao tác</th> -->
                                         </tr>
 
@@ -1099,11 +1098,10 @@
                                         <tr>
                                             <td>{{loop.index}}</td>
                                             <td>
-                                                <img class="img-circle" src="{{ fake.GooglePicture }}"
+                                                    <img class="img-circle" src="{{ fake.GooglePicture }}"
                                                     width="30px">
                                                 {{fake.NameGoogle}}
-                                            </td>
-                                            <td>
+                                                <br>
                                                 <a href="view/{{fake._id}}"><b> {{fake.Title}} </b></a>
                                                 <br>
                                                 {% if fake.Category == 'law' %}
