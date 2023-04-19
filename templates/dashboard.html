@@ -1200,8 +1200,7 @@
                                         <tr>
 
                                             <th width="1%">#</th>
-                                            <th width="auto">Người gửi</th>
-                                            <th width="auto">Tiêu đề</th>
+                                            <th width="auto">Bài viết</th>
                                             <th class="text-center" width="80px">Thao tác</th>
                                         </tr>
 
@@ -1212,11 +1211,10 @@
                                         <tr>
                                             <td>{{loop.index}}</td>
                                             <td>
-                                                <img class="img-circle" src="{{ uncensoreds.GooglePicture }}"
+                                                   <img class="img-circle" src="{{ uncensoreds.GooglePicture }}"
                                                     width="45px">
                                                 {{uncensoreds.NameGoogle}}
-                                            </td>
-                                            <td>
+                                                <br>
                                                 <b> {{uncensoreds.Title}} </b><br>
                                                 {% if uncensoreds.Category == 'law' %}
                                                 <span class="badge badge-warning">Chính sách, pháp luật</span>
