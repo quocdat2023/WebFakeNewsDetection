@@ -219,7 +219,7 @@
                 {% for forum in forums_list %}
                 <div class="col-md-4">
                     <div class="card mb-4 box-shadow" style="height: 95%;">
-                        <img class="card-img-top" src="{{forum.ImageUpload}}" style="height: 206px; width:349px"
+                          <img class="card-img-top" src="{{forum.ImageUpload}}" style="max-width:  auto;max-height: 200px;"
                             data-holder-rendered="true">
                         <div class="card-body">
                             <a class="card-text blue" style="padding-top:5px" href="/view/{{forum._id}}"
