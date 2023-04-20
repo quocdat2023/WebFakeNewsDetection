@@ -212,7 +212,7 @@
               <div class="card-body">
 
                 <div class="small text-muted">{{ forum.DatePost }}</div>
-                <h2 class="card-title h5 d-inline-block text-truncate" style="max-width: 100%;"><b>{{ forum.Title }}</b>
+                <h2 style="display: block;/* or inline-block */ text-overflow: ellipsis; word-wrap: break-word; overflow: hidden; max-height: 3.6em; line-height: 1.8em;" class="card-title h5 d-inline-block text-truncate text-wrap text-decoration-none"b>{{ forum.Title }}</b>
                 </h2>
                 {% if forum.Label == 1 %}
                 <span class="badge badge-success">Tin thật</span>
