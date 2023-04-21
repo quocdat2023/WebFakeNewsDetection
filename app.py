@@ -598,7 +598,41 @@ def dashboard():
            return redirect(url_for('index'))
     else:
         return render_template('dashboard.html', uncensored=uncensored, result=result, count_uncensored=count_uncensored, count_censored=count_censored, count_real=count_real, count_fake=count_fake)
+@app.route('/category/<categories>')
+def category(categories):
+    newtop3 = db.forum_report.find({"Status": 1}).limit(3).sort('_id', 1)
+    newtop5 = db.forum_report.find({"Status": 1}).limit(5).sort('_id', 1)
+    newtop1 = db.forum_report.find({"Status": 1}).limit(1).sort('_id', -1)
+    page = request.args.get('page', 0, type=int)
+    page_size = 20
+    offset = page * page_size
+    forums = db.forum_report.find({"Status": 1,"Category":categories}).skip(
+        offset).limit(page_size).sort('_id', -1)
+    forums_list = []
+    for forum in forums:
+        forum_info = {
+            'Title': forum['Title'],
+            'GooglePicture': forum['GooglePicture'],
+            'Status': forum['Status'],
+            'Label': forum['Label'],
+            'GoogleId': forum['GoogleId'],
+            'Category': forum['Category'],
+            'Summary': forum['Summary'],
+            'Title': forum['Title'],
+            "_id": forum['_id'],
+            'Link': forum['Link'],
+            'NameGoogle': forum['NameGoogle'],
+            'Phone': forum['Phone'],
+            'DatePost': forum['DatePost'],
+            'ImageUpload': forum['ImageUpload']
 
+        }
+        forums_list.append(forum_info)
+    name_session = session.get('name')
+    if name_session is None:
+        return render_template('category.html', names="", pictures="", forums_list=forums_list, page=page, newtop3=newtop3, newtop5=newtop5,newtop1=newtop1,categories=categories)
+    else:
+        return render_template('category.html', names=session["name"], google_id=session["google_id"], pictures=session["picture"], forums_list=forums_list, page=page, newtop3=newtop3, newtop5=newtop5,newtop1=newtop1,categories=categories)
 
 if __name__ == '__main__':
     # Debug/Development
