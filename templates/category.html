@@ -171,7 +171,8 @@
             <!-- Blog entries-->
             <div class="col-lg-8">
                 <!-- Nested row for non-featured blog posts-->
-                {% if categories == 'law' %}
+                <div class="row">
+                     {% if categories == 'law' %}
                 <h2 class="card-title h5" style="max-width: 100%;"><b>Chính sách, pháp
                         luật</b>
                 </h2>
@@ -194,9 +195,8 @@
                 {% elif categories == 'other' %}
                 <h2 class="card-title h5" style="max-width: 100%;"><b>Khác</b>
                 </h2>
+                    <br>
                 {% endif %}
-                <br>
-                <div class="row">
                     {% for forum in forums_list %}
                     <div class="col-md-6">
                         <div class="card mb-4">
