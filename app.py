@@ -598,12 +598,13 @@ def dashboard():
            return redirect(url_for('index'))
     else:
         return render_template('dashboard.html', uncensored=uncensored, result=result, count_uncensored=count_uncensored, count_censored=count_censored, count_real=count_real, count_fake=count_fake)
-@app.route('/category/<categories>')
-def category(categories):
+
+@app.route('/category/<categories>/<pages>')
+def category(categories,pages):
     newtop3 = db.forum_report.find({"Status": 1}).limit(3).sort('_id', 1)
     newtop5 = db.forum_report.find({"Status": 1}).limit(5).sort('_id', 1)
     newtop1 = db.forum_report.find({"Status": 1}).limit(1).sort('_id', -1)
-    page = request.args.get('page', 0, type=int)
+    page =int(pages)
     page_size = 20
     offset = page * page_size
     forums = db.forum_report.find({"Status": 1,"Category":categories}).skip(
@@ -634,6 +635,7 @@ def category(categories):
     else:
         return render_template('category.html', names=session["name"], google_id=session["google_id"], pictures=session["picture"], forums_list=forums_list, page=page, newtop3=newtop3, newtop5=newtop5,newtop1=newtop1,categories=categories)
 
+    
 if __name__ == '__main__':
     # Debug/Development
     # app.run(debug=True, host="0.0.0.0", port="5000")
