@@ -20,152 +20,157 @@
     <link href="{{ url_for('static',filename='css/styles.css') }}" rel="stylesheet">
     <link href="{{ url_for('static',filename='css/swiper.css') }}" rel="stylesheet">
     <link href="{{ url_for('static',filename='css/magnific-popup.css') }}" rel="stylesheet">
-<style>
-    body{margin-top:20px;}
-.product_list {
-    border: 1px solid #d1d1d1;
-    border-radius: 8px;
-    padding: 20px;
-    padding-bottom: 5px;
-    margin-bottom: 30px;
-    box-shadow: 0 20px 27px 0 rgb(0 0 0 / 5%);
-}
+    <style>
+        body {
+            margin-top: 20px;
+        }
 
-.product_list .card-header {
-    border-radius: 0;
-    padding: 0;
-    background-color: transparent;
-    border: none;
-    margin-bottom: 20px;
-}
+        .product_list {
+            border: 1px solid #d1d1d1;
+            border-radius: 8px;
+            padding: 20px;
+            padding-bottom: 5px;
+            margin-bottom: 30px;
+            box-shadow: 0 20px 27px 0 rgb(0 0 0 / 5%);
+        }
 
-.product_list .card-header .btn-link {
-    width: 100%;
-    padding: 0;
-    text-align: left;
-    border: none;
-    border-radius: 0;
-    position: relative;
-    background-color: #ffffff;
-    text-decoration: none;
-    box-shadow: none;
-}
+        .product_list .card-header {
+            border-radius: 0;
+            padding: 0;
+            background-color: transparent;
+            border: none;
+            margin-bottom: 20px;
+        }
 
-.product_list .card-header .btn-link:hover,
-.product_list .card-header .btn-link:focus {
-    text-decoration: none;
-    box-shadow: none;
-}
+        .product_list .card-header .btn-link {
+            width: 100%;
+            padding: 0;
+            text-align: left;
+            border: none;
+            border-radius: 0;
+            position: relative;
+            background-color: #ffffff;
+            text-decoration: none;
+            box-shadow: none;
+        }
 
-.product_list .card-header .btn-link:after {
-    /* content: "\f078"; */
-    font: normal normal normal 14px/1 FontAwesome;
-    position: absolute;
-    right: 0;
-    top: 50%;
-    transform: translateY(-50%) rotate(180deg);
-    line-height: normal;
-    width: 30px;
-    height: 30px;
-    background-color: #2f2f2f;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #ffffff;
-    font-size: 14px;
-    transition: 0.5s all;
-    background-image: none;
-}
+        .product_list .card-header .btn-link:hover,
+        .product_list .card-header .btn-link:focus {
+            text-decoration: none;
+            box-shadow: none;
+        }
 
-.product_list .card-header .btn-link.collapsed:after {
-    transform: translateY(-50%) rotate(0deg);
-}
+        .product_list .card-header .btn-link:after {
+            /* content: "\f078"; */
+            font: normal normal normal 14px/1 FontAwesome;
+            position: absolute;
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%) rotate(180deg);
+            line-height: normal;
+            width: 30px;
+            height: 30px;
+            background-color: #2f2f2f;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #ffffff;
+            font-size: 14px;
+            transition: 0.5s all;
+            background-image: none;
+        }
 
-.product_list .card-header .btn-link .list_block {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    width: 100%;
-}
+        .product_list .card-header .btn-link.collapsed:after {
+            transform: translateY(-50%) rotate(0deg);
+        }
 
-.product_list .card-header .btn-link .list_block .list_image {
-    width: 135px;
-    margin-right: 25px;
-    height: 130px;
-}
+        .product_list .card-header .btn-link .list_block {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            width: 100%;
+        }
 
-.product_list .card-header .btn-link .list_block .list_text {
-    /* width: calc(100% - 160px); */
-    padding-right: 40px;
-}
+        .product_list .card-header .btn-link .list_block .list_image {
+            width: 135px;
+            margin-right: 25px;
+            height: 130px;
+        }
 
-.product_list .card-header .btn-link .list_block .list_text .subtitle {
-    margin-bottom: 4px;
-    color: #c7a379;;
-    font-weight: 500;
-    font-size: 16px;
-}
+        .product_list .card-header .btn-link .list_block .list_text {
+            /* width: calc(100% - 160px); */
+            padding-right: 40px;
+        }
 
-.product_list .card-header .btn-link .list_block .list_text .title {
-    margin-bottom: 10px;
-}
+        .product_list .card-header .btn-link .list_block .list_text .subtitle {
+            margin-bottom: 4px;
+            color: #c7a379;
+            ;
+            font-weight: 500;
+            font-size: 16px;
+        }
 
-.product_list .card-header .btn-link .list_block .list_text .text {
-    font-size: 14px;
-    color: #7f7f7f;
-    margin: 0;
-}
+        .product_list .card-header .btn-link .list_block .list_text .title {
+            margin-bottom: 10px;
+        }
 
-.product_list .card-body {
-    padding: 15px;
-    padding-bottom: 0;
-    padding-top: 0;
-}
+        .product_list .card-header .btn-link .list_block .list_text .text {
+            font-size: 14px;
+            color: #7f7f7f;
+            margin: 0;
+        }
 
-.product_list .list_block_item {
-    border: 1px solid #d1d1d1;
-    border-radius: 8px;
-    padding: 20px 10px;
-    margin-bottom: 30px;
-    text-align: center;
-}
+        .product_list .card-body {
+            padding: 15px;
+            padding-bottom: 0;
+            padding-top: 0;
+        }
 
-.product_list .list_block_item a {
-    display: block;
-}
+        .product_list .list_block_item {
+            border: 1px solid #d1d1d1;
+            border-radius: 8px;
+            padding: 20px 10px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
 
-.product_list .list_block_item a img {
-    width: 70px;
-    margin-bottom: 10px;
-    height: 60px;
-}
+        .product_list .list_block_item a {
+            display: block;
+        }
 
-.product_list .list_block_item a .category {
-    color: #7f7f7f;
-    font-size: 14px;
-    margin-bottom: 15px;
-    line-height: normal;
-    font-weight: 500;
-}
+        .product_list .list_block_item a img {
+            width: 70px;
+            margin-bottom: 10px;
+            height: 60px;
+        }
 
-.product_list .list_block_item a .title {
-    line-height: normal;
-    margin-bottom: 10px;
-    font-size: 16px;
-}
+        .product_list .list_block_item a .category {
+            color: #7f7f7f;
+            font-size: 14px;
+            margin-bottom: 15px;
+            line-height: normal;
+            font-weight: 500;
+        }
 
-.product_list .list_block_item a .title strong {
-    color: #c7a379;;
-}
-.image-fit-contain {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-    object-position: center;
-}
+        .product_list .list_block_item a .title {
+            line-height: normal;
+            margin-bottom: 10px;
+            font-size: 16px;
+        }
 
-</style>
+        .product_list .list_block_item a .title strong {
+            color: #c7a379;
+            ;
+        }
+
+        .image-fit-contain {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            object-position: center;
+        }
+    </style>
     <!-- <link href="css/fontawesome-all.css" rel="stylesheet">
     <link href="css/swiper.css" rel="stylesheet">
 	<link href="css/magnific-popup.css" rel="stylesheet">
@@ -250,14 +255,14 @@
                     <li class="nav-item">
                         <a class="nav-link page-scroll" href="{{ url_for('check')}}">KIỂM TRA</a>
                     </li>
-                     
+
                     {% if not names %}
                     {% else %}
                     <li class="nav-item">
                         <a class="nav-link page-scroll" href="{{ url_for('post')}}">ĐĂNG BÀI</a>
                     </li>
                     {% endif %}
-                 
+
                 </ul>
                 <span class="nav-item">
                     {% if not names %}
@@ -292,240 +297,111 @@
     <!-- end of ex-header -->
     <!-- end of header -->
     <!-- Privacy Content -->
-    <div class="ex-basic-2">
-        <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+    <main class="container">
 
-        <div class="container">
-            <div class="row accordion" id="accordion">
-                <div class="col-xl-12">
-                    <div class="row">
-                        <div class="col-lg-12">
-                            <div class="card accordion-item product_list">
-                                <div class="card-header accordion-header">
-                                    <div class="btn btn-link accordion-button" data-bs-toggle="collapse" data-bs-target="#itemone" aria-expanded="true">
-                                        <div class="list_block">
-                                            <!-- <div class="list_image">
-                                                <img src="https://media1.giphy.com/media/f9xvcrzFdRaHATv6me/giphy.gif?cid=6c09b95256e366c2930ac6483563c01a1c5f9a6d8e1e27ce&rid=giphy.gif&ct=s" class="image-fit-contain" alt="img" />
-                                            </div> -->
-                                            <div class="list_text">
-                                                <h3 class="title">{{details.Title}}</h3>
-                                                {% if details.Label == 1 %}
-                                                <span class="badge badge-success">Tin thật</span>
-                                                {% else %}
-                                                <span class="badge badge-primary">Tin giả</span>
-                                                {% endif %}                                             
-                                            
-                                                {% if details.Category == 'law' %}
-                                                <span class="badge badge-danger">Chính sách, pháp luật</span>
-                                                {% elif details.Category == 'disaster'  %}
-                                                <span class="badge badge-danger">Thiên tai, dịch bệnh</span>
-                                                {% elif details.Category == 'ecomomy'  %}
-                                                <span class="badge badge-danger">Kinh tế, chính trị</span>
-                                                {% elif details.Category == 'health'  %}
-                                                <span class="badge badge-danger">Lĩnh vực y tế, sản phẩm y tế liên quan đến sức khỏe con người</span>
-                                                {% elif details.Category == 'seciurity'  %}
-                                                <span class="badge badge-danger">An ninh quốc gia, Trật tự an toàn – xã hội</span>
-                                                {% elif details.Category == 'other'  %}
-                                                <span class="badge badge-danger">Khác</span>
-                                                {% endif %}       
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div id="itemone" class="accordion-collapse collapse show" data-bs-parent="#accordion" >
-                                    <input style="display:none" type="text" id="myText" value="{{details.Content}}">
-                                    <div id="myDiv"></div>
-                                </div>
-                                <div id="fb-root"></div>
-                                <script async defer crossorigin="anonymous" src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v16.0&appId=686959902689516&autoLogAppEvents=1" nonce="RwUjxcOc"></script>
-                                <div class="fb-like" data-href="http://127.0.0.1:5000/view/{{details._id}}" data-width="" data-layout="" data-action="" data-size="" data-share="true"></div>
-                                <div id="fb-root"></div>
-                                <script async defer crossorigin="anonymous" src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v16.0&appId=558098571751000&autoLogAppEvents=1" nonce="JcmBvcEr"></script>
-                                <div class="fb-comments" data-href="http://127.0.0.1:5000/view/{{details._id}}" data-width="auto" data-numposts="5"></div>                
-                            </div>
-                        </div>
-        
-                        <!-- <div class="col-lg-12">
-                            <div class="card product_list accordion-item">
-                                <div class="card-header accordion-header">
-                                    <div class="btn btn-link accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#itemtwo" aria-expanded="false">
-                                        <div class="list_block">
-                                            <div class="list_image">
-                                                <img src="https://www.bootdey.com/image/320x320/FF69B4/000000" class="image-fit-contain" alt="img" />
-                                            </div>
-                                            <div class="list_text">
-                                                <p class="subtitle">Up to 68% OFF</p>
-                                                <h5 class="title">Chair &amp; Sofa</h5>
-                                                <p class="text">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div id="itemtwo" class="accordion-collapse collapse" data-bs-parent="#accordion">
-                                    <div class="card-body accordion-body">
-                                        <div class="row">
-                                            <div class="col-sm-4 col-6">
-                                                <div class="list_block_item">
-                                                    <a href="shop-details.html">
-                                                        <img src="https://www.bootdey.com/image/320x320/FF69B4/000000" class="image-fit-contain" alt="img" />
-                                                        <p class="category">Chair</p>
-                                                        <h6 class="title">Up to <strong>65%</strong> OFF</h6>
-                                                    </a>
-                                                </div>
-                                            </div>
-        
-                                            <div class="col-sm-4 col-6">
-                                                <div class="list_block_item">
-                                                    <a href="shop-details.html">
-                                                        <img src="https://www.bootdey.com/image/320x320/FF69B4/000000" class="image-fit-contain" alt="img" />
-                                                        <p class="category">Chair</p>
-                                                        <h6 class="title">Up to <strong>65%</strong> OFF</h6>
-                                                    </a>
-                                                </div>
-                                            </div>
-        
-                                            <div class="col-sm-4 col-6">
-                                                <div class="list_block_item">
-                                                    <a href="shop-details.html">
-                                                        <img src="https://www.bootdey.com/image/320x320/FF69B4/000000" class="image-fit-contain" alt="img" />
-                                                        <p class="category">Chair</p>
-                                                        <h6 class="title">Up to <strong>65%</strong> OFF</h6>
-                                                    </a>
-                                                </div>
-                                            </div>
-        
-                                            <div class="col-sm-4 col-6">
-                                                <div class="list_block_item">
-                                                    <a href="shop-details.html">
-                                                        <img src="https://www.bootdey.com/image/320x320/FF69B4/000000" class="image-fit-contain" alt="img" />
-                                                        <p class="category">Sofa</p>
-                                                        <h6 class="title">Up to <strong>65%</strong> OFF</h6>
-                                                    </a>
-                                                </div>
-                                            </div>
-        
-                                            <div class="col-sm-4 col-6">
-                                                <div class="list_block_item">
-                                                    <a href="shop-details.html">
-                                                        <img src="https://www.bootdey.com/image/320x320/FF69B4/000000" class="image-fit-contain" alt="img" />
-                                                        <p class="category">Sofa</p>
-                                                        <h6 class="title">Up to <strong>65%</strong> OFF</h6>
-                                                    </a>
-                                                </div>
-                                            </div>
-        
-                                            <div class="col-sm-4 col-6">
-                                                <div class="list_block_item">
-                                                    <a href="shop-details.html">
-                                                        <img src="https://www.bootdey.com/image/320x320/FF69B4/000000" class="image-fit-contain" alt="img" />
-                                                        <p class="category">Sofa</p>
-                                                        <h6 class="title">Up to <strong>65%</strong> OFF</h6>
-                                                    </a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div> -->
+        <div class="row g-5">
+            <div class="col-md-8">
+                <!-- <h3 class="pb-4 mb-4 fst-italic border-bottom">
+                    Diễn Đàn Về Tin Giả Và Phát Hiện Tin Giả
+                </h3> -->
+                <article class="blog-post">
+                    <h2 class="blog-post-title mb-1">{{details.Title}}</h2>
+                    <p class="blog-post-meta">{{details.DatePost}} <img width="30" class="img-rounded" style="border-radius: 50%;" src="{{details.GooglePicture}}" alt=""> {{details.NameGoogle}}</p>
+                    {% if details.Label == 1 %}
+                    <span class="badge badge-success">Tin thật</span>
+                    {% else %}
+                    <span class="badge badge-primary">Tin giả</span>
+                    {% endif %}
+
+                    {% if details.Category == 'law' %}
+                    <span class="badge badge-danger">Chính sách, pháp luật</span>
+                    {% elif details.Category == 'disaster' %}
+                    <span class="badge badge-danger">Thiên tai, dịch bệnh</span>
+                    {% elif details.Category == 'ecomomy' %}
+                    <span class="badge badge-danger">Kinh tế, chính trị</span>
+                    {% elif details.Category == 'health' %}
+                    <span class="badge badge-danger">Lĩnh vực y tế, sản phẩm y tế liên quan đến sức khỏe con
+                        người</span>
+                    {% elif details.Category == 'seciurity' %}
+                    <span class="badge badge-danger">An ninh quốc gia, Trật tự an toàn – xã hội</span>
+                    {% elif details.Category == 'other' %}
+                    <span class="badge badge-danger">Khác</span>
+                    {% endif %}
+                    <div id="itemone" class="accordion-collapse collapse show" data-bs-parent="#accordion">
+                        <input style="display:none" type="text" id="myText" value="{{details.Content}}">
+                        <div id="myDiv"></div>
+                    </div>
+                    <div id="fb-root"></div>
+                    <script async defer crossorigin="anonymous"
+                        src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v16.0&appId=686959902689516&autoLogAppEvents=1"
+                        nonce="RwUjxcOc"></script>
+                    <div class="fb-like" data-href="https://fakenewsdetection-gyce.onrender.com/view/{{details._id}}" data-width=""
+                        data-layout="" data-action="" data-size="" data-share="true"></div>
+                    <div id="fb-root"></div>
+                    <script async defer crossorigin="anonymous"
+                        src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v16.0&appId=558098571751000&autoLogAppEvents=1"
+                        nonce="JcmBvcEr"></script>
+                    <div class="fb-comments" data-href="https://fakenewsdetection-gyce.onrender.com/view/{{details._id}}" data-width="auto"
+                        data-numposts="5"></div>
+                </article>
+            </div>
+
+            <div class="col-md-4">
+                <div class="position-sticky" style="top: 2rem;">
+                    <div class="p-4">
+                        <h4 class="fst-italic"><i class="fa-solid fa-quote-right"  style="color:dodgerblue"></i> Thể loại</h4>
+                        <ul class="list-unstyled mb-0">
+                            <li class="cat-item cat-item-46"><a class="taga text-decoration-none"
+                                    href="https://fakenewsdetection-gyce.onrender.com/category/law/0"><i
+                                        style="color:mediumturquoise" class="fa-solid fa-scale-balanced"></i>
+                                    Chính sách, pháp luật</a>
+                            </li>
+                            <li class="cat-item cat-item-47"><a class="taga text-decoration-none"
+                                href="https://fakenewsdetection-gyce.onrender.com/category/disaster/0"><i
+                                style="color:lightskyblue" class="fa-solid fa-cloud-showers-water"></i>
+                                    Thiên tai, dịch bệnh</a>
+                            </li>
+                            <li class="cat-item cat-item-47"><a class="taga text-decoration-none"
+                                href="https://fakenewsdetection-gyce.onrender.com/category/ecomomy/0"><i
+                                style="color:rgb(236, 138, 0)" class="fa-solid fa-chart-pie"></i>
+                                Kinh tế, chính trị</a>
+                            </li>
+                            <li class="cat-item cat-item-48"><a class="taga text-decoration-none"
+                                href="https://fakenewsdetection-gyce.onrender.com/category/health/0"><i
+                                style="color:rgb(146, 233, 66)"
+                                        class="fa-sharp fa-solid fa-hospital-user"></i> Lĩnh vực y tế</a>
+                            </li>
+                            <li class="cat-item cat-item-50"><a class="taga text-decoration-none"
+                                href=https://fakenewsdetection-gyce.onrender.com/category/seciurity/0"><i
+                                style="color:#ff8787" class="fa-solid fa-user-shield"></i> An ninh, trật
+                                    tự an toàn – xã
+                                    hội</a>
+                            </li>
+                            <li class="cat-item cat-item-51"><a class="taga text-decoration-none"
+                                href=https://fakenewsdetection-gyce.onrender.com/category/other/0"><i
+                                style="color:dodgerblue" class="fa-solid fa-circle-info"></i> Khác</a>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="p-4">
+                        <h4 class="fst-italic"><i class="fa-solid fa-fire" style="color:orange;"></i> Bài đăng gần đây </h4>
+                        <ul id="myUL" class="list-unstyled mb-0">
+                            {% for top5 in newtop5 %}
+                            <li>
+                              <div class="small text-muted pt-2">
+                                <img width="30" src="{{ top5.GooglePicture }}" alt=""> {{ top5.NameGoogle }}  . {{ top5.DatePost }}
+                              </div>
+                              <a class="text-wrap text-decoration-none " style="display: block;/* or inline-block */ text-overflow: ellipsis; word-wrap: break-word; overflow: hidden; max-height: 3.6em; line-height: 1.8em;" href="https://fakenewsdetection-gyce.onrender.com/view/{{top5._id}}">{{top5.Title}} ...</a>
+                            </li>
+                            {% endfor %}
+                          </ul>
                     </div>
                 </div>
-                <!-- <div class="col-xl-12">
-                    <div class="row">
-                        {%  for newstop in newtop3 %}
-                        <div class="col-lg-12">
-                            <div class="card product_list accordion-item">
-                                <div class="card-header accordion-header">
-                                    <div class="btn btn-link accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#itemthree" aria-expanded="false">
-                                        <div class="list_block">
-                                                <img src="{{ url_for('static',filename='images/video-image.png') }}" class="image-fit-contain" alt="img" />
-                                            <div>
-                                                <h5 class="text">{{ newstop.Title }}</h5>
-                                                <p style="overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 1; /* number of lines to show */ line-clamp: 1; -webkit-box-orient: vertical;" class="text">{{ newstop.Summarize }}</p>
-                                            </div>
-                                            <div class="btn-group">
-                                                <a  style="text-decoration: none;background-color: #5f4dee; color: white;" href="{{newstop._id}}" class="btn btn-sm">Xem ngay</a>
-                                              </div>
-                                              
-                                        </div>
-                                    </div>
-                                </div>
-                                <div id="itemthree" class="accordion-collapse collapse" data-bs-parent="#accordion" >
-                                    <div class="card-body accordion-body">
-                                        <div class="row">
-                                            <div class="col-sm-4 col-6">
-                                                <div class="list_block_item">
-                                                    <a href="shop-details.html">
-                                                        <img src="https://www.bootdey.com/image/320x320/FF69B4/000000" class="image-fit-contain" alt="img" />
-                                                        <p class="category">Chair</p>
-                                                        <h6 class="title">Up to <strong>65%</strong> OFF</h6>
-                                                    </a>
-                                                </div>
-                                            </div>
-        
-                                            <div class="col-sm-4 col-6">
-                                                <div class="list_block_item">
-                                                    <a href="shop-details.html">
-                                                        <img src="https://www.bootdey.com/image/320x320/FF69B4/000000" class="image-fit-contain" alt="img" />
-                                                        <p class="category">Chair</p>
-                                                        <h6 class="title">Up to <strong>65%</strong> OFF</h6>
-                                                    </a>
-                                                </div>
-                                            </div>
-        
-                                            <div class="col-sm-4 col-6">
-                                                <div class="list_block_item">
-                                                    <a href="shop-details.html">
-                                                        <img src="https://www.bootdey.com/image/320x320/FF69B4/000000" class="image-fit-contain" alt="img" />
-                                                        <p class="category">Chair</p>
-                                                        <h6 class="title">Up to <strong>65%</strong> OFF</h6>
-                                                    </a>
-                                                </div>
-                                            </div>
-        
-                                            <div class="col-sm-4 col-6">
-                                                <div class="list_block_item">
-                                                    <a href="shop-details.html">
-                                                        <img src="https://www.bootdey.com/image/320x320/FF69B4/000000" class="image-fit-contain" alt="img" />
-                                                        <p class="category">Sofa</p>
-                                                        <h6 class="title">Up to <strong>65%</strong> OFF</h6>
-                                                    </a>
-                                                </div>
-                                            </div>
-        
-                                            <div class="col-sm-4 col-6">
-                                                <div class="list_block_item">
-                                                    <a href="shop-details.html">
-                                                        <img src="https://www.bootdey.com/image/320x320/FF69B4/000000" class="image-fit-contain" alt="img" />
-                                                        <p class="category">Sofa</p>
-                                                        <h6 class="title">Up to <strong>65%</strong> OFF</h6>
-                                                    </a>
-                                                </div>
-                                            </div>
-        
-                                            <div class="col-sm-4 col-6">
-                                                <div class="list_block_item">
-                                                    <a href="shop-details.html">
-                                                        <img src="https://www.bootdey.com/image/320x320/FF69B4/000000" class="image-fit-contain" alt="img" />
-                                                        <p class="category">Sofa</p>
-                                                        <h6 class="title">Up to <strong>65%</strong> OFF</h6>
-                                                    </a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        {% endfor %}
-
-                    </div>
-                </div>
-                -->
             </div>
         </div>
-        <!-- end of container -->
-    </div>
+
+    </main>
     <!-- end of ex-basic-2 -->
     <!-- end of privacy content -->
     <!-- Copyright -->
