@@ -199,8 +199,8 @@ def view(id):
     # student = db.admin.find({})
     news = db.forum_report.find_one({"_id": ObjectId(id)})
     newtop3 = db.forum_report.find({}).limit(12)
-    return render_template("view.html", details=news, newtop3=newtop3)
-
+    newtop5 = db.forum_report.find({"Status": 1}).limit(3).sort('_id', 1)
+    return render_template("view.html", details=news, newtop3=newtop3,newtop5=newtop5)
 
 @app.route("/update_record/<id>", methods=["POST"])
 def update_record(id):
