@@ -302,7 +302,7 @@
                                                 class="fa-sharp fa-solid fa-hospital-user"></i> Lĩnh vực y tế</a>
                                     </li>
                                     <li class="cat-item cat-item-50"><a class="taga"
-                                        href="https://fakenewsdetection-gyce.onrender.com/category/seciurity00"><i
+                                        href="https://fakenewsdetection-gyce.onrender.com/category/seciurity/00"><i
                                         style="color:#ff8787" class="fa-solid fa-user-shield"></i> An ninh, trật
                                             tự an toàn – xã
                                             hội</a>
@@ -331,7 +331,7 @@
               {% for top5 in newtop5 %}
               <li>
                 <div class="small text-muted pt-2">
-                  <img width="30" src="{{ top5.GooglePicture }}" alt=""> {{ top5.NameGoogle }}  . {{ top5.DatePost }}
+                  <img width="30" src="{{ top5.GooglePicture }}" alt=""> {{ top5.NameGoogle }}
                      {% if top5.Label == 1 %}
                 <span class="badge badge-success">Tin thật</span>
                 {% else %}
