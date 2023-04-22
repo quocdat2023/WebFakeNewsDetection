@@ -24,7 +24,8 @@ import random
 from bs4 import BeautifulSoup
 # from bson.objectid import ObjectId
 # from gevent.pywsgi import WSGIServer
-import datetime
+import pytz
+from datetime import datetime
 import cloudinary
 from cloudinary.utils import cloudinary_url
 from cloudinary.uploader import upload
@@ -34,6 +35,13 @@ cloudinary.config(
     api_key="738714684352559",
     api_secret="BTs_rShwlDvWSABA5M553OLn4pY"
 )
+
+
+# set timezone to Vietnam
+vietnam_timezone = pytz.timezone('Asia/Ho_Chi_Minh')
+
+# get current time in Vietnam
+current_time = datetime.now(vietnam_timezone)
 
 
 app = Flask("Google Login App")  # naming our application
@@ -104,7 +112,7 @@ def reflect():
         label = request.form.get('label')
         content = request.form.get('content')
         phone = request.form.get('phone')
-        todays = datetime.date.today().strftime("%d/%m/%Y")
+        todays = current_time.strftime("%d-%m-%Y %H:%M:%S")
         file = request.files['image_upload']
         upload_result = upload(file)
         # Lấy URL công khai của hình ảnh tải lên
