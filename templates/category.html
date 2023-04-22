@@ -333,8 +333,11 @@
                             {% for top5 in newtop5 %}
                             <li>
                                 <div class="small text-muted pt-2">
-                                    <img width="30" src="{{ top5.GooglePicture }}" alt=""> {{ top5.NameGoogle }} . {{
-                                    top5.DatePost }}
+                                    <img width="30" src="{{ top5.GooglePicture }}" alt=""> {{ top5.NameGoogle }} .   {% if top5.Label == 1 %}
+                <span class="badge badge-success">Tin thật</span>
+                {% else %}
+                <span class="badge badge-danger">Tin giả</span>
+                {% endif %}
                                 </div>
                                 <a class="text-wrap text-decoration-none "
                                     style="display: block;/* or inline-block */ text-overflow: ellipsis; word-wrap: break-word; overflow: hidden; max-height: 3.6em; line-height: 1.8em;"
