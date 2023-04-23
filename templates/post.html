@@ -39,9 +39,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastify-js/1.12.0/toastify.css"
         integrity="sha512-kT0v1BxcibEO2Yc+6Z3W1gNsN+2cZ/U6uITqHhIJl8SAvt9vpO8llugdCPXA7cCnp8G1xbuSqHNMRaR3Zlz9yA=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/froala-editor@3.2.6/css/froala_editor.pkgd.min.css">
-    <script type="text/javascript"
-        src="https://cdn.jsdelivr.net/npm/froala-editor@3.2.6/js/froala_editor.pkgd.min.js"></script>
+   <script src="https://cdn.tiny.cloud/1/964vl8hj2vewno5daxqraicpjih6ce7yo9wy4nwfn3zvzsh5/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
 
     <style>
         a {
@@ -465,11 +463,14 @@
                                     <textarea class="form-control" id="message" name="content" style="height: 300px;"
                                         required></textarea>
                                 </div>
-                                <script>
-                                    // Initialize the Froala Editor
-                                    new FroalaEditor('#message');
-                                  </script>
-                                <div class="form-group">
+                               <script>
+				    tinymce.init({
+				      selector: '#message',
+				      plugins: 'advlist autolink lists link image charmap print preview anchor',
+				      toolbar: 'undo redo | bold italic underline | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image'
+				    });
+				  </script>
+				<div class="form-group">
                                     <button type="submit" onclick="Check()" class="btn btn-success">Xác nhận
                                         gửi</button>
                                     <button type="button" class="btn btn-danger">Hủy</button>
