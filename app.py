@@ -139,7 +139,7 @@ def reflect():
         return redirect('/check')
 
 
-@app.route('/newspost', methods=['POST'])
+@app.route('/newspost', methods=['GET', 'POST'])
 def newspost():
     if (request.method == 'POST'):
         iduser = request.form.get('iduser')
