@@ -39,7 +39,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastify-js/1.12.0/toastify.css"
         integrity="sha512-kT0v1BxcibEO2Yc+6Z3W1gNsN+2cZ/U6uITqHhIJl8SAvt9vpO8llugdCPXA7cCnp8G1xbuSqHNMRaR3Zlz9yA=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
-  <script src="https://cdn.tiny.cloud/1/964vl8hj2vewno5daxqraicpjih6ce7yo9wy4nwfn3zvzsh5/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
+    <script src="https://cdn.tiny.cloud/1/964vl8hj2vewno5daxqraicpjih6ce7yo9wy4nwfn3zvzsh5/tinymce/6/tinymce.min.js"
+        referrerpolicy="origin"></script>
 
     <style>
         a {
@@ -460,22 +461,22 @@
                             <div class="col-sm-12 ml-auto">
                                 <div class="form-group mt-4">
                                     <label for="bcc" class="col-form-label">Tóm tắt</label>
-                                    <textarea class="form-control" id="message" name="content" ></textarea>
+                                    <textarea class="form-control" id="message" name="content"></textarea>
                                 </div>
-                               <script>
-				    tinymce.init({
-				      selector: 'textarea',
-				      plugins: 'anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount checklist mediaembed casechange export formatpainter pageembed linkchecker a11ychecker tinymcespellchecker permanentpen powerpaste advtable advcode editimage tinycomments tableofcontents footnotes mergetags autocorrect typography inlinecss',
-				      toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table mergetags | addcomment showcomments | spellcheckdialog a11ycheck typography | align lineheight | checklist numlist bullist indent outdent | emoticons charmap | removeformat',
-				      tinycomments_mode: 'embedded',
-				      tinycomments_author: 'Author name',
-				      mergetags_list: [
-					{ value: 'First.Name', title: 'First Name' },
-					{ value: 'Email', title: 'Email' },
-				      ],
-				    });
-				  </script>
-				<div class="form-group">
+                                <script>
+                                    tinymce.init({
+                                        selector: 'textarea',
+                                        plugins: 'anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount checklist mediaembed casechange export formatpainter pageembed linkchecker a11ychecker tinymcespellchecker permanentpen powerpaste advtable advcode editimage tinycomments tableofcontents footnotes mergetags autocorrect typography inlinecss',
+                                        toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table mergetags | addcomment showcomments | spellcheckdialog a11ycheck typography | align lineheight | checklist numlist bullist indent outdent | emoticons charmap | removeformat',
+                                        tinycomments_mode: 'embedded',
+                                        tinycomments_author: 'Author name',
+                                        mergetags_list: [
+                                            { value: 'First.Name', title: 'First Name' },
+                                            { value: 'Email', title: 'Email' },
+                                        ],
+                                    });
+                                </script>
+                                <div class="form-group">
                                     <button type="submit" onclick="Check()" class="btn btn-success">Xác nhận
                                         gửi</button>
                                     <button type="button" class="btn btn-danger">Hủy</button>
