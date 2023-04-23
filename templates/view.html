@@ -223,22 +223,21 @@
             <!-- end of mobile menu toggle button -->
 
             <div class="collapse navbar-collapse" id="navbarsExampleDefault">
-                <ul class="navbar-nav ml-auto">
+           <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
-                        <a class="nav-link page-scroll" href="{{ url_for('home')}}">TRANG CHỦ <span
+                        <a class="nav-link page-scroll" href="#header">TRANG CHỦ <span
                                 class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link page-scroll active" href="{{ url_for('forum')}}">DIỄN ĐÀN</a>
+                        <a class="nav-link page-scroll" href="{{ url_for('forum')}}">DIỄN ĐÀN</a>
                     </li>
                     <!-- <li class="nav-item">
-                    <a class="nav-link page-scroll" href="#details">TIN GIẢ</a>
-                </li> -->
+                        <a class="nav-link page-scroll" href="#details">TIN GIẢ</a>
+                    </li> -->
 
                     <!-- Dropdown Menu -->
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle page-scroll" href="#video" id="navbarDropdown" role="button"
-                            aria-haspopup="true" aria-expanded="false">HƯỚNG DẪN</a>
+                        <a class="nav-link dropdown-toggle page-scroll" href="#video" id="navbarDropdown" role="button" aria-haspopup="true" aria-expanded="false">HƯỚNG DẪN</a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <a class="dropdown-item" href="{{ url_for('detectfakenews')}}"><span class="item-text">HƯỚNG
                                     DẪN CÁCH NHẬN BIẾT TIN GIẢ </span></a>
@@ -255,14 +254,14 @@
                     <li class="nav-item">
                         <a class="nav-link page-scroll" href="{{ url_for('check')}}">KIỂM TRA</a>
                     </li>
-
+                    
                     {% if not names %}
                     {% else %}
                     <li class="nav-item">
                         <a class="nav-link page-scroll" href="{{ url_for('post')}}">ĐĂNG BÀI</a>
                     </li>
                     {% endif %}
-
+                 
                 </ul>
                 <span class="nav-item">
                     {% if not names %}
