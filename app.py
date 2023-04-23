@@ -151,7 +151,7 @@ def newspost():
         label = request.form.get('label')
         content = request.form.get('content')
         phone = request.form.get('phone')
-        todays = datetime.date.today().strftime("%d/%m/%Y")
+        todays = current_time.strftime("%d-%m-%Y %H:%M:%S")
         file = request.files['image_upload']
         upload_result = upload(file)
         # Lấy URL công khai của hình ảnh tải lên
@@ -176,6 +176,7 @@ def newspost():
         return redirect('/post')
     else:
         return redirect('/post')
+
 
 
 @app.route('/display/<filename>')
