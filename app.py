@@ -596,7 +596,10 @@ def dashboard():
             }
         },
         {
-            '$limit': 3  # Số lượng kết quả trả về được giới hạn là 10
+            '$sort': {'count': -1}
+        },
+        {
+            '$limit': 3
         }
     ]
         # Thực thi pipeline để đếm số lượng bản ghi và nhóm chúng
