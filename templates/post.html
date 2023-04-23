@@ -20,27 +20,26 @@
     <link href="{{ url_for('static',filename='css/styles.css') }}" rel="stylesheet">
     <link href="{{ url_for('static',filename='css/swiper.css') }}" rel="stylesheet">
     <link href="{{ url_for('static',filename='css/magnific-popup.css') }}" rel="stylesheet">
+    <script src="https://cdn.ckeditor.com/4.21.0/standard/ckeditor.js"></script>
     <link rel="stylesheet" type="text/css"
-        href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
-    <script type="text/javascript"
-        src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
-    <script type="text/javascript" src="https://unpkg.com/jquery-tourer@1.0.1/dist/jquery-tourer.min.js"></script>
-    <link rel="stylesheet" href="https://unpkg.com/jquery-tourer@1.0.1/dist/jquery-tourer.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
-        integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
-        crossorigin="anonymous" referrerpolicy="no-referrer">
-    <link rel="icon"
-        href="https://media1.giphy.com/media/f9xvcrzFdRaHATv6me/giphy.gif?cid=6c09b95256e366c2930ac6483563c01a1c5f9a6d8e1e27ce&rid=giphy.gif&ct=s">
-    <script src="https://unpkg.com/intro.js/minified/intro.min.js"></script>
-    <link rel="stylesheet" href="https://unpkg.com/intro.js/minified/introjs.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastify-js/1.12.0/toastify.js"
-        integrity="sha512-ZHzbWDQKpcZxIT9l5KhcnwQTidZFzwK/c7gpUUsFvGjEsxPusdUCyFxjjpc7e/Wj7vLhfMujNx7COwOmzbn+2w=="
-        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastify-js/1.12.0/toastify.css"
-        integrity="sha512-kT0v1BxcibEO2Yc+6Z3W1gNsN+2cZ/U6uITqHhIJl8SAvt9vpO8llugdCPXA7cCnp8G1xbuSqHNMRaR3Zlz9yA=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <script src="https://cdn.tiny.cloud/1/964vl8hj2vewno5daxqraicpjih6ce7yo9wy4nwfn3zvzsh5/tinymce/6/tinymce.min.js"
-        referrerpolicy="origin"></script>
+    href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
+<script type="text/javascript"
+    src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+<script type="text/javascript" src="https://unpkg.com/jquery-tourer@1.0.1/dist/jquery-tourer.min.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/jquery-tourer@1.0.1/dist/jquery-tourer.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+    integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
+    crossorigin="anonymous" referrerpolicy="no-referrer">
+<link rel="icon"
+    href="https://media1.giphy.com/media/f9xvcrzFdRaHATv6me/giphy.gif?cid=6c09b95256e366c2930ac6483563c01a1c5f9a6d8e1e27ce&rid=giphy.gif&ct=s">
+<script src="https://unpkg.com/intro.js/minified/intro.min.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/intro.js/minified/introjs.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastify-js/1.12.0/toastify.js"
+    integrity="sha512-ZHzbWDQKpcZxIT9l5KhcnwQTidZFzwK/c7gpUUsFvGjEsxPusdUCyFxjjpc7e/Wj7vLhfMujNx7COwOmzbn+2w=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastify-js/1.12.0/toastify.css"
+    integrity="sha512-kT0v1BxcibEO2Yc+6Z3W1gNsN+2cZ/U6uITqHhIJl8SAvt9vpO8llugdCPXA7cCnp8G1xbuSqHNMRaR3Zlz9yA=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
 
     <style>
         a {
@@ -348,7 +347,7 @@
                     {% if not names %}
                     {% else %}
                     <li class="nav-item">
-                        <a class="nav-link page-scroll active" href="{{ url_for('post')}}">ĐĂNG BÀI</a>
+                        <a class="nav-link page-scroll active" href="{{ url_for('post')}}" >ĐĂNG BÀI</a>
                     </li>
                     {% endif %}
 
@@ -378,11 +377,11 @@
                     <h1>ĐĂNG BÀI LÊN DIỄN ĐÀN ĐỂ MỌI NGƯỜI CÙNG THẢO LUẬN NHÉ</h1>
                     
                 </div> -->
-    <!-- end of col -->
-    <!-- </div> -->
-    <!-- end of row -->
-    <!-- </div> -->
-    <!-- end of container -->
+                <!-- end of col -->
+            <!-- </div> -->
+            <!-- end of row -->
+        <!-- </div> -->
+        <!-- end of container -->
     <!-- </header> -->
     <!-- end of ex-header -->
     <!-- end of header -->
@@ -390,10 +389,9 @@
 
     <div class="ex-basic-2">
         <div class="container pt-5">
-
+            
             <h1 class="text-center pt-5">ĐĂNG BÀI LÊN DIỄN ĐÀN</h1>
-            <a class="float-right pr-3" style="color:#5f4dee;" href="history/{{google_id}}/0"><i
-                    class="fa-solid fa-clock-rotate-left"></i> Lịch sử đăng bài</a>
+            <a class="float-right pr-3" style="color:#5f4dee;" href="history/{{google_id}}/0"><i class="fa-solid fa-clock-rotate-left"></i> Lịch sử đăng bài</a>
             <br>
             <br>
             <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
@@ -403,17 +401,14 @@
                         <div class="form-row mb-3">
                             <div class="col-6 col-sm-6">
                                 <label for="to" class="col-form-label">Tiêu đề</label>
-                                <input style="display: none" type="text" name="iduser" class="form-control"
-                                    value="{{google_id}}">
-                                <input style="display: none" type="text" name="pictures" class="form-control"
-                                    value="{{pictures}}">
-                                <input style="display: none" type="text" name="nameuser" class="form-control"
-                                    value="{{names}}">
+                                <input  style="display: none" type="text" name="iduser" class="form-control" value="{{google_id}}">
+                                <input  style="display: none" type="text" name="pictures" class="form-control" value="{{pictures}}">
+                                <input style="display: none"  type="text" name="nameuser" class="form-control" value="{{names}}">
                                 <input type="text" name="title" class="form-control" id="to" required>
                             </div>
                             <div class="col-6 col-sm-6">
                                 <label for="cc" class="col-form-label">Số điện thoại:</label>
-                                <input type="text" name="phone" class="form-control" id="cc" required>
+                                <input type="text" name="phone" class="form-control" id="cc"  required>
                             </div>
                         </div>
                         <div class="form-row mb-3">
@@ -423,8 +418,7 @@
                                     <option value="law">Chính sách, pháp luật</option>
                                     <option value="disaster">Thiên tai, dịch bệnh</option>
                                     <option value="ecomomy">Kinh tế, chính trị</option>
-                                    <option value="health">Lĩnh vực y tế, sản phẩm y tế liên quan đến sức khỏe con người
-                                    </option>
+                                    <option value="health">Lĩnh vực y tế, sản phẩm y tế liên quan đến sức khỏe con người</option>
                                     <option value="seciurity">An ninh quốc gia, Trật tự an toàn – xã hội</option>
                                     <option value="other">Khác</option>
                                 </select>
@@ -435,8 +429,8 @@
                                     <option value="0">Tin giả</option>
                                     <option value="1">Tin Thật</option>
                                 </select>
-                            </div>
-
+                        </div>
+                        
                         </div>
                         <div class="form-row">
                             <div class="form-group col-md-6">
@@ -446,8 +440,7 @@
                             <div class="form-group col-md-6">
                                 <label for="inputPassword4">Chọn ảnh</label>
                                 <div class="custom-file pt-3">
-                                    <input type="file" class="custom-file-input" name="image_upload" id="image_upload"
-                                        onchange="loadFile(event)" required>
+                                    <input type="file" class="custom-file-input" name="image_upload" id="image_upload" onchange="loadFile(event)" required>
                                     <label class="custom-file-label" for="inputGroupFile01"></label>
                                     <!-- <div class="text-center">
                                         <img height="170" id="output"
@@ -455,35 +448,24 @@
                                     </div> -->
                                 </div>
                             </div>
-
+                          
                         </div>
-                        <div class="row">
-                            <div class="col-sm-12 ml-auto">
-                                <div class="form-group mt-4">
-                                    <label for="bcc" class="col-form-label">Tóm tắt</label>
-                                    <textarea class="form-control" id="message" name="content"></textarea>
-                                </div>
-                                <script>
-                                    tinymce.init({
-                                        selector: 'textarea',
-                                        plugins: 'anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount checklist mediaembed casechange export formatpainter pageembed linkchecker a11ychecker tinymcespellchecker permanentpen powerpaste advtable advcode editimage tinycomments tableofcontents footnotes mergetags autocorrect typography inlinecss',
-                                        toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table mergetags | addcomment showcomments | spellcheckdialog a11ycheck typography | align lineheight | checklist numlist bullist indent outdent | emoticons charmap | removeformat',
-                                        tinycomments_mode: 'embedded',
-                                        tinycomments_author: 'Author name',
-                                        mergetags_list: [
-                                            { value: 'First.Name', title: 'First Name' },
-                                            { value: 'Email', title: 'Email' },
-                                        ],
-                                    });
-                                </script>
-                                <div class="form-group">
-                                    <button type="submit" onclick="Check()" class="btn btn-success">Xác nhận
-                                        gửi</button>
-                                    <button type="button" class="btn btn-danger">Hủy</button>
-                                </div>
+                    <div class="row">
+                        <div class="col-sm-12 ml-auto">
+                            <div class="form-group mt-4">
+                                <label for="bcc" class="col-form-label">Tóm tắt</label>
+                                <textarea class="form-control" id="message" name="content" style="height: 300px;" required></textarea>
+                            </div>
+                            <script>
+                                 CKEDITOR.replace('content');
+                            </script>
+                            <div class="form-group">
+                                <button type="submit" onclick="Check()"  class="btn btn-success">Xác nhận gửi</button>
+                                <button type="button" class="btn btn-danger">Hủy</button>
                             </div>
                         </div>
-                    </form>
+                    </div>
+                </form>
 
                 </main>
             </div>
@@ -527,7 +509,7 @@
     </script>
     <script src="{{ url_for('static',filename='js/scripts.js') }}">
     </script>
-    <script src="https://cdn.jsdelivr.net/gh/reymon359/web-experiments/Social%20Signature/socialsignature.min.js"
+      <script src="https://cdn.jsdelivr.net/gh/reymon359/web-experiments/Social%20Signature/socialsignature.min.js"
         crossorigin="anonymous"></script>
     <script>
         function Check() {
@@ -546,7 +528,7 @@
                     backgroundColor: "linear-gradient(to right, #00b09b, #96c93d)",
 
                 }).showToast();
-            } else {
+            } else{
                 Toastify({
                     text: "Tin của bạn sẽ được kiểm duyệt dau 24h!",
                     duration: 100000
