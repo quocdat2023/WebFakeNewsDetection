@@ -420,12 +420,11 @@ def history(id_user, pages):
     else:
         return render_template('history.html', names=session["name"], google_id=session["google_id"], pictures=session["picture"], forums_list=forums_list, page=page, id_user=id_user)
 
-
 @app.route('/forum')
 def forum():
     newtop3 = db.forum_report.find({"Status": 1}).limit(3).sort('_id', 1)
     newtop5 = db.forum_report.find({"Status": 1}).limit(5).sort('_id', 1)
-    newtop1 = db.forum_report.find({"Status": 1}).limit(1).sort('_id', -1)
+    newtop5s = db.forum_report.find({"Status": 1}).limit(5).sort('_id', -1)
     page = request.args.get('page', 0, type=int)
     page_size = 20
     offset = page * page_size
@@ -453,10 +452,9 @@ def forum():
         forums_list.append(forum_info)
     name_session = session.get('name')
     if name_session is None:
-        return render_template('forum.html', names="", pictures="", forums_list=forums_list, page=page, newtop3=newtop3, newtop5=newtop5,newtop1=newtop1)
+        return render_template('forum.html', names="", pictures="", forums_list=forums_list, page=page, newtop3=newtop3, newtop5=newtop5, newtop5s=newtop5s)
     else:
-        return render_template('forum.html', names=session["name"], google_id=session["google_id"], pictures=session["picture"], forums_list=forums_list, page=page, newtop3=newtop3, newtop5=newtop5,newtop1=newtop1)
-
+        return render_template('forum.html', names=session["name"], google_id=session["google_id"], pictures=session["picture"], forums_list=forums_list, page=page, newtop3=newtop3, newtop5=newtop5, newtop5s=newtop5s)
 
 @app.route('/post')
 def post():
