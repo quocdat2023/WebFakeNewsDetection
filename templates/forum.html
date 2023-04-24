@@ -168,40 +168,27 @@
     <div class="row">
       <!-- Blog entries-->
       <div class="col-lg-8">
-        <!-- Featured blog post-->
-        {% for top1 in newtop1 %}
-        <div class="card mb-4">
-          <a href="#!"><img class="card-img-top" style="max-width:  850px;max-height: 350px;" src="{{top1.ImageUpload}}"
-              alt="..."></a>
-          <div class="card-body">
-            <div class="small text-muted">{{top1.DatePost}}</div>
-            <h2 class="card-title">{{top1.Title}}</h2>
-            <!-- <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis aliquid atque,
-              nulla? Quos cum ex quis soluta, a laboriosam. Dicta expedita corporis animi vero voluptate voluptatibus
-              possimus, veniam magni quis!</p> -->
-              {% if top1.Label == 1 %}
-              <span class="badge badge-success">Tin thật</span>
-              {% else %}
-              <span class="badge badge-danger">Tin giả</span>
-              {% endif %}
-              {% if top1.Category == 'law' %}
-              <span class="badge badge-info">Chính sách, pháp luật</span>
-              {% elif top1.Category == 'disaster' %}
-              <span class="badge badge-warning">Thiên tai, dịch bệnh</span>
-              {% elif top1.Category == 'ecomomy' %}
-              <span class="badge badge-success">Kinh tế, chính trị</span>
-              {% elif top1.Category == 'health' %}
-              <span class="badge badge-primary">Lĩnh vực y tế, sản phẩm y tế</span>
-              {% elif top1.Category == 'seciurity' %}
-              <span class="badge badge-secondary">An ninh quốc gia, Trật tự an toàn – xã hội</span>
-              {% elif top1.Category == 'other' %}
-              <span class="badge badge-danger">Khác</span>
-              {% endif %}
-              <br>
-            <a class="btn btn-primary mt-2" href="https://fakenewsdetection-gyce.onrender.com/view/{{top1._id}}">Xem thêm →</a>
+       <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+          <div class="carousel-inner">
+            {% for top5s in newtop5s %}
+            <div class="carousel-item {% if loop.first %}active{% endif %}">
+              <img style="filter: brightness(50%);" class="d-block w-100" src="{{ top5s.ImageUpload }}" width="652" height="326" alt="Slide {{ loop.index }}">
+              <div class="carousel-caption d-none d-md-block">
+                <h5 class="text-white text-left"><b>{{ top5s.Title }}</b></h5>
+              </div>
+            </div>
+            {% endfor %}
           </div>
+          <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+          </a>
+          <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+          </a>
         </div>
-        {% endfor %}
+        <br>
         <!-- Nested row for non-featured blog posts-->
         <div class="row">
           {% for forum in forums_list %}
