@@ -174,7 +174,7 @@
             <div class="carousel-item {% if loop.first %}active{% endif %}">
               <img style="filter: brightness(50%);" class="d-block w-100" src="{{ top5s.ImageUpload }}" width="652" height="326" alt="Slide {{ loop.index }}">
               <div class="carousel-caption d-none d-md-block">
-                <h5 class="text-white text-left"><b>{{ top5s.Title }}</b></h5>
+                <h5 class="text-white text-left"><b><a class="text-decoration-none" href="https://fakenewsdetection-gyce.onrender.com/view/{{top5s._id}}">{{ top5s.Title }}</a></b></h5>
               </div>
             </div>
             {% endfor %}
