@@ -506,53 +506,175 @@ def loginAdmin():
     return render_template('login.html')
 
 
+
 @app.route('/admin/fake_news_published/')
 def fake_news_published():
-    fake = db.forum_report.find({"Status": 1,"Label":0})
-    name_session = session.get('user')
+    page = request.args.get('page', 0, type=int)
+    page_size = 20
+    offset = page * page_size
+    forums = db.forum_report.find({"Status": 1, "Label": 0}).skip(offset).limit(page_size).sort('_id', -1)
+    forums_list = []
+    for forum in forums:
+            forum_info = {
+                'Title': forum['Title'],
+                'GooglePicture': forum['GooglePicture'],
+                'Status': forum['Status'],
+                'Label': forum['Label'],
+                'GoogleId': forum['GoogleId'],
+                'Category': forum['Category'],
+                'Summary': forum['Summary'],
+                'Title': forum['Title'],
+                "_id": forum['_id'],
+                'Link': forum['Link'],
+                'NameGoogle': forum['NameGoogle'],
+                'Phone': forum['Phone'],
+                'DatePost': forum['DatePost'],
+                'ImageUpload': forum['ImageUpload']
+
+            }
+            forums_list.append(forum_info)
+    name_session = session.get('name')
     if name_session is None:
-        return redirect(url_for('index'))
+        return render_template('fake_news_published.html', names="", pictures="", forums_list=forums_list, page=page)
     else:
-        return render_template('fake_news_published.html',fake=fake)
+         return render_template('fake_news_published.html', names=session["name"], google_id=session["google_id"], pictures=session["picture"], forums_list=forums_list, page=page)
 
 
 @app.route('/admin/real_news_published/')
 def real_news_published():
-    real = db.forum_report.find({"Status": 1,"Label":1})
-    name_session = session.get('user')
+    page = request.args.get('page', 0, type=int)
+    page_size = 20
+    offset = page * page_size
+    forums = db.forum_report.find({"Status": 1, "Label": 1}).skip(offset).limit(page_size).sort('_id', -1)
+    forums_list = []
+    for forum in forums:
+            forum_info = {
+                'Title': forum['Title'],
+                'GooglePicture': forum['GooglePicture'],
+                'Status': forum['Status'],
+                'Label': forum['Label'],
+                'GoogleId': forum['GoogleId'],
+                'Category': forum['Category'],
+                'Summary': forum['Summary'],
+                'Title': forum['Title'],
+                "_id": forum['_id'],
+                'Link': forum['Link'],
+                'NameGoogle': forum['NameGoogle'],
+                'Phone': forum['Phone'],
+                'DatePost': forum['DatePost'],
+                'ImageUpload': forum['ImageUpload']
+
+            }
+            forums_list.append(forum_info)
+    name_session = session.get('name')
     if name_session is None:
-        return redirect(url_for('index'))
+        return render_template('real_news_published.html', names="", pictures="", forums_list=forums_list, page=page)
     else:
-        return render_template('real_news_published.html',real=real)
+         return render_template('real_news_published.html', names=session["name"], google_id=session["google_id"], pictures=session["picture"], forums_list=forums_list, page=page)
+
 
 
 @app.route('/admin/uncensored_new/')
 def uncensored_new():
-    uncensored_new = db.forum_report.find({"Status": 0})
-    name_session = session.get('user')
+    page = request.args.get('page', 0, type=int)
+    page_size = 20
+    offset = page * page_size
+    forums = db.forum_report.find({"Status": 0}).skip(
+        offset).limit(page_size).sort('_id', -1)
+    forums_list = []
+    for forum in forums:
+        forum_info = {
+            'Title': forum['Title'],
+            'GooglePicture': forum['GooglePicture'],
+            'Status': forum['Status'],
+            'Label': forum['Label'],
+            'GoogleId': forum['GoogleId'],
+            'Category': forum['Category'],
+            'Summary': forum['Summary'],
+            'Title': forum['Title'],
+            "_id": forum['_id'],
+            'Link': forum['Link'],
+            'NameGoogle': forum['NameGoogle'],
+            'Phone': forum['Phone'],
+            'DatePost': forum['DatePost'],
+            'ImageUpload': forum['ImageUpload']
+
+        }
+        forums_list.append(forum_info)
+    name_session = session.get('name')
     if name_session is None:
-        return redirect(url_for('index'))
+        return render_template('uncensored_new.html', names="", pictures="", forums_list=forums_list, page=page)
     else:
-        return render_template('uncensored_new.html',uncensored_new=uncensored_new)
+        return render_template('uncensored_new.html', names=session["name"], google_id=session["google_id"], pictures=session["picture"], forums_list=forums_list, page=page)
 
 
 @app.route('/admin/censored_new/')
 def censored_new():
-    censored_new = db.forum_report.find({"Status": 1})
-    name_session = session.get('user')
+    page = request.args.get('page', 0, type=int)
+    page_size = 20
+    offset = page * page_size
+    forums = db.forum_report.find({"Status": 1}).skip(
+        offset).limit(page_size).sort('_id', -1)
+    forums_list = []
+    for forum in forums:
+        forum_info = {
+            'Title': forum['Title'],
+            'GooglePicture': forum['GooglePicture'],
+            'Status': forum['Status'],
+            'Label': forum['Label'],
+            'GoogleId': forum['GoogleId'],
+            'Category': forum['Category'],
+            'Summary': forum['Summary'],
+            'Title': forum['Title'],
+            "_id": forum['_id'],
+            'Link': forum['Link'],
+            'NameGoogle': forum['NameGoogle'],
+            'Phone': forum['Phone'],
+            'DatePost': forum['DatePost'],
+            'ImageUpload': forum['ImageUpload']
+
+        }
+        forums_list.append(forum_info)
+    name_session = session.get('name')
     if name_session is None:
-        return redirect(url_for('index'))
+        return render_template('censored_new.html', names="", pictures="", forums_list=forums_list, page=page)
     else:
-        return render_template('censored_new.html',censored_new=censored_new)
+        return render_template('censored_new.html', names=session["name"], google_id=session["google_id"], pictures=session["picture"], forums_list=forums_list, page=page)
+
 
 @app.route('/admin/deny_new/')
 def deny_new():
-    deny_new = db.forum_report.find({"Status": 2})
-    name_session = session.get('user')
+    page = request.args.get('page', 0, type=int)
+    page_size = 20
+    offset = page * page_size
+    forums = db.forum_report.find({"Status": 2}).skip(
+        offset).limit(page_size).sort('_id', -1)
+    forums_list = []
+    for forum in forums:
+        forum_info = {
+            'Title': forum['Title'],
+            'GooglePicture': forum['GooglePicture'],
+            'Status': forum['Status'],
+            'Label': forum['Label'],
+            'GoogleId': forum['GoogleId'],
+            'Category': forum['Category'],
+            'Summary': forum['Summary'],
+            'Title': forum['Title'],
+            "_id": forum['_id'],
+            'Link': forum['Link'],
+            'NameGoogle': forum['NameGoogle'],
+            'Phone': forum['Phone'],
+            'DatePost': forum['DatePost'],
+            'ImageUpload': forum['ImageUpload']
+
+        }
+        forums_list.append(forum_info)
+    name_session = session.get('name')
     if name_session is None:
-        return redirect(url_for('index'))
+        return render_template('deny_new.html', names="", pictures="", forums_list=forums_list, page=page)
     else:
-        return render_template('deny_new.html',deny_new=deny_new)
+        return render_template('deny_new.html', names=session["name"], google_id=session["google_id"], pictures=session["picture"], forums_list=forums_list, page=page)
+
 
 @app.route("/loginadmin", methods=['POST'])
 def loginadmin():
