@@ -17,7 +17,7 @@
     <!-- GLOBAL MAINLY STYLES-->
 
     <!-- <base href="https://it-zone.club/"> -->
-    <base href="https://fakenewsdetection-gyce.onrender.com/">
+    <base href="http://127.0.0.1:5000/">
 
     <script src="https://cdn.ckeditor.com/4.19.1/standard-all/ckeditor.js"></script>
     <link href="https://it-zone.club/public/assets/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
@@ -982,234 +982,131 @@
 
 
         <div class="content-wrapper">
+            <div class="ex-basic-2 mt-3">
+                <div class="container">
+                    <h4>Tin tức chưa được kiểm duyệt</h4>
+                    <div class="row">
+                        {% for forum in forums_list %}
+                        <div class="col-md-4">
+                            <div class="card mb-4 box-shadow" style="height: 95%;">
+                                <img class="card-img-top" src="{{forum.ImageUpload}}"
+                                    style="max-width:  auto;max-height: 200px;" data-holder-rendered="true">
+                                <div class="card-body">
+                                    <a class="card-text blue" style="padding-top:5px" href="/view/{{forum._id}}"
+                                        class="btn btn-sm btn-secondary">{{forum.Title }}</a>
+                                    <h6 class="card-subtitle mt-2 mb-2 text-muted">{{forum.DatePost}}</h6>
+                                    {% if forum.Label == 1 %}
+                                    <span class="badge badge-success">Tin thật</span>
+                                    {% else %}
+                                    <span class="badge badge-danger">Tin giả</span>
+                                    {% endif %}
 
-
-
-
-            <!-- START PAGE CONTENT-->
-
-            <div class="page-content fade-in-up">
-                <div class="row">
-
-                    <div class="col-lg-12">
-
-                        <div class="ibox">
-
-                            <div class="ibox-head">
-
-                                <div class="ibox-title">Tin tức chưa được công bố</div>
-
-                                <div class="ibox-tools">
-
-                                    <a class="ibox-collapse"><i class="fa fa-minus"></i></a>
-
-                                    <!-- <a class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-ellipsis-v"></i></a>
-
-                            <div class="dropdown-menu dropdown-menu-right">
-
-                                <a class="dropdown-item">option 1</a>
-
-                                <a class="dropdown-item">option 2</a>
-
-                            </div> -->
+                                    {% if forum.Status == 1 %}
+                                    <span class="badge badge-success">Đã phê duyệt</span>
+                                    {% elif forum.Status == 0 %}
+                                    <span class="badge badge-danger">Chưa phê duyệt</span>
+                                    {% elif forum.Status == 2 %}
+                                    <span class="badge badge-secondary">Từ chối phê duyệt</span>
+                                    {% endif %}
+                                    <!-- <a data-idforums="{{forum._id}}" class="float-right pt-2 btndelete" target="_self" data-toggle="modal" data-target="#exampleModal" data-bs-toggle="modal"
+                                        data-bs-target="#exampleModal"><i class="fa-solid fa-trash"></i></a> -->
+                                    <div class="btn-group">
+                                        <button class="btn btn-primary dropdown-toggle btn-sm" data-toggle="dropdown"
+                                            aria-expanded="false"><i class="fa fa-cogs"></i><i
+                                                class="fa fa-angle-down"></i></button>
+                                        <ul class="dropdown-menu" x-placement="bottom-start"
+                                            style="position: absolute; transform: translate3d(0px, 26px, 0px); top: 0px; left: 0px; will-change: transform;">
+                                            <li style="width: 78%">
+                                                <form action="/uncensoreds/{{forum._id}}/1" method="POST">
+                                                    <button class="dropdown-item" href="javascript:;"><i
+                                                            class="fa-solid fa-circle-check text-success"></i>
+                                                        Phê duyệt</button>
+                                                </form>
+                                                <form action="/uncensoreds/{{forum._id}}/2" method="POST">
+                                                    <button class="dropdown-item" href="javascript:;"><i
+                                                            class="fa-solid fa-circle-xmark text-danger"></i>
+                                                        Từ chối</button>
+                                                </form>
+                                            </li>
+                                            <li>
+                                                <a target="_self" class="btn float-right" data-toggle="modal"
+                                                    data-target="#exampleModal" data-idforums="{{forum._id}}"
+                                                    data-iduser="{{id_user}}"><i class="fa fa-trash"
+                                                        style="color:#5f4dee"></i> Xóa</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+                <div class="modal fade" id="exampleModal" tabindex="-1"
+                aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Xác nhận xóa</h5>
+                            <button type="button" id="closed" class="btn-close"
+                                data-dismiss="modal"></button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <img class="card-img-top"
+                                        src="https://res.cloudinary.com/dz9j1pqvk/image/upload/v1681580160/delete_zf6pp6.png"
+                                        style="height: 150px; width:auto;display: block; margin-left: auto; margin-right: auto;"
+                                        data-holder-rendered="true">
+                                    <br>
+                                    <p class="text-center">Bạn có chắc chắn muốn xóa bài viết
+                                        này hay không? <span id="itemId"
+                                            style="display: none;"></span> <span
+                                            style="display: none;" id="userId"></span></p>
                                 </div>
 
                             </div>
-
-                            <div class="ibox-body">
-
-                                <table class="table table-striped table-bordered table-hover" id="example-table"
-                                    cellspacing="0" width="100%">
-                                    <thead>
-                                        <tr>
-
-                                            <th width="1%">#</th>
-                                            <th width="auto">Bài viết</th>
-                                            <!-- <th class="text-center" width="80px">Thao tác</th> -->
-                                        </tr>
-
-                                    </thead>
-
-                                    <tbody>
-                                        {% for uncensored_new in uncensored_new %}
-                                        <tr>
-                                            <td>{{loop.index}}</td>
-                                            <td>
-                                                    <img class="img-circle" src="{{ uncensored_new.GooglePicture }}"
-                                                    width="4px">
-                                                {{uncensored_new.NameGoogle}}
-                                                <br>
-                                                <a href="view/{{uncensored_new._id}}"><b> {{uncensored_new.Title}} </b></a>
-                                                <br>
-                                                {% if uncensored_new.Category == 'law' %}
-                                                <span class="badge badge-warning">Chính sách, pháp luật</span>
-                                                {% elif uncensored_new.Category == 'disaster' %}
-                                                <span class="badge badge-warning">Thiên tai, dịch bệnh</span>
-                                                {% elif uncensored_new.Category == 'ecomomy' %}
-                                                <span class="badge badge-warning">Kinh tế, chính trị</span>
-                                                {% elif uncensored_new.Category == 'health' %}
-                                                <span class="badge badge-warning">Lĩnh vực y tế, sản phẩm y tế liên quan
-                                                    đến sức khỏe con người</span>
-                                                {% elif uncensored_new.Category == 'seciurity' %}
-                                                <span class="badge badge-warning">An ninh quốc gia, Trật tự an toàn – xã
-                                                    hội</span>
-                                                {% elif uncensored_new.Category == 'other' %}
-                                                <span class="badge badge-warning">Khác</span>
-                                                {% endif %}
-                                                {% if uncensored_new.Label == 1 %}
-                                                <span class="badge badge" style="background-color:#00cc99">Tin
-                                                    thật</span>
-                                                {% else %}
-                                                <span class="badge badge-danger">Tin giả</span>
-                                                {% endif %}
-                                                <span class="badge" style="background-color:#1a8cff"> <i
-                                                        class="fa-solid fa-clock"></i> {{uncensored_new.DatePost}}</span>
-
-                                            </td>
-                                            <td>
-                                                <div class="btn-group">
-                                                    <button class="btn btn-primary dropdown-toggle btn-sm"
-                                                        data-toggle="dropdown" aria-expanded="false"><i
-                                                            class="fa fa-cogs"></i>Thao tác <i
-                                                            class="fa fa-angle-down"></i></button>
-                                                    <ul class="dropdown-menu" x-placement="bottom-start"
-                                                        style="position: absolute; transform: translate3d(0px, 26px, 0px); top: 0px; left: 0px; will-change: transform;">
-                                                        <li style="width: 78%">
-                                                            <form action="/uncensoreds/{{uncensored_new._id}}/1" method="POST">
-                                                                <button class="dropdown-item" href="javascript:;"><i
-                                                                        class="fa-solid fa-circle-check text-success"></i>
-                                                                    Phê duyệt</button>
-                                                            </form>
-                                                            <form action="/uncensoreds/{{uncensored_new._id}}/2" method="POST">
-                                                                <button class="dropdown-item" href="javascript:;"><i
-                                                                        class="fa-solid fa-circle-xmark text-danger"></i>
-                                                                    Từ chối</button>
-                                                            </form>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        {% endfor %}
-
-                                    </tbody>
-
-                                </table>
-
-                            </div>
-
                         </div>
-
+                        <div class="modal-footer">
+                            <button type="button" id="closed" class="btn btn-secondary"
+                                data-dismiss="modal">Hủy </button>
+                            <button type="button" class="btn btn-danger"
+                                id="deleteBtn">Xóa</button>
+                        </div>
                     </div>
                 </div>
-
+            </div>
+                <nav d aria-label="Page navigation example">
+                    <ul class="pagination justify-content-center mt-5">
+                        <li class="page-item">
+                            <a style="color:#5f4dee;" class="page-link" href="/admin/uncensored_new?page={{ page - 1}}"
+                                aria-label="Previous">
+                                <span aria-hidden="true">&laquo;</span>
+                                <span class="sr-only">Previous</span>
+                            </a>
+                        </li>
+                        <li class="page-item"><a style="color:#5f4dee; background-color: #5f4dee; color:white"
+                                class="page-link" href="/admin/uncensored_new?page={{ page}}">{{ page}}</a></li>
+                        <li class="page-item"><a style="color:#5f4dee;" class="page-link"
+                                href="/admin/uncensored_new?page={{ page+1}}">{{ page + 1}}</a></li>
+                        <li class="page-item"><a style="color:#5f4dee;" class="page-link"
+                                href="/admin/uncensored_new?page={{ page +2}}">{{ page+2}}</a></li>
+                        <li class="page-item">
+                            <a style="color:#5f4dee;" class="page-link" href="/admin/uncensored_new?page={{ page + 1}}"
+                                aria-label="Next">
+                                <span aria-hidden="true">&raquo;</span>
+                                <span class="sr-only">Next</span>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
 
             </div>
 
-            <!-- <div class="clock">
 
-            <div class="hour-hand"></div>
-
-            <div class="minute-hand"></div>
-
-            <div class="second-hand"></div>
-
-        </div> -->
-
-
-
-
-
-
-
-
-            <!-- END PAGE CONTENT-->
-
-            <script>
-
-                function updateClock(hours, minutes, seconds) {
-
-
-
-                    var hourDegrees = hours * 30;
-
-                    var minuteDegrees = minutes * 6;
-
-                    var secondDegrees = seconds * 6;
-
-
-
-                    $('.hour-hand').css({
-
-                        'transform': `rotate(${hourDegrees}deg)`
-
-                    });
-
-
-
-                    $('.minute-hand').css({
-
-                        'transform': `rotate(${minuteDegrees}deg)`
-
-                    });
-
-
-
-                    $('.second-hand').css({
-
-                        'transform': `rotate(${secondDegrees}deg)`
-
-                    });
-
-
-
-                }
-
-
-
-                setClockWithCurrentTime();
-
-
-
-                function setClockWithCurrentTime() {
-
-                    var date = new Date();
-
-
-
-                    var hours = ((date.getHours() + 11) % 12 + 1);
-
-                    var minutes = date.getMinutes();
-
-                    var seconds = date.getSeconds();
-
-
-
-                    updateClock(hours, minutes, seconds);
-
-                }
-
-
-                setInterval(setClockWithCurrentTime, 1000);
-
-            </script>
-            <script>
-                $(document).ready(function () {
-                    $('[data-toggle="popover"]').popover();
-                });
-            </script><!-- END PAGE CONTENT-->
-
-
-            <footer class="page-footer">
-                <!-- <div class="font-13">© Copyright <b>IT-Zone</b>. All Rights Reserved</div> -->
-
-                <div class="font-13">Copyright © 2023. All Rights Reserved.</div>
-                
-
-                <div class="to-top" style="display: block;"><i class="fa fa-circle-up"></i></div>
-
-            </footer>
         </div>
+
 
         <script src="https://it-zone.club/public/assets/vendors/jquery/dist/jquery.min.js"
             type="text/javascript"></script>
